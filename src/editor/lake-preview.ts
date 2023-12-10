@@ -66,6 +66,10 @@ export default class LakePreview extends BasePreview {
       }
   }
 
+  onActive() {
+      this.webviewEditor.webview.postMessage({ type: 'setActive', value: this.webviewEditor.active });
+  }
+
   async undo() {
     return this.message.undo();
   }

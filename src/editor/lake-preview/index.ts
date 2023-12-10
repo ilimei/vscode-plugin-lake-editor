@@ -3,6 +3,7 @@ window.onload = function () {
   const { createOpenEditor } = window.Doc;
   // 创建编辑器
   const editor = createOpenEditor(document.getElementById('root'), {
+    disabledPlugins: ['save'],
     input: {},
     image: {
       isCaptureImageURL() {
@@ -10,52 +11,41 @@ window.onload = function () {
       },
     },
   });
-  let ignoreChange = false;
-  // 设置内容
-  // editor.setDocument('text/lake', '<p><span style="color: rgb(255, 111, 4),rgb(243, 48, 171)">欢迎来到yuque编辑器</span></p>');
-  // 监听内容变动
-  editor.on('contentchange', () => {
-    if(ignoreChange) {
-      ignoreChange = false;
-    };
-    // @ts-expect-error not error
-    vscode.postMessage({
-      type: 'contentchange',
-      data: editor.getDocument('text/lake'),
-    });
-    console.info('contentchange', editor.getDocument('text/lake'));
-  });
 
-  editor.on('save', () => {
-    // @ts-expect-error not error
-    vscode.postMessage({
-      type: 'save',
-      data: editor.getDocument('text/lake'),
-    });
-    console.info('save', editor.getDocument('text/lake'));
-  });
-
+  let cancelChangeListener = () => {};
   window.addEventListener('message', async e => {
     switch(e.data.type) {
+      case 'setActive':
+        editor.execCommand('focus');
+        break;
       case 'undo': 
-        editor.executeCommand('undo');
+        editor.execCommand('undo');
         // @ts-expect-error not error
         vscode.postMessage({ requestId: e.data.requestId, data: null });  
         break;
       case 'redo':
-        editor.executeCommand('redo');
+        editor.execCommand('redo');
         // @ts-expect-error not error
         vscode.postMessage({ requestId: e.data.requestId, data: null });  
         break;
       case 'updateContent':
-        console.info(e.data.data);
-        ignoreChange = true;
+        cancelChangeListener();
         editor.setDocument('text/lake', new TextDecoder().decode(e.data.data));
+        // 监听内容变动
+        cancelChangeListener = editor.on('contentchange', () => {
+          // @ts-expect-error not error
+          vscode.postMessage({
+            type: 'contentchange',
+            data: editor.getDocument('text/lake'),
+          });
+          console.info('contentchange', editor.getDocument('text/lake'));
+        });
+        // 获取焦点
+        editor.execCommand('focus');
         // @ts-expect-error not error
         vscode.postMessage({ requestId: e.data.requestId, data: null });  
         break;
-      case 'getContent': 
-        console.info('getContent', e.data);
+      case 'getContent':
         // @ts-expect-error not error
         vscode.postMessage({ requestId: e.data.requestId, data: new TextEncoder().encode(editor.getDocument('text/lake')) });  
         break;
