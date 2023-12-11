@@ -91,14 +91,14 @@ export default class BasePreview extends Disposable {
 
         this.render();
         this.update();
-        this.webviewEditor.webview.postMessage({ type: 'setActive', value: this.webviewEditor.active });
+        this.message.callClient('setActive');
     }
 
     getTitle(): string {
       return '';
     }
 
-    getCssSource(): string[] {
+    getCSSSource(): string[] {
         return [];
     }
 
@@ -111,7 +111,7 @@ export default class BasePreview extends Disposable {
     }
 
     onMessage(message: any) {
-        this.message?.onMessage(message);
+        this.message?.onMessage(message, this);
     }
 
     onActive() {
@@ -143,13 +143,11 @@ export default class BasePreview extends Disposable {
     }
 
     private async getWebviewContents() {
-      console.info('---???');
         const settings = {
             isMac: isMac(),
         };
 
         const nonce = this.nonce;
-        const cspSource = this.webviewEditor.webview.cspSource;
 
         return /* html */`<!DOCTYPE html>
     <html lang="en">
@@ -161,7 +159,7 @@ export default class BasePreview extends Disposable {
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
         <title>${this.getTitle()}</title>
-        ${this.getCssSource().map(source => {
+        ${this.getCSSSource().map(source => {
             return `<link rel="stylesheet" href="${escapeAttribute(this.extensionResource(source))}" type="text/css" media="screen" nonce="${nonce}">`;
         }).join('\n')
             }
@@ -179,6 +177,10 @@ export default class BasePreview extends Disposable {
             }).join('\n')}
     </body>
     </html>`;
+    }
+
+    public async getExtensionResource(path: string) {
+        return escapeAttribute(this.extensionResource(path));
     }
 
     private extensionResource(path: string) {

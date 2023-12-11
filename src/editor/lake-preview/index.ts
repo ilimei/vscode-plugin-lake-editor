@@ -1,13 +1,40 @@
-window.onload = function () {
+async function toBase64URL(file: File) {
+  const reader = new FileReader();
+  return new Promise<string>((resolve, reject) => {
+    reader.onload = () => {
+      resolve(reader.result as string);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+window.onload = async function () {
+  const baseURI = await window.message.callServer('getExtensionResource', '/media/editor');
+  console.info('baseURI', baseURI);
   // @ts-ignore
   const { createOpenEditor } = window.Doc;
   // 创建编辑器
   const editor = createOpenEditor(document.getElementById('root'), {
     disabledPlugins: ['save'],
     input: {},
+    codeblock: {
+      codemirrorURL: baseURI + '/CodeMirror.js',
+    },
+    math: {
+      KaTexURL: baseURI + '/katex.js',
+    },
     image: {
       isCaptureImageURL() {
         return false;
+      },
+      async createUploadPromise(request) {
+        const url = await toBase64URL(request.data);
+        return {
+          url,
+          size: request.data.size,
+          name: request.data.name,
+        };
       },
     },
   });
@@ -20,38 +47,28 @@ window.onload = function () {
         break;
       case 'undo': 
         editor.execCommand('undo');
-        // @ts-expect-error not error
-        vscode.postMessage({ requestId: e.data.requestId, data: null });  
+        window.message.replayServer(e.data.requestId); 
         break;
       case 'redo':
         editor.execCommand('redo');
-        // @ts-expect-error not error
-        vscode.postMessage({ requestId: e.data.requestId, data: null });  
+        window.message.replayServer(e.data.requestId);
         break;
       case 'updateContent':
         cancelChangeListener();
         editor.setDocument('text/lake', new TextDecoder().decode(e.data.data));
         // 监听内容变动
         cancelChangeListener = editor.on('contentchange', () => {
-          // @ts-expect-error not error
-          vscode.postMessage({
-            type: 'contentchange',
-            data: editor.getDocument('text/lake'),
-          });
-          console.info('contentchange', editor.getDocument('text/lake'));
+          window.message.callServer('contentchange', editor.getDocument('text/lake'));
         });
         // 获取焦点
         editor.execCommand('focus');
-        // @ts-expect-error not error
-        vscode.postMessage({ requestId: e.data.requestId, data: null });  
+        window.message.replayServer(e.data.requestId);
         break;
       case 'getContent':
-        // @ts-expect-error not error
-        vscode.postMessage({ requestId: e.data.requestId, data: new TextEncoder().encode(editor.getDocument('text/lake')) });  
+        window.message.replayServer(e.data.requestId, new TextEncoder().encode(editor.getDocument('text/lake')));
         break;
     }
   });
 
-  // @ts-expect-error not error
-  vscode.postMessage({ type: 'ready' });
+  window.message.callServer('ready');
 };

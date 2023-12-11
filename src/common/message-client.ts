@@ -1,10 +1,13 @@
+/**
+ * 运行在webview中的代码
+ */
 
 export interface Request {
   requestId: number | string;
   resolve: (data: any) => void;
 }
 
-export default class Message {
+export default class MessageClient {
 
   timeout: Request[] = [];
   requestsMap: { [key: string]: Request } = {};
@@ -19,10 +22,18 @@ export default class Message {
   }
 
   async load(): Promise<{ buf: Buffer, ext: string }> {
-      return await this._trans('load');
+      return await this.callServer('load');
   }
 
-  _trans(type: string, data: any = null, timeout: number = -1): any {
+  public replayServer(requestId: string | number, data: any = null) {
+    // @ts-ignore
+    vscode.postMessage({
+        requestId,
+        data,
+    });
+  }
+
+  public callServer(type: string, data: any = null, timeout: number = -1): any {
       const requestId = parseInt((Math.random() + '').slice(2), 10);
       const request: Request = {
           requestId,
@@ -49,4 +60,4 @@ export default class Message {
 }
 
 // @ts-ignore
-window.message = new Message();
+window.message = new MessageClient();

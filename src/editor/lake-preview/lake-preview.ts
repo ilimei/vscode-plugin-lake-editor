@@ -1,0 +1,86 @@
+import * as vscode from 'vscode';
+import * as path from 'path';
+
+import BasePreview from "../base-preview";
+import htmlTemplate from './index.html';
+
+export default class LakePreview extends BasePreview {
+  private readonly _onDidChange = this._register(new vscode.EventEmitter<void>());
+	public readonly onDidChange = this._onDidChange.event;
+
+  private readonly _onReady = this._register(new vscode.EventEmitter<void>());
+	public readonly onReady = this._onReady.event;
+
+  private readonly _onSave = this._register(new vscode.EventEmitter<void>());
+	public readonly onSave = this._onSave.event;
+
+  getCSSSource(): string[] {
+      return [
+          '/media/editor/antd.4.24.13.css',
+          '/media/editor/doc.css',
+      ];
+  }
+
+  getJSSource(): string[] {
+      return [
+        '/media/editor/react.production.min.js',
+        '/media/editor/react-dom.production.min.js',
+        '/media/editor/doc.umd.js',
+        '/media/editor/lake-editor-icon.js',
+        '/media/message.js',
+        '/media/lake-preview.js'
+      ];
+  }
+
+  getHTMLTemplate() {
+      return htmlTemplate;
+  }
+
+  onMessage(message: any): void {
+      switch (message.type) {
+          case 'contentchange':
+              this._onDidChange.fire();
+              break;
+          case 'ready':
+              this._onReady.fire();
+              break;
+          case 'save':
+              this._onSave.fire();
+              break;
+          default:
+              super.onMessage(message);
+              break;
+      }
+  }
+
+  async onActive() {
+    return this.message.callClient('setActive');
+  }
+
+  async undo() {
+    return this.message.callClient('undo');
+  }
+
+  async redo() {
+    return this.message.callClient('redo');
+  }
+
+  async getContent(): Promise<Uint8Array> {
+    return this.message.callClient('getContent');
+  }
+
+  async updateContent(content?: Uint8Array) {
+    return this.message.callClient('updateContent', content);
+  }
+
+  async uploadImage(data: Uint8Array) {
+    const newPath = path.join(path.dirname(this.resource.fsPath), 'image.png');
+    const targetResource = this.resource.with({ path: newPath });
+    await vscode.workspace.fs.writeFile(targetResource, data);
+    return {
+      size: data.length,
+      url: this.webviewEditor.webview.asWebviewUri(targetResource).toString().replace(/"/g, '&quot;'),
+      filename: 'image.png',
+    };
+  }
+}

@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { Disposable } from '../common/dispose';
+import { Disposable } from '../../common/dispose';
 
 export interface LakeDocumentDelegate {
 	getFileData(): Promise<Uint8Array>;

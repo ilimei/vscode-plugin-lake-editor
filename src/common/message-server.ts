@@ -34,7 +34,7 @@ export default class MessageServer {
       return { ext: extName, buf: new Uint8Array(buf).buffer };
     }
 
-    async onMessage(message: { type: string, requestId: number, data: any }) {
+    async onMessage(message: { type: string, requestId: number, data: any }, context: any) {
         console.info('server onMessage', message);
         if (this.requestsMap[message.requestId]) {
             this.requestsMap[message.requestId].resolve(message.data);
@@ -42,33 +42,17 @@ export default class MessageServer {
             return;
         }
         if(message.type) {
-          if (!this[message.type] || typeof this[message.type] !== 'function') {
+          if (!context[message.type] || typeof context[message.type] !== 'function') {
               throw new Error(`message.type ${message.type} method not found`);
           }
-          if (this[message.type]) {
-              const ret = await this[message.type](message.data);
+          if (context[message.type]) {
+              const ret = await context[message.type](message.data);
               this.webview.postMessage({ requestId: message.requestId, data: ret });
           }
         }
     }
 
-    async undo() {
-      return this._trans('undo');
-    }
-
-    async redo() {
-      return this._trans('redo');
-    }
-
-    async getContent(): Promise<Uint8Array> {
-      return this._trans('getContent');
-    }
-
-    async updateContent(content?: Uint8Array) {
-      return this._trans('updateContent', content);
-    }
-
-    _trans(type: string, data: any = null, timeout: number = -1): any {
+    public callClient(type: string, data: any = null, timeout: number = -1): any {
       const requestId = 'server_' + parseInt((Math.random() + '').slice(2), 10);
       const request: Request = {
           requestId,
