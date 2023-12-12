@@ -15,7 +15,7 @@
 /** 只提供变量 */
 .ne-editor {
   position: relative;
-  background-color: var(--lakex-editor-background);
+  background-color: var(--lakex-editor-background-primary);
 }
 .ne-editor-header {
   background-color: var(--lakex-editor-background);
@@ -3210,17 +3210,21 @@ ne-card[data-card-name='mention'].ne-card-editing {
   height: 50px;
   color: var(--lakex-editor-color-grey8);
 }
-.ne-ui-toolbar .ne-toolbar-widget {
+.ne-ui-toolbar .ne-toolbar-widget,
+.ne-ui-toolbar .ant-btn {
   color: var(--lakex-editor-color-grey8);
   flex-shrink: 0;
 }
-.ne-ui-toolbar .ne-toolbar-widget:hover {
+.ne-ui-toolbar .ne-toolbar-widget:hover,
+.ne-ui-toolbar .ant-btn:hover {
   color: var(--lakex-editor-color-grey8);
 }
-.ne-ui-toolbar .ne-toolbar-widget:last-child {
+.ne-ui-toolbar .ne-toolbar-widget:last-child,
+.ne-ui-toolbar .ant-btn:last-child {
   margin-right: 0;
 }
-.ne-ui-toolbar .ne-toolbar-widget .ne-ui-toolbar-insert-card .ne-icon-t-insert-card.ne-icon {
+.ne-ui-toolbar .ne-toolbar-widget .ne-ui-toolbar-insert-card .ne-icon-t-insert-card.ne-icon,
+.ne-ui-toolbar .ant-btn .ne-ui-toolbar-insert-card .ne-icon-t-insert-card.ne-icon {
   color: var(--lakex-editor-color-theme);
 }
 .ne-ui-inner-toolbar {
@@ -15527,6 +15531,412 @@ html[data-kumuhana='pouli'] .ne-toc-sidebar {
 }
 .ne-ui-search-panel-close-btn:hover {
   background-color: var(--lakex-editor-background-tertiary);
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+.ne-card-bookmark-card-view {
+  height: 102px;
+  overflow: hidden;
+  font-size: 14px;
+  position: relative;
+  border-radius: 5px;
+  background-color: var(--lakex-editor-background-tertiary);
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(50px);
+  opacity: 0.1;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-bg-empty {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--lakex-editor-background-tertiary);
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-detail {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  overflow: hidden;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-detail .ne-card-bookmark-content {
+  min-width: 0;
+  display: flex;
+  padding: 12px 18px;
+  flex: 1;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-detail .ne-card-bookmark-content .ne-card-bookmark-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  margin-left: 16px;
+  justify-content: center;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-detail .ne-card-bookmark-content .ne-card-bookmark-body .ne-card-bookmark-title {
+  color: var(--lakex-editor-text-color);
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 26px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-detail .ne-card-bookmark-content .ne-card-bookmark-body .ne-card-bookmark-desc,
+.ne-card-bookmark-card-view .ne-card-bookmark-detail .ne-card-bookmark-content .ne-card-bookmark-body .ne-card-bookmark-belong {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-detail .ne-card-bookmark-content .ne-card-bookmark-body .ne-card-bookmark-desc {
+  color: var(--lakex-editor-text-body);
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-detail .ne-card-bookmark-content .ne-card-bookmark-body .ne-card-bookmark-belong {
+  color: var(--lakex-editor-text-caption);
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-detail .ne-card-bookmark-cover-img {
+  width: 78px;
+  height: 78px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-loading,
+.ne-card-bookmark-card-view .ne-card-bookmark-error {
+  position: relative;
+  height: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: start;
+  align-self: center;
+  color: var(--lakex-editor-text-disable);
+  background-color: var(--lakex-editor-background-tertiary);
+  padding: 12px 18px;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-loading .ne-card-bookmark-skeleton-logo {
+  flex-shrink: 0;
+  width: 78px;
+  height: 78px;
+  border-radius: 8px;
+  margin-right: 16px;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-loading .ne-card-bookmark-skeleton-info {
+  flex: 1;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-loading .ne-card-bookmark-skeleton-title {
+  height: 16px;
+  border-radius: 6px;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-loading .ne-card-bookmark-skeleton-desc {
+  width: 40%;
+  height: 16px;
+  border-radius: 6px;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-loading .ne-card-bookmark-skeleton-desc > span {
+  width: 100%;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-error .ne-card-bookmark-error-logo {
+  background-image: url(https://gw.alipayobjects.com/mdn/prod_resou/afts/img/A*Stw6SLI_ZuAAAAAAAAAAAAAAARQnAQ);
+  width: 78px;
+  height: 78px;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-right: 16px;
+}
+.ne-card-bookmark-card-view .ne-card-bookmark-error .ne-card-bookmark-error-text {
+  font-size: 15px;
+  color: var(--lakex-editor-text-caption);
+  line-height: 26px;
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+ne-card[data-card-name='bookmarkInline'] {
+  vertical-align: baseline;
+  position: relative;
+  height: auto;
+}
+ne-card[data-card-name='bookmarkInline'] .ne-card-container {
+  display: inline-flex;
+}
+ne-card[data-card-name='bookmarkInline'] a {
+  color: var(--lakex-editor-text-link);
+  text-decoration: none;
+}
+ne-quote ne-card[data-card-name='bookmarkInline'] {
+  opacity: 0.7;
+}
+.ne-card-bookmark-title-view {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--lakex-editor-text-link);
+  cursor: pointer;
+  font-size: 15px;
+}
+.ne-card-bookmark-title-view .ne-card-bookmark-icon {
+  display: inline-block;
+  vertical-align: -0.15em;
+  text-align: center;
+  text-transform: none;
+  line-height: 1;
+  text-rendering: auto;
+  object-fit: cover;
+  margin-right: 2px;
+  flex-shrink: 0;
+  top: 4px;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+.h5-ne-card-bookmark-card-view {
+  height: 78px;
+  overflow: hidden;
+  font-size: 14px;
+  position: relative;
+  border-radius: 5px;
+  background-color: var(--lakex-editor-background-tertiary);
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(50px);
+  opacity: 0.1;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-bg-empty {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--lakex-editor-background-tertiary);
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-detail {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  overflow: hidden;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-detail .h5-ne-card-bookmark-content {
+  min-width: 0;
+  display: flex;
+  padding: 15px 12px;
+  flex: 1;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-detail .h5-ne-card-bookmark-content .h5-ne-card-bookmark-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  margin-left: 12px;
+  justify-content: center;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-detail .h5-ne-card-bookmark-content .h5-ne-card-bookmark-body .h5-ne-card-bookmark-title {
+  color: var(--lakex-editor-text-color);
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 26px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-detail .h5-ne-card-bookmark-content .h5-ne-card-bookmark-body .h5-ne-card-bookmark-belong {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-detail .h5-ne-card-bookmark-content .h5-ne-card-bookmark-body .h5-ne-card-bookmark-belong {
+  color: var(--lakex-editor-text-caption);
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-detail .h5-ne-card-bookmark-cover-img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-loading,
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-error {
+  position: relative;
+  height: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: start;
+  align-self: center;
+  background: var(--lakex-editor-background-tertiary);
+  color: var(--lakex-editor-text-disable);
+  padding: 15px 12px;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-loading .h5-ne-card-bookmark-skeleton-logo {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  margin-right: 16px;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-loading .h5-ne-card-bookmark-skeleton-info {
+  flex: 1;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-loading .h5-ne-card-bookmark-skeleton-title {
+  height: 16px;
+  border-radius: 6px;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-loading .h5-ne-card-bookmark-skeleton-desc {
+  width: 40%;
+  height: 16px;
+  border-radius: 6px;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-loading .h5-ne-card-bookmark-skeleton-desc > span {
+  width: 100%;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-error .h5-ne-card-bookmark-error-logo {
+  background-image: url(https://gw.alipayobjects.com/mdn/prod_resou/afts/img/A*Stw6SLI_ZuAAAAAAAAAAAAAAARQnAQ);
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-right: 12px;
+}
+.h5-ne-card-bookmark-card-view .h5-ne-card-bookmark-error .h5-ne-card-bookmark-error-text {
+  font-size: 15px;
+  color: var(--lakex-editor-text-caption);
+  line-height: 26px;
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+.lakex-dark-theme-dark .ant-dropdown-menu {
+  background-color: var(--lakex-editor-background-foreground);
+  border-color: var(--lakex-editor-border-primary);
+}
+.lakex-dark-theme-dark .ant-popover-inner {
+  background-color: var(--lakex-editor-background-foreground);
+}
+.lakex-dark-theme-dark .ant-tabs,
+.lakex-dark-theme-dark .ant-dropdown-menu-item,
+.lakex-dark-theme-dark .ant-dropdown-menu-submenu-title {
+  color: var(--lakex-editor-text-color);
+}
+.lakex-dark-theme-dark .ant-dropdown-menu-item:hover,
+.lakex-dark-theme-dark .ant-dropdown-menu-submenu-title:hover {
+  background-color: var(--lakex-editor-background-primary-hover);
+}
+.lakex-dark-theme-dark .ant-input-affix-wrapper {
+  color: var(--lakex-editor-color-grey9);
+  border-color: var(--lakex-editor-border-primary);
+  background-color: hsla(0, 0%, 100%, 0.04);
+}
+.lakex-dark-theme-dark .ant-input-affix-wrapper input {
+  color: var(--lakex-editor-color-grey9);
+  background-color: transparent;
+}
+.lakex-dark-theme-dark .ant-input {
+  color: var(--lakex-editor-color-grey9);
+  border-color: var(--lakex-editor-border-primary);
+  background-color: hsla(0, 0%, 100%, 0.04);
+}
+.lakex-dark-theme-dark .ant-popover-placement-bottom > .ant-popover-content > .ant-popover-arrow,
+.lakex-dark-theme-dark .ant-popover-placement-bottomLeft > .ant-popover-content > .ant-popover-arrow,
+.lakex-dark-theme-dark .ant-popover-placement-bottomRight > .ant-popover-content > .ant-popover-arrow,
+.lakex-dark-theme-dark .ant-popover-placement-top > .ant-popover-content > .ant-popover-arrow,
+.lakex-dark-theme-dark .ant-popover-placement-topLeft > .ant-popover-content > .ant-popover-arrow,
+.lakex-dark-theme-dark .ant-popover-placement-topRight > .ant-popover-content > .ant-popover-arrow {
+  bottom: 6.2px;
+  border-top-color: transparent;
+  border-right-color: var(--lakex-editor-color-grey2);
+  border-bottom-color: var(--lakex-editor-color-grey2);
+  border-left-color: transparent;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.07);
+}
+.lakex-dark-theme-dark .ant-btn,
+.lakex-dark-theme-dark .ant-btn-default {
+  color: var(--lakex-editor-color-grey9);
+  background: transparent;
+  border-color: hsla(0, 0%, 100%, 0.12);
+}
+.lakex-dark-theme-dark .ant-btn-default[disabled],
+.lakex-dark-theme-dark .ant-btn-default[disabled]:active,
+.lakex-dark-theme-dark .ant-btn-default[disabled]:focus,
+.lakex-dark-theme-dark .ant-btn-default[disabled]:hover,
+.lakex-dark-theme-dark .ant-btn[disabled],
+.lakex-dark-theme-dark .ant-btn[disabled]:active,
+.lakex-dark-theme-dark .ant-btn[disabled]:focus,
+.lakex-dark-theme-dark .ant-btn[disabled]:hover {
+  color: var(--lakex-editor-text-disable);
+  background: transparent;
+  border-color: hsla(0, 0%, 100%, 0.12);
+  text-shadow: none;
+  box-shadow: none;
+}
+.lakex-dark-theme-dark .ne-card-toolbar {
+  background-color: var(--lakex-editor-background-foreground);
+}
+.lakex-dark-theme-dark .ne-toc-sidebar,
+.lakex-dark-theme-dark .ne-toc-sidebar .ne-toc-view {
+  background-color: transparent;
 }
 
 /** 只提供变量 */
