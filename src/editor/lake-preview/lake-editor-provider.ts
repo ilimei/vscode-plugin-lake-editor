@@ -1,6 +1,4 @@
-import path from 'path';
 import * as vscode from 'vscode';
-import BasePreview from '../base-preview';
 import LakePreview from './lake-preview';
 import { Disposable, disposeAll } from '../../common/dispose';
 import LakeDocument, { LakeDocumentDelegate } from './lake-document';

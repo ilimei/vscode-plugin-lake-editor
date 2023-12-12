@@ -25,15 +25,6 @@ export default class MessageServer {
         this.maxDeep = this.resourceRoot.path.split('/').length - 1;
     }
 
-    async load() {
-      const buf = await vscode.workspace.fs.readFile(this.resource);
-      const imgPath = this.resource.fsPath;
-      const extName = imgPath.split(/\./g).pop();
-      this.size = buf.length;
-      this._onSizeChange.fire(this.size);
-      return { ext: extName, buf: new Uint8Array(buf).buffer };
-    }
-
     async onMessage(message: { type: string, requestId: number, data: any }, context: any) {
         console.info('server onMessage', message);
         if (this.requestsMap[message.requestId]) {
