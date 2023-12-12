@@ -169,6 +169,7 @@ export default class BasePreview extends Disposable {
     <body>
         ${this.getHTMLTemplate()}
         <script type="text/javascript" nonce="${nonce}">
+            window.isDarkMode = ${vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Dark ? 'true' : 'false'};
             window.currentResourceURI = ${JSON.stringify(this.resource)};
             window.vscode = acquireVsCodeApi();
         </script>

@@ -11,13 +11,16 @@ async function toBase64URL(file: File) {
 
 window.onload = async function () {
   const baseURI = await window.message.callServer('getExtensionResource', '/media/editor');
-  console.info('baseURI', baseURI);
   // @ts-ignore
   const { createOpenEditor } = window.Doc;
   // 创建编辑器
   const editor = createOpenEditor(document.getElementById('root'), {
     disabledPlugins: ['save'],
-    input: {},
+    // @ts-expect-error not error
+    darkMode: window.isDarkMode,
+    input: {
+      autoSpace: true,
+    },
     codeblock: {
       codemirrorURL: baseURI + '/CodeMirror.js',
     },
