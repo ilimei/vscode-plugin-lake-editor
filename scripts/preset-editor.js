@@ -63,7 +63,7 @@ async function downloadFile(remoteURL, localFilename, afterLoad) {
   }
 }
 
-module.exports.presetEditor = async function main() {
+async function main() {
   console.log('start preset editor ...');
 
   const urls = Object.values(remoteAssetsUrls);
@@ -79,3 +79,5 @@ module.exports.presetEditor = async function main() {
 
   console.log('\n✅ preset editor success ...\n');
 };
+
+main();

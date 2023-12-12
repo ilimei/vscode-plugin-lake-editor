@@ -5,10 +5,6 @@ const fs = require('fs');
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 
-const { presetEditor } = require('./scripts/preset-editor');
-
-presetEditor();
-
 /**@type {import('webpack').Configuration}*/
 const config = {
   target: 'node', // vscode extensions run in a Node.js-context 📖 -> https://webpack.js.org/configuration/node/

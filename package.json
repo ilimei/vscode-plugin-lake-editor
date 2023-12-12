@@ -14,6 +14,7 @@
   "main": "./dist/extension.js",
   "scripts": {
     "vscode:prepublish": "npm run package",
+    "preset": "node ./scripts/preset-editor.js",
     "compile": "webpack",
     "watch": "webpack --watch",
     "package": "webpack --mode production --devtool hidden-source-map",
