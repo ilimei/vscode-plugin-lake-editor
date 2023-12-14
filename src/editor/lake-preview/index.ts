@@ -18,6 +18,10 @@ window.onload = async function () {
     disabledPlugins: ['save'],
     // @ts-expect-error not error
     darkMode: window.isDarkMode,
+    placeholder: {
+      tip: '开始编辑',
+      emptyParagraphTip: '输入 / 唤起更多',
+    },
     input: {
       autoSpacing: true,
     },
