@@ -8,8 +8,26 @@
     margin: 0;
     padding: 0;
   }
+
+  .scroll-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6px;
+    box-shadow: var(--vscode-scrollbar-shadow) 0 6px 6px -6px inset;
+  }
+
+  .ne-doc-major-editor .ne-layout-mode-adapt .ne-ui:after {
+    background: transparent !important;
+    box-shadow: var(--vscode-scrollbar-shadow) 0 6px 6px -6px inset;
+  }
+
+  .ne-editor, .ne-layout-mode-fixed .ne-editor-wrap-box, .ne-layout-mode-adapt .ne-editor-wrap-box {
+    background-color: transparent !important;
+  }
   #root {
     height: 100vh;
   }
 </style>
+<div role="presentation" aria-hidden="true" class="scroll-decoration" style="width: 100%"></div>
 <div id="root" class="ne-doc-major-editor"></div>
