@@ -32,9 +32,6 @@ const remoteAssetsUrls = {
     },
   },
   lakeCSS: `https://gw.alipayobjects.com/render/p/yuyan_npm/@alipay_lakex-doc/${LAKE_EDITOR_VERSION}/umd/doc.css`,
-  react: 'https://unpkg.com/react@18/umd/react.production.min.js',
-  reactDom: 'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js',
-  katex: 'https://unpkg.com/katex@0.16.9/dist/katex.js',
   antdCSS: {
     src: 'https://gw.alipayobjects.com/os/lib/antd/4.24.13/dist/antd.css',
     name: 'antd.4.24.13.css',
@@ -44,6 +41,9 @@ const remoteAssetsUrls = {
     name: 'lake-editor-icon.js',
   },
   codemirror: 'https://gw.alipayobjects.com/render/p/yuyan_v/180020010000005484/7.1.9/CodeMirror.js',
+  react: 'https://unpkg.com/react@18/umd/react.production.min.js',
+  reactDom: 'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js',
+  katex: 'https://unpkg.com/katex@0.16.9/dist/katex.js',
 };
 
 async function downloadFile(remoteURL, localFilename, afterLoad) {
