@@ -21,10 +21,6 @@ export default class MessageClient {
       });
   }
 
-  async load(): Promise<{ buf: Buffer, ext: string }> {
-      return await this.callServer('load');
-  }
-
   public replayServer(requestId: string | number, data: any = null) {
     // @ts-ignore
     vscode.postMessage({

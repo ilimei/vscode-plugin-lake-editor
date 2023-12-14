@@ -19,7 +19,15 @@ window.onload = async function () {
     // @ts-expect-error not error
     darkMode: window.isDarkMode,
     input: {
-      autoSpace: true,
+      autoSpacing: true,
+    },
+    link: {
+      isValidURL() {
+        return true;
+      },
+      sanitizeURL(url: string) {
+        return url;
+      }
     },
     codeblock: {
       codemirrorURL: baseURI + '/CodeMirror.js',
@@ -40,6 +48,10 @@ window.onload = async function () {
         };
       },
     },
+  });
+
+  editor.on('visitLink', (href, external) => {
+    window.message.callServer('visitLink', href, external);
   });
 
   let cancelChangeListener = () => {};

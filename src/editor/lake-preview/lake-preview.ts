@@ -26,7 +26,6 @@ export default class LakePreview extends BasePreview {
         '/media/editor/react.production.min.js',
         '/media/editor/react-dom.production.min.js',
         '/media/editor/doc.umd.js',
-        '/media/editor/lake-editor-icon.js',
         '/media/message.js',
         '/media/lake-preview.js'
       ];
@@ -51,6 +50,63 @@ export default class LakePreview extends BasePreview {
               super.onMessage(message);
               break;
       }
+  }
+
+  async getWorkspaceFileUri(path: string) {
+    if(!vscode.workspace.workspaceFolders) {
+      return null;
+    }
+    for(const folder of vscode.workspace.workspaceFolders) {
+      const uri = folder.uri.with({ path: folder.uri.path + '/' + path});
+      try {
+        const stat = await vscode.workspace.fs.stat(uri);
+        if(stat.type === vscode.FileType.File) {
+          return uri;
+        }
+      } catch(e) {
+        continue;
+      }
+    }
+    return null;
+  }
+
+  async openFileAtPosition(filePath: string, line: number, column: number) {
+    try {
+      const finalURI = path.isAbsolute(filePath) ? vscode.Uri.parse(filePath) : await this.getWorkspaceFileUri(filePath);
+      if(!finalURI) {
+        return;
+      }
+      const stat = await vscode.workspace.fs.stat(finalURI);
+      if(stat.type === vscode.FileType.File) {
+        await vscode.commands.executeCommand('vscode.open', finalURI);
+        if(vscode.window.activeTextEditor) {
+          const position = new vscode.Position(line - 1, column - 1);
+          vscode.window.activeTextEditor.selection = new vscode.Selection(position, position);
+          vscode.window.activeTextEditor.revealRange(new vscode.Range(position, position), vscode.TextEditorRevealType.InCenter);
+        }
+      }
+    } catch(e) {
+      console.error(e);
+    }
+  }
+
+  /**
+   * 
+   * @param href 文件路径 例如 xxx.md:2:3 或者 http链接
+   */
+  async visitLink(href: string) {
+    if(href.startsWith('http')) {
+      await vscode.env.openExternal(vscode.Uri.parse(href));
+      return;
+    }
+    const result = href.match(/^(.+?)(:\d+)?(:\d+)?$/);
+    if (result) {
+      const [, filePath, line, column] = result;
+      if (filePath) {
+        this.openFileAtPosition(filePath, line ? Number(line.slice(1)): 1, column ? Number(column.slice(1)): 1 );
+        return;
+      }
+    }
   }
 
   async onActive() {

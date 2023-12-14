@@ -60,9 +60,8 @@ export default class BasePreview extends Disposable {
             this.onMessage(message);
         }));
 
-        this._register(webviewEditor.onDidChangeViewState(() => {
-            this.update();
-            this.webviewEditor.webview.postMessage({ type: 'setActive', value: this.webviewEditor.active });
+        this._register(webviewEditor.onDidChangeViewState((e: vscode.WebviewPanelOnDidChangeViewStateEvent) => {
+            this.update(e.webviewPanel.active);
         }));
 
         this._register(webviewEditor.onDidDispose(() => {
@@ -86,11 +85,11 @@ export default class BasePreview extends Disposable {
 
         this._register(this.message.onSizeChange(size => {
             this._imageBinarySize = size;
-            this.update();
+            this.update(true);
         }));
 
         this.render();
-        this.update();
+        this.update(true);
         this.message.callClient('setActive');
     }
 
@@ -126,12 +125,12 @@ export default class BasePreview extends Disposable {
 
     }
 
-    update() {
+    update(isActive: boolean = false) {
         if (this._previewState === ViewState.disposed) {
             return;
         }
 
-        if (this.webviewEditor.active) {
+        if (this.webviewEditor.active && isActive && this._previewState !== ViewState.active) {
             this._previewState = ViewState.active;
             this.onActive();
         } else {
@@ -165,14 +164,15 @@ export default class BasePreview extends Disposable {
             }
         <meta name='referrer' content='never'>
         <meta id="image-preview-settings" data-settings="${escapeAttribute(JSON.stringify(settings))}">
-    </head>
-    <body>
-        ${this.getHTMLTemplate()}
         <script type="text/javascript" nonce="${nonce}">
             window.isDarkMode = ${vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Dark ? 'true' : 'false'};
+            window.extensionResourceURI = ${JSON.stringify(this.extensionResource('/media').toString())};
             window.currentResourceURI = ${JSON.stringify(this.resource)};
             window.vscode = acquireVsCodeApi();
         </script>
+    </head>
+    <body>
+        ${this.getHTMLTemplate()}
         ${this.getJSSource().map(source => {
                 return `<script src="${escapeAttribute(this.extensionResource(source))}" nonce="${nonce}"></script>`;
             }).join('\n')}
