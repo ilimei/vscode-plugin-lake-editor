@@ -79,7 +79,7 @@ export default class LakePreview extends BasePreview {
       const stat = await vscode.workspace.fs.stat(finalURI);
       if(stat.type === vscode.FileType.File) {
         await vscode.commands.executeCommand('vscode.open', finalURI);
-        if(vscode.window.activeTextEditor) {
+        if(vscode.window.activeTextEditor && line > 0) {
           const position = new vscode.Position(line - 1, column - 1);
           vscode.window.activeTextEditor.selection = new vscode.Selection(position, position);
           vscode.window.activeTextEditor.revealRange(new vscode.Range(position, position), vscode.TextEditorRevealType.InCenter);
@@ -103,7 +103,7 @@ export default class LakePreview extends BasePreview {
     if (result) {
       const [, filePath, line, column] = result;
       if (filePath) {
-        this.openFileAtPosition(filePath, line ? Number(line.slice(1)): 1, column ? Number(column.slice(1)): 1 );
+        this.openFileAtPosition(filePath, line ? Number(line.slice(1)): 0, column ? Number(column.slice(1)): 1 );
         return;
       }
     }
