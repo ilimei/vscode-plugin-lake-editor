@@ -2,7 +2,7 @@
   "name": "lake-editor",
   "displayName": "lake-editor",
   "description": "lake editor and lakebook viewer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "hugehardzhang",
   "icon": "icon.png",
   "engines": {
