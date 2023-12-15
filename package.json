@@ -72,7 +72,41 @@
           }
         ]
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Lake Editor",
+      "properties": {
+        "lakeEditor.showToolbar": {
+          "type": "boolean",
+          "default": true,
+          "description": "显示工具栏"
+        },
+        "lakeEditor.paragraphSpacing": {
+          "type": "boolean",
+          "default": false,
+          "description": "段间距开启"
+        },
+        "lakeEditor.defaultFontSize": {
+          "type": "number",
+          "default": 15,
+          "description": "默认字体大小",
+          "enum": [
+            12,
+            13,
+            14,
+            15,
+            16,
+            19,
+            22,
+            24,
+            29,
+            32,
+            48
+          ]
+        }
+      }
+    }
   },
   "repository": "git@github.com:ilimei/vscode-plugin-lake-editor.git"
 }

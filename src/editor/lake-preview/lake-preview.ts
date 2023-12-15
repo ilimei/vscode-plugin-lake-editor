@@ -3,6 +3,7 @@ import * as path from 'path';
 
 import BasePreview from "../base-preview";
 import htmlTemplate from './index.html';
+import { getConfig } from '../../config';
 
 export default class LakePreview extends BasePreview {
   private readonly _onDidChange = this._register(new vscode.EventEmitter<void>());
@@ -13,6 +14,8 @@ export default class LakePreview extends BasePreview {
 
   private readonly _onSave = this._register(new vscode.EventEmitter<void>());
 	public readonly onSave = this._onSave.event;
+
+  config = getConfig();
 
   getCSSSource(): string[] {
       return [
@@ -107,6 +110,14 @@ export default class LakePreview extends BasePreview {
         return;
       }
     }
+  }
+
+  async getConfig() {
+    return {
+      showToolbar: this.config.showToolbar,
+      defaultFontSize: this.config.defaultFontSize,
+      paragraphSpacing: this.config.paragraphSpacing,
+    };
   }
 
   async onActive() {

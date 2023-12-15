@@ -10,12 +10,26 @@ async function toBase64URL(file: File) {
 }
 
 window.onload = async function () {
-  const baseURI = await window.message.callServer('getExtensionResource', '/media/editor');
+  const [baseURI, config] = await Promise.all([
+    window.message.callServer('getExtensionResource', '/media/editor'),
+    window.message.callServer('getConfig')
+  ]);
+
   // @ts-ignore
   const { createOpenEditor } = window.Doc;
+
+  const disabledPlugins = ['save'];
+  if (!config.showToolbar) {
+    disabledPlugins.push('toolbar');
+  }
   // 创建编辑器
   const editor = createOpenEditor(document.getElementById('root'), {
-    disabledPlugins: ['save'],
+    disabledPlugins,
+    defaultFontsize: config.defaultFontSize,
+    typography: {
+      typography: 'classic',
+      paragraphSpacing: config.paragraphSpacing ? 'relax' : 'default',
+    },
     // @ts-expect-error not error
     darkMode: window.isDarkMode,
     placeholder: {
@@ -58,15 +72,15 @@ window.onload = async function () {
     window.message.callServer('visitLink', href, external);
   });
 
-  let cancelChangeListener = () => {};
+  let cancelChangeListener = () => { };
   window.addEventListener('message', async e => {
-    switch(e.data.type) {
+    switch (e.data.type) {
       case 'setActive':
         editor.execCommand('focus');
         break;
-      case 'undo': 
+      case 'undo':
         editor.execCommand('undo');
-        window.message.replayServer(e.data.requestId); 
+        window.message.replayServer(e.data.requestId);
         break;
       case 'redo':
         editor.execCommand('redo');
