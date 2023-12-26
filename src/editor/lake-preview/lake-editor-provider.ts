@@ -1,18 +1,18 @@
 import * as vscode from 'vscode';
 import LakePreview from './lake-preview';
 import { Disposable, disposeAll } from '../../common/dispose';
-import LakeDocument, { LakeDocumentDelegate } from './lake-document';
+import LakeDocument from './lake-document';
 
-export default class LakeEditorProvider extends Disposable implements vscode.CustomEditorProvider<LakeDocument>, LakeDocumentDelegate {
-	public static readonly viewType = 'lakeEditor.lakeEditor';
-  private lakePreview: LakePreview | null = null;
+export default class LakeEditorProvider extends Disposable implements vscode.CustomEditorProvider<LakeDocument> {
+  public static readonly viewType = 'lakeEditor.lakeEditor';
+  private previews: LakePreview[] = [];
 
-	constructor(private readonly extensionRoot: vscode.Uri) { 
+  constructor(private readonly extensionRoot: vscode.Uri) {
     super();
   }
 
   private readonly _onDidChangeCustomDocument = new vscode.EventEmitter<vscode.CustomDocumentEditEvent<LakeDocument>>();
-	public readonly onDidChangeCustomDocument = this._onDidChangeCustomDocument.event;
+  public readonly onDidChangeCustomDocument = this._onDidChangeCustomDocument.event;
 
   saveCustomDocument(document: LakeDocument, cancellation: vscode.CancellationToken): Thenable<void> {
     return this.saveCustomDocumentAs(document, document.uri, cancellation);
@@ -30,47 +30,61 @@ export default class LakeEditorProvider extends Disposable implements vscode.Cus
     return document.backup(context.destination, cancellation);
   }
 
-  async getFileData() {
-    if(!this.lakePreview) {
-      return new Uint8Array();
-    }
-    const content = await this.lakePreview.getContent();
-    return content;
-  }
-
-	async openCustomDocument(uri: vscode.Uri, openContext: vscode.CustomDocumentOpenContext): Promise<LakeDocument> {
-		const doc = await LakeDocument.create(uri,openContext.backupId, this);
-    const listeners: vscode.Disposable[] = [];
-
-		listeners.push(doc.onDidChangeContent(e => {
-			if(this.lakePreview) {
-        this.lakePreview.updateContent(e.content);
-      }
-		}));
-
-		doc.onDidDispose(() => disposeAll(listeners));
+  async openCustomDocument(uri: vscode.Uri, openContext: vscode.CustomDocumentOpenContext): Promise<LakeDocument> {
+    console.info('open custom document', uri);
+    const doc = await LakeDocument.create(uri, openContext.backupId);
 
     return doc;
-	}
+  }
 
-	resolveCustomEditor(document: LakeDocument, webviewEditor: vscode.WebviewPanel): void | Thenable<void> {
-    this.lakePreview = new LakePreview(this.extensionRoot, document.uri, webviewEditor);
+  resolveCustomEditor(document: LakeDocument, webviewEditor: vscode.WebviewPanel): void | Thenable<void> {
+    const lakePreview = new LakePreview(this.extensionRoot, document.uri, webviewEditor);
+    this.previews.push(lakePreview);
 
-    this._register(this.lakePreview.onReady(() => {
-      this.lakePreview.updateContent(document.content);
+    this._register(lakePreview.onDispose(() => {
+      const index = this.previews.indexOf(lakePreview);
+      if (index !== -1) {
+        this.previews.splice(index, 1);
+      }
     }));
 
-    this._register(this.lakePreview.onDidChange(() => {
+    document.setDelegate({
+      getFileData: async () => {
+        if(lakePreview.isDisposed) {
+          return new Uint8Array();
+        }
+        const content = await lakePreview.getContent();
+        return content;
+      },
+    });
+
+    const listeners: vscode.Disposable[] = [];
+
+    listeners.push(document.onDidChangeContent(e => {
+      if (lakePreview) {
+        lakePreview.updateContent(e.content);
+      }
+    }));
+
+    document.onDidDispose(() => disposeAll(listeners));
+
+    this._register(lakePreview.onReady(async () => {
+      const content = await document.content();
+      console.info('content', content);
+      lakePreview.updateContent(content);
+    }));
+
+    this._register(lakePreview.onDidChange(() => {
       // Tell VS Code that the document has been edited by the use.
-			this._onDidChangeCustomDocument.fire({
-				document,
-        undo: () => { 
-          this.lakePreview.undo();
-         },
-        redo: () => { 
-          this.lakePreview.redo();
-         },
-			});
+      this._onDidChangeCustomDocument.fire({
+        document,
+        undo: () => {
+          lakePreview.undo();
+        },
+        redo: () => {
+          lakePreview.redo();
+        },
+      });
     }));
-	}
+  }
 }

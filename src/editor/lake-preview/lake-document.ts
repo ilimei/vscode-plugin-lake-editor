@@ -6,15 +6,12 @@ export interface LakeDocumentDelegate {
 }
 
 export default class LakeDocument extends Disposable implements vscode.CustomDocument {
-
 	static async create(
 		uri: vscode.Uri,
 		backupId: string | undefined,
-		delegate: LakeDocumentDelegate,
 	): Promise<LakeDocument | PromiseLike<LakeDocument>> {
 		const dataFile = typeof backupId === 'string' ? vscode.Uri.parse(backupId) : uri;
-		const fileData = await LakeDocument.readFile(dataFile);
-		return new LakeDocument(uri, fileData, delegate);
+		return new LakeDocument(uri, dataFile);
 	}
 
 	private static async readFile(uri: vscode.Uri): Promise<Uint8Array> {
@@ -24,12 +21,18 @@ export default class LakeDocument extends Disposable implements vscode.CustomDoc
 		return new Uint8Array(await vscode.workspace.fs.readFile(uri));
 	}
 
-	constructor(public readonly uri: vscode.Uri, private _content: Uint8Array, private delegate: LakeDocumentDelegate) {
+	private delegate: LakeDocumentDelegate;
+
+	constructor(public readonly uri: vscode.Uri, private _dataURI: vscode.Uri) {
 		super();
 	}
 
-	get content() {
-		return this._content;
+	setDelegate(delegate: LakeDocumentDelegate) {
+		this.delegate = delegate;
+	}
+
+	async content() {
+		return await LakeDocument.readFile(this._dataURI);
 	}
 
 	dispose(): void {
@@ -71,7 +74,6 @@ export default class LakeDocument extends Disposable implements vscode.CustomDoc
 	 */
 	async revert(_cancellation: vscode.CancellationToken): Promise<void> {
 		const diskContent = await LakeDocument.readFile(this.uri);
-		this._content = diskContent;
 		this._onDidChangeDocument.fire({
 			content: diskContent,
 		});

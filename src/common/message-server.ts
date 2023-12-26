@@ -26,7 +26,6 @@ export default class MessageServer {
     }
 
     async onMessage(message: { type: string, requestId: number, data: any }, context: any) {
-        console.info('server onMessage', message);
         if (this.requestsMap[message.requestId]) {
             this.requestsMap[message.requestId].resolve(message.data);
             delete this.requestsMap[message.requestId];

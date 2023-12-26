@@ -32,6 +32,9 @@ function getNonce() {
 export default class BasePreview extends Disposable {
     protected readonly id: string = `${Date.now()}-${Math.random().toString()}`;
 
+    private readonly _onDispose = this._register(new vscode.EventEmitter<void>());
+	public readonly onDispose = this._onDispose.event;
+
     protected _previewState = ViewState.visible;
     protected _imageBinarySize: number = 0;
     protected message: MessageServer;
@@ -66,9 +69,11 @@ export default class BasePreview extends Disposable {
 
         this._register(webviewEditor.onDidDispose(() => {
             if (this._previewState === ViewState.active) {
-                this.onDispose();
+                this.onDisposed();
             }
             this._previewState = ViewState.disposed;
+            this._onDispose.fire();
+            this.dispose();
         }));
 
         const watcher = this._register(vscode.workspace.createFileSystemWatcher(resource.fsPath));
@@ -93,39 +98,39 @@ export default class BasePreview extends Disposable {
         this.message.callClient('setActive');
     }
 
-    getTitle(): string {
+    protected getTitle(): string {
       return '';
     }
 
-    getCSSSource(): string[] {
+    protected getCSSSource(): string[] {
         return [];
     }
 
-    getJSSource(): string[] {
+    protected getJSSource(): string[] {
         return [];
     }
 
-    getHTMLTemplate(): string {
+    protected getHTMLTemplate(): string {
         return '';
     }
 
-    onMessage(message: any) {
+    protected onMessage(message: any) {
         this.message?.onMessage(message, this);
     }
 
-    onActive() {
+    protected onActive() {
 
     }
 
-    onVisible() {
+    protected onVisible() {
 
     }
 
-    onDispose() {
+    protected onDisposed() {
 
     }
 
-    update(isActive: boolean = false) {
+    protected update(isActive: boolean = false) {
         if (this._previewState === ViewState.disposed) {
             return;
         }
