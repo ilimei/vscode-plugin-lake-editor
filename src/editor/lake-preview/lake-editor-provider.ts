@@ -70,7 +70,6 @@ export default class LakeEditorProvider extends Disposable implements vscode.Cus
 
     this._register(lakePreview.onReady(async () => {
       const content = await document.content();
-      console.info('content', content);
       lakePreview.updateContent(content);
     }));
 
