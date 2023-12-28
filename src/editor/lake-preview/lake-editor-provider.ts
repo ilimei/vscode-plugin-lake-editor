@@ -2,9 +2,10 @@ import * as vscode from 'vscode';
 import LakePreview from './lake-preview';
 import { Disposable, disposeAll } from '../../common/dispose';
 import LakeDocument from './lake-document';
+import { LakeViewType } from '../../common/constants';
 
 export default class LakeEditorProvider extends Disposable implements vscode.CustomEditorProvider<LakeDocument> {
-  public static readonly viewType = 'lakeEditor.lakeEditor';
+  public static readonly viewType = LakeViewType;
   private previews: LakePreview[] = [];
 
   constructor(private readonly extensionRoot: vscode.Uri) {

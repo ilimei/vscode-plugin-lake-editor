@@ -16,14 +16,21 @@ window.onload = async function () {
   ]);
 
   // @ts-ignore
-  const { createOpenEditor } = window.Doc;
+  const { createOpenEditor, createOpenViewer } = window.Doc;
+
+  // @ts-expect-error not error
+  const isReadOnly = window.currentResourceURI.scheme === 'lake';
+
+  if (isReadOnly) {
+    document.body.style.cssText = 'padding: 24px;';
+  }
 
   const disabledPlugins = ['save'];
   if (!config.showToolbar) {
     disabledPlugins.push('toolbar');
   }
   // 创建编辑器
-  const editor = createOpenEditor(document.getElementById('root'), {
+  const editor = (isReadOnly ? createOpenViewer : createOpenEditor)(document.getElementById('root'), {
     disabledPlugins,
     defaultFontsize: config.defaultFontSize,
     typography: {

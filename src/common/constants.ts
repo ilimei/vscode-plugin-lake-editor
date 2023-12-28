@@ -1,0 +1,1 @@
+export const LakeViewType = 'lakeEditor.lakeEditor';
