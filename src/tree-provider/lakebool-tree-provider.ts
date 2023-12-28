@@ -1,167 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
-import Tar from 'tar';
-import Yaml from 'yaml';
 import { LakeViewType } from '../common/constants';
-
-export interface ILakeNode {
-    title: string;
-    type: 'DOC' | 'TITLE';
-    sourceUri: vscode.Uri;
-    nodes?: ILakeNode[];
-}
-
-export interface IMetaData {
-    meta: string;
-    meta_digest: string;
-}
-
-export interface IMetaConfig {
-    book: {
-        path: string;
-        public: 0 | 1;
-        tocYml: string;
-        type: string;
-    },
-    config: {
-        endecryptType: number;
-    },
-    docs: [],
-    version: string;
-}
-
-export interface IToc {
-    type: 'DOC' | 'TITLE';
-    title: string;
-    uuid: string;
-    url: string;
-    prev_uuid: string;
-    sibling_uuid: string;
-    child_uuid: ''
-    parent_uuid: string;
-    doc_id: number;
-    level: number;
-    id: number;
-    open_window: number;
-    visible: number;
-}
-
-export class ILakeTocNode implements ILakeNode {
-    nodes: ILakeTocNode[] = [];
-
-    constructor(private _toc: IToc, private _uri: vscode.Uri) {
-    }
-
-    public get id() {
-        return this._toc.id;
-    }
-
-    public get uuid() {
-        return this._toc.uuid;
-    }
-
-    public get url() {
-        return this._toc.url;
-    }
-
-    public get title() {
-        return this._toc.title;
-    }
-
-    public get sourceUri() {
-        return this._uri;
-    }
-
-    public get type() {
-        return this._toc.type;
-    }
-}
-
-export class LakeRoot implements ILakeNode {
-    private _paths: string[] = [];
-    private _entries: Tar.ReadEntry[] = [];
-    private _title: string;
-    private nodeMap: Map<string, ILakeTocNode> = new Map();
-    private childNodes: ILakeTocNode[] = [];
-
-    constructor(private _uri: vscode.Uri) {
-        try {
-            let metaDataStr = '';
-            this._title = path.basename(this._uri.fsPath);
-            Tar.list({
-                file: this._uri.fsPath,
-                onentry: (entry: Tar.ReadEntry) => {
-                    this._entries.push(entry);
-                    this._paths.push(entry.path);
-                    if (entry.path.endsWith('$meta.json')) {
-
-                        entry.on('data', chunk => {
-                            metaDataStr += chunk.toString();
-                        });
-
-                        entry.on('end', () => {
-                            console.log(metaDataStr); // Here is your string
-                        });
-                    }
-                },
-                sync: true,
-            });
-            const metaData = JSON.parse(metaDataStr) as IMetaData;
-            const metaConfig = JSON.parse(metaData.meta) as IMetaConfig;
-            const tocs = Yaml.parse(metaConfig.book.tocYml) as IToc[];
-            for (const toc of tocs) {
-                const node = new ILakeTocNode(toc, this._uri);
-                this.nodeMap.set(toc.uuid, node);
-                if (toc.level === 0) {
-                    this.childNodes.push(node);
-                } else if (toc.parent_uuid) {
-                    const parentNode = this.nodeMap.get(toc.parent_uuid);
-                    if (parentNode) {
-                        parentNode.nodes.push(node);
-                    }
-                }
-            }
-            console.info(this.childNodes);
-            // this._tree = treeFromPaths(files, _uri, 
-            //     path.basename(this._uri.fsPath))
-        } catch (e) {
-            vscode.window.showErrorMessage(e.toString());
-        }
-    }
-
-    public get title() {
-        return this._title;
-    }
-
-    public get type() {
-        return 'TITLE' as const;
-    }
-
-    public get sourceUri() {
-        return this._uri;
-    }
-
-    public get nodes() {
-        return this.childNodes;
-    }
-}
-
-export class LakeBookModel {
-    private _lakeRoots: LakeRoot[];
-
-    constructor() {
-        this._lakeRoots = [];
-    }
-
-    public get roots() {
-        return this._lakeRoots;
-    }
-
-    public openLakeBook(fileUri: vscode.Uri) {
-        this._lakeRoots.push(new LakeRoot(fileUri));
-    }
-
-}
+import { ILakeNode, LakeBookModel, ILakeTocNode, LakeRoot } from './lake-model';
 
 export default class LakeBookTreeProvider implements vscode.TreeDataProvider<ILakeNode> {
     private _onDidChangeTreeData = new vscode.EventEmitter<void | ILakeNode | ILakeNode[]>();
@@ -170,24 +10,12 @@ export default class LakeBookTreeProvider implements vscode.TreeDataProvider<ILa
     static currentModel: LakeBookModel | null = null;
     static async getLakeURIContent(uri: vscode.Uri) {
         if (this.currentModel && uri.scheme === 'lake') {
-            const node = this.currentModel.roots.find(root => root.sourceUri.toString() === uri.toString());
-            if (node) {
-                const entry = node['_entries'].find(entry => entry.path.endsWith(uri.query));
-                if (entry) {
-                    const chunks = [];
-                    entry.on('data', chunk => {
-                        chunks.push(chunk);
-                    });
-                    entry.on('end', () => {
-                        Buffer.concat(chunks);
-                    });
-                }
-            }
+            return LakeBookModel.getLakeURIContent(uri);
         }
         return new Uint8Array();
     }
 
-    model: LakeBookModel;
+    private model: LakeBookModel;
 
     constructor(private readonly context: vscode.ExtensionContext) {
         this.clear();
@@ -211,7 +39,7 @@ export default class LakeBookTreeProvider implements vscode.TreeDataProvider<ILa
             arguments: [element.sourceUri.with({
                 scheme: 'lake',
                 path: path.join(element.sourceUri.path, element.title),
-                query: element.url,
+                query: element.url + '.json',
             })],
         } : void 0;
 

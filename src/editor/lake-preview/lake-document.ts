@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { Disposable } from '../../common/dispose';
+import LakeBookTreeProvider from '../../tree-provider/lakebool-tree-provider';
 
 export interface LakeDocumentDelegate {
 	getFileData(): Promise<Uint8Array>;
@@ -17,6 +18,9 @@ export default class LakeDocument extends Disposable implements vscode.CustomDoc
 	private static async readFile(uri: vscode.Uri): Promise<Uint8Array> {
 		if (uri.scheme === 'untitled') {
 			return new Uint8Array();
+		}
+		if(uri.scheme === 'lake') {
+			return LakeBookTreeProvider.getLakeURIContent(uri);
 		}
 		return new Uint8Array(await vscode.workspace.fs.readFile(uri));
 	}
