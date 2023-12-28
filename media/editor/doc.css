@@ -807,6 +807,7 @@ div.ne-lark-icon > svg {
   padding: 5px;
   width: 28px;
   height: 28px;
+  cursor: pointer;
 }
 .ne-card-toolbar-dropdown-item:hover,
 .ne-card-toolbar-dropdown-item.selected {
@@ -3050,19 +3051,23 @@ ne-card[data-card-name='mention'].ne-card-editing {
 .ne-ui-select-menu {
   border-radius: 5px;
 }
-.ne-ui-select-menu .ne-ui-select-item {
+.ne-ui-select-menu .ne-ui-select-item,
+.ne-ui-select-menu .ant-dropdown-menu-item.ne-ui-select-item {
   position: relative;
   padding: 4px 15px 4px 25px;
   line-height: 30px;
   font-size: 12px;
 }
-.ne-ui-select-menu .ne-ui-select-item.ant-dropdown-menu-item-selected {
+.ne-ui-select-menu .ne-ui-select-item.ant-dropdown-menu-item-selected,
+.ne-ui-select-menu .ant-dropdown-menu-item.ne-ui-select-item.ant-dropdown-menu-item-selected {
   background: none;
 }
-.ne-ui-select-menu .ne-ui-select-item.ant-dropdown-menu-item-selected .ne-ui-select-item-check-icon {
+.ne-ui-select-menu .ne-ui-select-item.ant-dropdown-menu-item-selected .ne-ui-select-item-check-icon,
+.ne-ui-select-menu .ant-dropdown-menu-item.ne-ui-select-item.ant-dropdown-menu-item-selected .ne-ui-select-item-check-icon {
   opacity: 1;
 }
-.ne-ui-select-menu .ne-ui-select-item-check-icon {
+.ne-ui-select-menu .ne-ui-select-item-check-icon,
+.ne-ui-select-menu .ant-dropdown-menu-item.ne-ui-select-item-check-icon {
   position: absolute;
   left: 5px;
   top: 0;
@@ -3073,7 +3078,8 @@ ne-card[data-card-name='mention'].ne-card-editing {
   align-items: center;
   opacity: 0;
 }
-.ne-ui-select-menu .ne-ui-select-item .ne-ui-select-item-label {
+.ne-ui-select-menu .ne-ui-select-item .ne-ui-select-item-label,
+.ne-ui-select-menu .ant-dropdown-menu-item.ne-ui-select-item .ne-ui-select-item-label {
   margin-left: 10px;
   flex-grow: 1;
 }
@@ -11333,6 +11339,112 @@ ne-card[data-card-name='slash'].ne-focused {
 /**
  * colors
  */
+.table-head-overlay {
+  color: var(--lakex-editor-text-color);
+  width: max-content;
+}
+.table-head-overlay .ant-popover-arrow {
+  display: none;
+}
+.table-head-overlay .menu-item {
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+}
+.table-head-overlay .menu-item .table-head-color-icon {
+  margin-left: 25px;
+}
+.table-head-overlay .menu-item > span {
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+.table-head-overlay .menu-item .ant-switch-small {
+  margin-left: 30px;
+}
+.table-head-overlay .menu-item:hover {
+  background-color: var(--lakex-editor-background-primary-hover);
+}
+.table-head-color-popup {
+  margin-top: 4px;
+  color: var(--lakex-editor-text-color);
+}
+.table-head-color-popup-buttons {
+  display: flex;
+}
+.table-head-color-popup-custom {
+  margin-top: 16px;
+  margin-bottom: 12px;
+}
+.table-head-color-popup-actions {
+  display: flex;
+  align-items: center;
+}
+.table-head-color-popup-actions .table-head-color-popup-divider {
+  width: 1px;
+  height: 20px;
+  margin-left: 12px;
+  margin-right: 6px;
+  background-color: var(--lakex-editor-border-primary);
+}
+.table-head-color-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: solid 1px var(--lakex-editor-border-primary);
+  user-select: none;
+  cursor: pointer;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+}
+.table-head-color-icon:first-child {
+  margin-left: 0;
+}
+.table-head-color-icon:last-child {
+  margin-right: 0;
+}
+.table-head-color-icon:hover {
+  border-color: var(--lakex-editor-card-border-hover);
+}
+.table-head-color-icon-selected {
+  border-color: var(--lakex-editor-card-border-selected);
+}
+.table-head-color-icon-default {
+  background-color: var(--lakex-editor-background-secondary);
+  color: var(--lakex-editor-text-color);
+}
+.table-head-color-icon-blue {
+  background-color: var(--lakex-editor-color-blue1);
+  color: var(--lakex-editor-color-blue9);
+}
+.table-head-color-icon-green {
+  background-color: var(--lakex-editor-color-peaGreen1);
+  color: var(--lakex-editor-color-peaGreen9);
+}
+.table-head-color-icon-red {
+  background-color: var(--lakex-editor-color-red1);
+  color: var(--lakex-editor-color-red9);
+}
+.table-head-color-icon-inverseGreen {
+  background-color: var(--lakex-editor-color-peaGreen8);
+  color: var(--lakex-editor-color-peaGreen1);
+}
+.table-head-color-icon-inverseBlue {
+  background-color: var(--lakex-editor-color-blue8);
+  color: var(--lakex-editor-color-blue1);
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
 .ne-codeblock-overlay .ant-popover-inner,
 .ant-menu-submenu-popup.codeblock-pop-menu {
   padding: 0;
@@ -13551,7 +13663,10 @@ span.CodeMirror-selectedtext {
   margin-left: -25px;
 }
 .ne-editor ne-card[data-card-name='codeblock'] .ne-codeblock-content ::selection {
-  background: #1890ff !important;
+  background: transparent !important;
+}
+.ne-editor ne-card[data-card-name='codeblock'] .cm-selectionBackground {
+  background: rgba(80, 153, 236, 0.5) !important;
 }
 .ne-editor ne-card[data-card-name='codeblock'] .cm-scroller {
   padding-bottom: 5px;
@@ -15938,6 +16053,584 @@ ne-quote ne-card[data-card-name='bookmarkInline'] {
 .lakex-dark-theme-dark .ne-toc-sidebar .ne-toc-view {
   background-color: transparent;
 }
+.lakex-dark-theme-dark .ant-popover-inner-content,
+.lakex-dark-theme-dark .ant-select,
+.lakex-dark-theme-dark .ant-popover,
+.lakex-dark-theme-dark .ant-picker-input > input {
+  color: var(--lakex-editor-color-grey9);
+}
+.lakex-dark-theme-dark .ant-popover .ant-popover-inner,
+.lakex-dark-theme-dark .ant-select-dropdown {
+  background-color: var(--lakex-editor-color-grey2);
+  box-shadow: 0 8px 16px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--lakex-editor-border-primary);
+  border-radius: 8px;
+}
+.lakex-dark-theme-dark .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: hsla(0, 0%, 100%, 0.04);
+  border: 1px solid hsla(0, 0%, 100%, 0.12);
+}
+.lakex-dark-theme-dark .ne-card-calendar-schedule-panel-item-content .ant-select-arrow {
+  color: var(--lakex-editor-text-caption);
+}
+.lakex-dark-theme-dark .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  color: var(--lakex-editor-color-grey9);
+  font-weight: 600;
+  background-color: var(--lakex-editor-color-grey3);
+}
+.lakex-dark-theme-dark .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+  background-color: hsla(0, 0%, 100%, 0.08);
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+.ne-card-calendar-schedule-panel-textarea.ant-input {
+  resize: none;
+  border: none;
+  background: transparent;
+  padding-left: 0;
+}
+.ne-card-calendar-schedule-panel-textarea.ant-input:focus {
+  box-shadow: none;
+}
+.ne-card-calendar-schedule-panel-textarea.ant-input-desc.ant-input {
+  font-size: 12px;
+}
+.ne-card-calendar-schedule-panel-textarea-title.ant-input {
+  font-size: 18px;
+}
+.ne-card-calendar-schedule-panel-item-content .ant-select-arrow {
+  font-size: 12px;
+  color: var(--lakex-editor-text-caption);
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+}
+.ne-card-calendar-schedule-panel-color-select-dropdown {
+  width: 122px;
+}
+.ne-card-calendar-schedule-panel-color-select-option {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.ant-select-selector .ne-card-calendar-schedule-panel-color-select-option {
+  height: 100%;
+}
+.ant-select-selector .ne-card-calendar-schedule-panel-color-select-option-status,
+.ant-select-selector .ne-card-calendar-schedule-panel-color-select-option-name {
+  display: none;
+}
+.ne-card-calendar-schedule-panel-color-select-option-status {
+  flex: 0 0 14px;
+}
+.ne-card-calendar-schedule-panel-color-select-option-status[data-selected='true'] {
+  background: url('https://gw.alipayobjects.com/zos/bmw-prod/16f5566a-e266-4417-b762-3bd0e1f8296a.svg') no-repeat center center;
+  height: 14px;
+  background-size: 14px 14px;
+}
+.ne-card-calendar-schedule-panel-color-select-option-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 24px;
+}
+.ne-card-calendar-schedule-panel-color-select-option-box-content {
+  width: 8px;
+  height: 8px;
+}
+.ne-card-calendar-schedule-panel-color-select-option-name {
+  flex: 1;
+  font-size: 14px;
+  color: var(--lakex-editor-text-body);
+  font-weight: normal;
+}
+.ne-card-calendar-schedule-panel-date-picker {
+  padding-left: 0;
+}
+.ne-card-calendar-schedule-panel-date-picker .ant-picker-active-bar {
+  transform: translateX(-11px);
+}
+.ne-card-calendar-schedule-panel-date-picker .ant-picker-suffix,
+.ne-card-calendar-schedule-panel-date-picker .ant-picker-clear {
+  display: none;
+}
+.ne-card-calendar-schedule-panel-icon-calendar-e {
+  margin-top: 7px;
+}
+.ne-card-calendar-schedule-panel-icon-desc-e {
+  margin-top: 4px;
+}
+.ne-card-calendar-schedule-panel-button-box {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: flex;
+}
+.ne-card-calendar-schedule-panel-button-box .ne-icon {
+  margin: 6px;
+  cursor: pointer;
+}
+.ne-card-calendar-schedule-panel-button-box .ne-icon:hover {
+  background: var(--lakex-editor-background-primary-hover);
+  color: var(--lakex-editor-color-black);
+}
+.ne-card-calendar-popover-overlay .ant-popover-inner-content {
+  padding: 0 8px;
+}
+
+.ne-card-calendar-schedule-snapshot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+.ne-card-calendar-schedule-snapshot-line {
+  position: absolute;
+}
+.ne-card-calendar-schedule-snapshot .ne-card-calendar-schedule-line {
+  width: auto !important;
+  margin-top: 0;
+  opacity: 0.8 !important;
+}
+.ne-card-calendar-schedule-snapshot .ne-card-calendar-schedule-line[data-is-start='false'] {
+  left: 0;
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+ne-card[data-card-name='calendar'] {
+  /* stylelint-disable-line */
+}
+ne-card[data-card-name='calendar'] .ne-card-container {
+  background: var(--lakex-editor-background-secondary);
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar {
+  position: relative;
+  padding: 0 16px 16px 16px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 72px;
+  position: relative;
+}
+@media only screen and (min-width: 768px) {
+  ne-card[data-card-name='calendar'] .ne-card-calendar-header-today-button {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+  }
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-header-month-selector {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-header-month-selector-prev,
+ne-card[data-card-name='calendar'] .ne-card-calendar-header-month-selector-next {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-header-month-selector-prev .ne-icon,
+ne-card[data-card-name='calendar'] .ne-card-calendar-header-month-selector-next .ne-icon {
+  color: var(--lakex-editor-text-caption);
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-header-month-selector-prev:hover .ne-icon,
+ne-card[data-card-name='calendar'] .ne-card-calendar-header-month-selector-next:hover .ne-icon {
+  color: var(--lakex-editor-color-black);
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-header-month-selector-date {
+  margin: 0 20px;
+  font-size: 16px;
+  font-weight: 500;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-week-names {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 0;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-week-names-item {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--lakex-editor-text-caption);
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box {
+  position: relative;
+  border: 1px solid var(--lakex-editor-color-grey5);
+  border-radius: 4px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid var(--lakex-editor-color-grey5);
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row:first-of-type .ne-card-calendar-content-box-row-cell:first-of-type {
+  border-top-left-radius: 4px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row:first-of-type .ne-card-calendar-content-box-row-cell:last-of-type {
+  border-top-right-radius: 4px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row:last-of-type,
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row[data-last='true'] {
+  border-bottom: none;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row:last-of-type .ne-card-calendar-content-box-row-cell:first-of-type,
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row[data-last='true'] .ne-card-calendar-content-box-row-cell:first-of-type {
+  border-bottom-left-radius: 4px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row:last-of-type .ne-card-calendar-content-box-row-cell:last-of-type,
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row[data-last='true'] .ne-card-calendar-content-box-row-cell:last-of-type {
+  border-bottom-right-radius: 4px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 84px;
+  padding: 4px 4px 10px 4px;
+  background-color: var(--lakex-editor-background-secondary);
+  border-right: 1px solid var(--lakex-editor-color-grey5);
+  min-width: 0;
+  position: relative;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell:first-of-type,
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell:last-of-type {
+  background-color: var(--lakex-editor-background-primary);
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell:last-of-type {
+  border-right: none;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell:hover .ne-card-calendar-content-box-row-cell-date-plus {
+  display: block;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='full']::after,
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='half']::after,
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='left']::after,
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='right']::after {
+  content: ' ';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  left: -1px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='full']::after {
+  border: 1px solid var(--lakex-editor-color-green5);
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='half']::after,
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='left']::after,
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='right']::after {
+  border-top: 1px solid var(--lakex-editor-color-green5);
+  border-bottom: 1px solid var(--lakex-editor-color-green5);
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='left']::after {
+  border-left: 1px solid var(--lakex-editor-color-green5);
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='right']::after {
+  border-right: 1px solid var(--lakex-editor-color-green5);
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border-style='top-left-corner']::after {
+  border-top-left-radius: 4px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border-style='top-right-corner']::after {
+  border-top-right-radius: 4px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border-style='bottom-left-corner']::after {
+  border-bottom-left-radius: 4px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border-style='bottom-right-corner']::after {
+  border-bottom-right-radius: 4px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell-date {
+  color: var(--lakex-editor-text-body);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell-date-plus {
+  display: none;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--lakex-editor-color-grey5);
+  background: var(--lakex-editor-color-white) url('https://gw.alipayobjects.com/zos/bmw-prod/7ac8d36f-f041-4ee7-b1fe-d13404e9acea.svg') no-repeat center center;
+  background-size: 10px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell-date-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell-date[data-today='true'] .ne-card-calendar-content-box-row-cell-date-text {
+  border-radius: 50%;
+  color: var(--lakex-editor-color-white);
+  background-color: var(--lakex-editor-color-blue4);
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell-date[data-fade='true'] {
+  color: var(--lakex-editor-text-disable);
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell-schedule-index {
+  height: 2px;
+  margin-top: 2px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell-schedule-holder {
+  height: 24px;
+  margin-top: 2px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-line {
+  display: flex;
+  height: 24px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  box-sizing: border-box;
+  margin-top: 2px;
+  z-index: 2;
+  cursor: pointer;
+  align-items: center;
+  position: relative;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-line[data-active='true'] .ne-card-calendar-schedule-line-title {
+  color: #fff;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-line[data-is-start='false'] {
+  left: -5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-line[data-control='false'] {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-line-label {
+  flex: 0 0 2px;
+  width: 2px;
+  height: 12px;
+  border-radius: 1px;
+  margin: 0 4px 0 5px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-line-left-arrow,
+ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-line-right-arrow {
+  position: relative;
+  flex: 0 0 4px;
+  width: 0;
+  height: 0;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-line-left-arrow {
+  right: -1px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-right-width: 4px;
+  border-right-style: solid;
+  margin-left: 8px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-line-right-arrow {
+  left: -1px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left-width: 4px;
+  border-left-style: solid;
+  margin-right: 8px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-line-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  color: var(--lakex-editor-text-color);
+  min-width: 0;
+  flex: 1;
+  height: 100%;
+  line-height: 22px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-line-title[data-not-title='true'] {
+  color: var(--lakex-editor-text-disable);
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-line-control {
+  flex: 0 0 16px;
+  height: 100%;
+  cursor: ew-resize;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-popover-fake-line {
+  position: absolute;
+  width: 1px;
+  height: 24px;
+}
+ne-card[data-card-name='calendar'] .ne-card-calendar-mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: transparent;
+  z-index: 2;
+}
+.ne-card-calendar-schedule-panel {
+  width: 320px;
+  box-sizing: border-box;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+}
+.ne-card-calendar-schedule-panel-item {
+  display: flex;
+  flex-direction: row;
+}
+.ne-card-calendar-schedule-panel-item-side {
+  flex: 0 0 36px;
+}
+.ne-card-calendar-schedule-panel-item-content {
+  flex: 1;
+}
+.ne-card-calendar-schedule-panel-icon {
+  width: 16px;
+  height: 16px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+.ne-card-calendar-schedule-panel-icon-calendar {
+  background-image: url('https://gw.alipayobjects.com/zos/bmw-prod/524c6fbd-2711-47e5-a2f1-c03b27a7e979.svg');
+}
+.ne-card-calendar-schedule-panel-icon-desc {
+  background-image: url('https://gw.alipayobjects.com/zos/bmw-prod/31781942-31fc-4d5b-97e7-97b295e9e692.svg');
+}
+.ne-card-calendar-schedule-panel-divider {
+  margin: 8px 0 16px 0;
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+ne-card[data-card-name='vote'] .ne-card-vote {
+  padding: 16px 24px;
+  background: var(--lakex-editor-background-secondary);
+  font-size: 14px;
+  color: var(--lakex-editor-text-body);
+}
+ne-card[data-card-name='vote'] .ne-card-vote-setting {
+  display: flex;
+  margin-bottom: 16px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-setting-type {
+  flex: 0 0 82px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-setting-type .ant-select-selection-item {
+  color: var(--lakex-editor-text-body);
+}
+ne-card[data-card-name='vote'] .ne-card-vote-setting-title {
+  flex: 1;
+  margin-right: 36px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-setting-title-input {
+  color: var(--lakex-editor-text-body);
+}
+ne-card[data-card-name='vote'] .ne-card-vote-vote-list {
+  margin-bottom: 16px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-vote-item {
+  display: flex;
+  margin-bottom: 8px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-vote-item:last-of-type {
+  margin-bottom: 0;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-vote-item-input {
+  flex: 1;
+  color: var(--lakex-editor-text-body);
+}
+ne-card[data-card-name='vote'] .ne-card-vote-vote-item-side {
+  flex: 0 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-vote-item-delete {
+  color: var(--lakex-editor-text-caption);
+  cursor: pointer;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-vote-item-delete:hover {
+  color: var(--lakex-editor-text-body);
+}
+ne-card[data-card-name='vote'] .ne-card-vote-operation {
+  display: flex;
+  margin-bottom: 16px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-operation-wrap {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-operation-wrap-icon {
+  margin-right: 6px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap {
+  position: relative;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap-label {
+  position: absolute;
+  left: 12px;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap-date-picker {
+  width: 310px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap-date-picker input {
+  text-align: right;
+  color: var(--lakex-editor-text-caption);
+  z-index: 2;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap-date-picker.ant-picker {
+  color: var(--lakex-editor-color-white-f80);
+  border-color: var(--lakex-editor-border-primary);
+  background-color: var(--lakex-editor-color-white);
+}
+.ne-card-vote-popconfirm .ant-popover-message,
+.ne-card-vote-popconfirm .ant-popover-buttons {
+  white-space: nowrap;
+}
 
 /** 只提供变量 */
 /**
@@ -16149,6 +16842,9 @@ ne-alert[ne-alert-type='color5']:hover {
 }
 [ne-emoji] {
   font-family: Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Noto Color Emoji,Segoe UI Symbol,Android Emoji,EmojiSymbols;
+}
+ne-code-content [ne-emoji] {
+  font-family: inherit;
 }
 [ne-underline] {
   text-decoration: underline;
@@ -19810,6 +20506,61 @@ ne-table-wrap.ne-ui-table-column-resizing {
  * colors
  */
 /** 只提供变量 */
+.tableHeadTd {
+  background-color: var(--table-head-bg-color) !important;
+}
+.tableHeadNormalText ne-text,
+.tableHeadNormalText .ne-td-content > .ne-b-filler {
+  font-weight: bold !important;
+  color: var(--table-head-text-color) !important;
+  -webkit-text-fill-color: unset !important;
+}
+.tableHeadGradientText ne-text,
+.tableHeadGradientText .ne-td-content > .ne-b-filler {
+  font-weight: bold !important;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(90deg, var(--table-head-text1-color), var(--table-head-text2-color)) !important;
+}
+/** 表头样式，参考plugins/table/src/common/table-attr-translator.ts的变量定义 */
+table[ne-table-row-head='true'][ne-table-head-text-gradient='true'] tr:first-child td {
+  background-color: var(--table-head-bg-color) !important;
+}
+table[ne-table-row-head='true'][ne-table-head-text-gradient='true'] tr:first-child td ne-text,
+table[ne-table-row-head='true'][ne-table-head-text-gradient='true'] tr:first-child td .ne-td-content > .ne-b-filler {
+  font-weight: bold !important;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(90deg, var(--table-head-text1-color), var(--table-head-text2-color)) !important;
+}
+table[ne-table-col-head='true'][ne-table-head-text-gradient='true'] tr > td[data-col='0'] {
+  background-color: var(--table-head-bg-color) !important;
+}
+table[ne-table-col-head='true'][ne-table-head-text-gradient='true'] tr > td[data-col='0'] ne-text,
+table[ne-table-col-head='true'][ne-table-head-text-gradient='true'] tr > td[data-col='0'] .ne-td-content > .ne-b-filler {
+  font-weight: bold !important;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(90deg, var(--table-head-text1-color), var(--table-head-text2-color)) !important;
+}
+table[ne-table-col-head='true']:not([ne-table-head-text-gradient='true']) tr > td[data-col='0'] {
+  background-color: var(--table-head-bg-color) !important;
+}
+table[ne-table-col-head='true']:not([ne-table-head-text-gradient='true']) tr > td[data-col='0'] ne-text,
+table[ne-table-col-head='true']:not([ne-table-head-text-gradient='true']) tr > td[data-col='0'] .ne-td-content > .ne-b-filler {
+  font-weight: bold !important;
+  color: var(--table-head-text-color) !important;
+  -webkit-text-fill-color: unset !important;
+}
+table[ne-table-row-head='true']:not([ne-table-head-text-gradient='true']) tr:first-child td {
+  background-color: var(--table-head-bg-color) !important;
+}
+table[ne-table-row-head='true']:not([ne-table-head-text-gradient='true']) tr:first-child td ne-text,
+table[ne-table-row-head='true']:not([ne-table-head-text-gradient='true']) tr:first-child td .ne-td-content > .ne-b-filler {
+  font-weight: bold !important;
+  color: var(--table-head-text-color) !important;
+  -webkit-text-fill-color: unset !important;
+}
 .baseShadowPseudoStyle {
   content: ' ';
   position: absolute;
@@ -23162,7 +23913,7 @@ ne-collapse.app-ne-brick-highlight {
 .ne-viewer[data-viewer-mode='present'] ne-collapse .ne-collapse-folding-inner {
   width: 50px;
   height: 30px;
-  margin-top: 24px;
+  margin-top: 12px;
 }
 .ne-viewer[data-viewer-mode='present'] ne-collapse .ne-collapse-folding-inner .ne-icon,
 .ne-viewer[data-viewer-mode='present'] ne-collapse .ne-collapse-folding-inner .ne-icon > span.lake-icon {
@@ -23457,26 +24208,39 @@ ne-collapse.content-empty .ne-collapse-folding-inner .ne-icon {
   left: 0;
 }
 
+.ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='12'],
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='12'],
+.ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='13'],
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='13'],
+.ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='13'],
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='13'],
+.ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='14'],
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='14'],
+.ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='15'],
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='15'],
+.ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='16'],
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='16'],
+.ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='19'],
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='19'],
+.ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='22'],
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='22'],
+.ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='24'],
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='24'],
+.ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='29'],
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='29'] {
   font-size: 1.8rem;
   line-height: 2.8rem;
 }
+.ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='32'],
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='32'] {
   font-size: 32px;
   line-height: 2.8rem;
 }
+.ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='40'],
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='40'] {
   font-size: 40px;
 }
+.ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='48'],
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='48'] {
   font-size: 48px;
 }
@@ -23831,6 +24595,61 @@ ne-card[data-card-name='label'] .ne-card-label-text {
 /**
  * colors
  */
+.tableHeadTd {
+  background-color: var(--table-head-bg-color) !important;
+}
+.tableHeadNormalText ne-text,
+.tableHeadNormalText .ne-td-content > .ne-b-filler {
+  font-weight: bold !important;
+  color: var(--table-head-text-color) !important;
+  -webkit-text-fill-color: unset !important;
+}
+.tableHeadGradientText ne-text,
+.tableHeadGradientText .ne-td-content > .ne-b-filler {
+  font-weight: bold !important;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(90deg, var(--table-head-text1-color), var(--table-head-text2-color)) !important;
+}
+/** 表头样式，参考plugins/table/src/common/table-attr-translator.ts的变量定义 */
+table[ne-table-row-head='true'][ne-table-head-text-gradient='true'] tr:first-child td {
+  background-color: var(--table-head-bg-color) !important;
+}
+table[ne-table-row-head='true'][ne-table-head-text-gradient='true'] tr:first-child td ne-text,
+table[ne-table-row-head='true'][ne-table-head-text-gradient='true'] tr:first-child td .ne-td-content > .ne-b-filler {
+  font-weight: bold !important;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(90deg, var(--table-head-text1-color), var(--table-head-text2-color)) !important;
+}
+table[ne-table-col-head='true'][ne-table-head-text-gradient='true'] tr > td[data-col='0'] {
+  background-color: var(--table-head-bg-color) !important;
+}
+table[ne-table-col-head='true'][ne-table-head-text-gradient='true'] tr > td[data-col='0'] ne-text,
+table[ne-table-col-head='true'][ne-table-head-text-gradient='true'] tr > td[data-col='0'] .ne-td-content > .ne-b-filler {
+  font-weight: bold !important;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(90deg, var(--table-head-text1-color), var(--table-head-text2-color)) !important;
+}
+table[ne-table-col-head='true']:not([ne-table-head-text-gradient='true']) tr > td[data-col='0'] {
+  background-color: var(--table-head-bg-color) !important;
+}
+table[ne-table-col-head='true']:not([ne-table-head-text-gradient='true']) tr > td[data-col='0'] ne-text,
+table[ne-table-col-head='true']:not([ne-table-head-text-gradient='true']) tr > td[data-col='0'] .ne-td-content > .ne-b-filler {
+  font-weight: bold !important;
+  color: var(--table-head-text-color) !important;
+  -webkit-text-fill-color: unset !important;
+}
+table[ne-table-row-head='true']:not([ne-table-head-text-gradient='true']) tr:first-child td {
+  background-color: var(--table-head-bg-color) !important;
+}
+table[ne-table-row-head='true']:not([ne-table-head-text-gradient='true']) tr:first-child td ne-text,
+table[ne-table-row-head='true']:not([ne-table-head-text-gradient='true']) tr:first-child td .ne-td-content > .ne-b-filler {
+  font-weight: bold !important;
+  color: var(--table-head-text-color) !important;
+  -webkit-text-fill-color: unset !important;
+}
 .ne-viewer ne-table-hole.ne-max,
 .ne-viewer ne-root-card-hole.ne-max {
   background-color: var(--lakex-editor-background-secondary);
@@ -26836,5 +27655,259 @@ html[data-kumuhana="pouli"] {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+.ne-card-calendar-schedule-panel-title {
+  word-break: break-word;
+  font-size: 18px;
+  color: var(--lakex-editor-text-body);
+  max-height: 86px;
+  overflow-y: auto;
+}
+.ne-card-calendar-schedule-panel-date,
+.ne-card-calendar-schedule-panel-desc {
+  font-size: 12px;
+  color: var(--lakex-editor-text-body);
+}
+.ne-card-calendar-schedule-panel-date {
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+.ne-card-calendar-schedule-panel-date-split {
+  padding: 0 7px;
+}
+.ne-card-calendar-schedule-panel-desc {
+  max-height: 74px;
+  overflow-y: auto;
+}
+.ne-card-calendar-schedule-panel-icon-calendar-v {
+  margin-top: 1px;
+}
+.ne-card-calendar-schedule-panel-icon-desc-v {
+  margin-top: 1px;
+}
+.ne-card-calendar-schedule-panel-margin-top {
+  margin-top: 6px;
+}
+.ne-card-calendar-schedule-panel-color {
+  width: 8px;
+  height: 8px;
+  margin-top: 9px;
+}
+
+.ne-viewer ne-card[data-card-name='calendar'] {
+  user-select: none;
+}
+
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell {
+  min-height: 10rem;
+}
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell-date-text {
+  font-size: 1.6rem;
+  width: 2.2rem;
+  height: 2.2rem;
+}
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='calendar'] .ne-card-calendar-content-week-names-item {
+  font-size: 1.6rem;
+}
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='calendar'] .ne-card-calendar-header-month-selector-date,
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='calendar'] .ne-card-calendar-header-month-selector-prev .ne-icon,
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='calendar'] .ne-card-calendar-header-month-selector-next .ne-icon {
+  font-size: 2.2rem;
+}
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-panel-title {
+  font-size: 2.2rem;
+}
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-panel-date,
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-panel-desc {
+  font-size: 1.6rem;
+}
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-panel-color {
+  height: 0.7rem;
+  width: 0.7rem;
+}
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='calendar'] .ne-card-calendar-schedule-panel-icon {
+  height: 1.4rem;
+  width: 1.4rem;
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+ne-card[data-card-name='vote'] .ne-card-vote-viewer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 200px;
+  padding: 24px;
+  background-color: var(--lakex-editor-background-secondary);
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-error-tip {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-content {
+  flex: 1;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-content-header {
+  display: flex;
+  margin-bottom: 24px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-content-header-type {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  height: 24px;
+  background-color: var(--lakex-editor-color-blue1);
+  color: var(--lakex-editor-text-color);
+  border-radius: 4px;
+  margin-right: 12px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-content-header-title {
+  flex: 1;
+  font-size: 16px;
+  color: var(--lakex-editor-text-color);
+  line-height: 24px;
+  font-weight: bold;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-content-footer {
+  display: flex;
+  margin-top: 16px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-content-footer-member-count,
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-content-footer-deadline {
+  font-size: 14px;
+  color: var(--lakex-editor-text-caption);
+  margin-right: 12px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-content-footer-re-vote {
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--lakex-editor-text-body);
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-content-footer-view-data {
+  line-height: 33px;
+  color: var(--lakex-editor-text-caption);
+  padding: 0 10px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-content-footer-view-data-link {
+  margin-left: 10px;
+  color: var(--link-color);
+  cursor: pointer;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-vote-item {
+  display: flex;
+  align-items: center;
+  padding: 9px 16px;
+  border: 1px solid var(--lakex-editor-border-primary);
+  border-radius: 2px;
+  background-color: var(--lakex-editor-background-primary);
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-vote-item-op {
+  margin-right: 16px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-vote-item-text {
+  font-size: 14px;
+  color: var(--lakex-editor-text-body);
+  line-height: 22px;
+  word-break: break-word;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-voting-mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lakex-editor-text-caption);
+  background: var(--lakex-editor-color-white-f60);
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-voting-mask .ne-icon {
+  margin-right: 8px;
+  color: var(--lakex-editor-text-caption);
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-query-detail-loading {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-query-detail-loading .ne-icon {
+  margin-right: 8px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+  border: 1px solid var(--lakex-editor-border-primary);
+  border-radius: 2px;
+  background-color: var(--lakex-editor-background-primary);
+  margin-bottom: 8px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item[data-voted='true'] {
+  color: var(--lakex-editor-text-link);
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item[data-voted='true'] .ne-card-vote-viewer-result-item-line-length {
+  background-color: var(--lakex-editor-color-blue6);
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item-info {
+  display: flex;
+  flex-direction: row;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item-info-name {
+  flex: 1;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item-info-data {
+  flex: 0 0 auto;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item-info-data-detail span + span {
+  margin-left: 12px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item-info-data-members {
+  color: var(--lakex-editor-text-body);
+  max-width: 400px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item-line {
+  margin-top: 8px;
+  height: 8px;
+  background-color: var(--lakex-editor-background-tertiary);
+  border-radius: 4px;
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item-line-length {
+  height: 8px;
+  border-radius: 4px;
+  background-color: var(--lakex-editor-color-blue2);
+}
+ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-popover-overlay .ant-popover-content {
+  min-width: auto;
+}
+[data-kumuhana='pouli'] ne-card[data-card-name='vote'] .ne-card-vote-viewer-vote-item {
+  background-color: var(--lakex-editor-color-grey3);
 }
 
