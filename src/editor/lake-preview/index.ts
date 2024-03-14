@@ -56,6 +56,7 @@ window.onload = async function () {
     },
     codeblock: {
       codemirrorURL: baseURI + '/CodeMirror.js',
+      supportCustomStyle: true,
     },
     math: {
       KaTexURL: baseURI + '/katex.js',
