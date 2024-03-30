@@ -12857,12 +12857,15 @@ ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap-date-picker.ant-picke
 }
 .ne-ant-calendar .ant-picker-buttons button {
   padding: 0;
-  color: var(--lakex-editor-color-blue8);
+  color: var(--lakex-editor-color-blue6);
   line-height: 40px;
   background: transparent;
   border: 0;
   cursor: pointer;
   transition: color 0.3s;
+}
+.ne-ant-calendar .ant-picker-cell .ant-picker-cell-inner {
+  height: auto;
 }
 .ant-picker-calendar-mini .ant-picker-content.ne-calendar-header {
   height: auto;
@@ -12878,13 +12881,81 @@ ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap-date-picker.ant-picke
  * colors
  */
 /** 只提供变量 */
-ne-card[data-card-name='dateCard'] .ne-card-date-card div.ne-icon {
+ne-card[data-card-name='dateCard'] {
+  border-radius: 4px;
+}
+ne-t-filler:first-child + ne-card[data-card-type='inline'][data-card-name='dateCard'] .ne-card-date-card {
+  margin-left: 1px;
+}
+ne-text:first-child:empty + ne-card[data-card-type='inline'][data-card-name='dateCard'] .ne-card-date-card {
+  margin-left: 1px;
+}
+ne-card[data-card-type='inline'][data-card-name='dateCard'] .ne-card-date-card {
+  padding: 0.1em 6px;
+  border-radius: 4px;
+  background-color: var(--lakex-editor-color-grey2);
+  margin: 0 0.2em;
+}
+ne-card[data-card-type='inline'][data-card-name='dateCard'] .ne-card-date-card div.ne-icon {
   font-size: inherit;
   vertical-align: text-top;
   margin-top: 0.2em;
+  margin-right: 6px;
 }
-ne-card[data-card-name='dateCard'].ne-focused .ne-card-date-card {
-  border-color: var(--lakex-editor-card-border-selected);
+.ne-editor ne-card[data-card-type='inline'][data-card-name='dateCard'].ne-focused,
+.ne-editor ne-card[data-card-type='inline'][data-card-name='dateCard'].ne-card-hovered {
+  background-color: transparent;
+  cursor: pointer;
+}
+.ne-editor ne-card[data-card-type='inline'][data-card-name='dateCard'].ne-focused .ne-card-date-card,
+.ne-editor ne-card[data-card-type='inline'][data-card-name='dateCard'].ne-card-hovered .ne-card-date-card {
+  background-color: var(--lakex-editor-color-grey3);
+  border-color: var(--lakex-editor-color-grey3);
+}
+.ant-popover.ne-ui-popover.ne-date-card-overlay .ant-picker-date-panel .ant-picker-header {
+  border: none;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.ant-popover.ne-ui-popover.ne-date-card-overlay .ant-picker-date-panel .ant-picker-cell .ant-picker-cell-inner,
+.ant-popover.ne-ui-popover.ne-date-card-overlay .ant-picker-date-panel .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+  border-radius: 100%;
+  width: 28px;
+  height: 28px;
+  padding: 2px;
+}
+.ant-popover.ne-ui-popover.ne-date-card-overlay .ant-popover-inner-content {
+  padding: 0;
+  border-radius: 8px;
+}
+.ant-popover.ne-ui-popover.ne-date-card-overlay .ant-picker-calendar .ant-picker-panel .ant-picker-body {
+  padding: 8px 24px;
+}
+.ant-popover.ne-ui-popover.ne-date-card-overlay .ant-picker-footer {
+  border-top: 1px solid var(--lakex-editor-border-primary);
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+.ne-card-date-card-mention {
+  padding: 4px 8px;
+}
+.ne-card-date-card-mention div.ne-icon {
+  font-size: inherit;
+  vertical-align: text-top;
+  margin-top: 0.08em;
+  margin-right: 4px;
+}
+.ne-card-date-card-mention .hint {
+  color: var(--lakex-editor-color-grey6);
+  margin-left: 4px;
 }
 
 /** 只提供变量 */
@@ -19665,6 +19736,83 @@ ne-container-hole[data-card='columns'] > .ne-i-filler:first-child {
 ne-container-hole[data-card='columns'] > .ne-i-filler:last-child {
   transform: translateX(6px);
 }
+.columns-add-button,
+.columns-remove-button {
+  position: absolute;
+  background-color: var(--lakex-editor-background-primary);
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--lakex-editor-border-primary);
+  border-radius: 6px;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  color: var(--lakex-editor-text-link);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: all;
+  z-index: 2;
+}
+.columns-drag-button {
+  width: 40px;
+  height: 12px;
+  border-radius: 6px;
+  background-color: var(--lakex-editor-color-grey2);
+  cursor: grab;
+  pointer-events: all;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  margin-top: -14px;
+  transform: translate(-50%, 0);
+}
+.columns-drag-button:active {
+  cursor: grabbing;
+}
+.columns-drag-button:hover {
+  background-color: var(--lakex-editor-card-border-selected);
+}
+.columns-drag-button:hover::before {
+  background-color: var(--lakex-editor-color-white);
+  box-shadow: var(--lakex-editor-color-white) -4px 0px, var(--lakex-editor-color-white) 4px 0px;
+}
+.columns-drag-button.selected {
+  background-color: var(--lakex-editor-card-border-selected);
+}
+.columns-drag-button.selected .columns-remove-button {
+  display: flex;
+}
+.columns-drag-button.selected::before {
+  background-color: var(--lakex-editor-color-white);
+  box-shadow: var(--lakex-editor-color-white) -4px 0px, var(--lakex-editor-color-white) 4px 0px;
+}
+.columns-drag-button.inRemoveBtn {
+  background-color: var(--lakex-editor-color-red6);
+}
+.columns-drag-button .columns-remove-button {
+  top: -7px;
+  display: none;
+}
+.columns-drag-button::before {
+  content: '';
+  width: 2px;
+  height: 2px;
+  border-radius: 100%;
+  background-color: var(--lakex-editor-color-black);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: var(--lakex-editor-color-black) -4px 0px, var(--lakex-editor-color-black) 4px 0px;
+}
+.columns-remove-button {
+  color: var(--lakex-editor-text-color);
+}
+.columns-remove-button:hover {
+  color: var(--lakex-editor-color-red6);
+}
 ne-columns {
   width: 100%;
   position: relative;
@@ -19686,83 +19834,6 @@ ne-columns .columns-remove {
 }
 ne-columns .columns-add {
   background-color: var(--lakex-editor-color-blue5);
-}
-ne-columns .columns-add-button,
-ne-columns .columns-remove-button {
-  position: absolute;
-  background-color: var(--lakex-editor-background-primary);
-  width: 24px;
-  height: 24px;
-  border: 1px solid var(--lakex-editor-border-primary);
-  border-radius: 6px;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -100%);
-  color: var(--lakex-editor-text-link);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  pointer-events: all;
-  z-index: 2;
-}
-ne-columns .columns-drag-button {
-  width: 40px;
-  height: 12px;
-  border-radius: 6px;
-  background-color: var(--lakex-editor-color-grey2);
-  cursor: grab;
-  pointer-events: all;
-  z-index: 2;
-  top: 0;
-  left: 50%;
-  margin-top: -14px;
-  transform: translate(-50%, 0);
-}
-ne-columns .columns-drag-button:active {
-  cursor: grabbing;
-}
-ne-columns .columns-drag-button:hover {
-  background-color: var(--lakex-editor-card-border-selected);
-}
-ne-columns .columns-drag-button:hover::before {
-  background-color: var(--lakex-editor-color-white);
-  box-shadow: var(--lakex-editor-color-white) -4px 0px, var(--lakex-editor-color-white) 4px 0px;
-}
-ne-columns .columns-drag-button.selected {
-  background-color: var(--lakex-editor-card-border-selected);
-}
-ne-columns .columns-drag-button.selected .columns-remove-button {
-  display: flex;
-}
-ne-columns .columns-drag-button.selected::before {
-  background-color: var(--lakex-editor-color-white);
-  box-shadow: var(--lakex-editor-color-white) -4px 0px, var(--lakex-editor-color-white) 4px 0px;
-}
-ne-columns .columns-drag-button.inRemoveBtn {
-  background-color: var(--lakex-editor-color-red6);
-}
-ne-columns .columns-drag-button .columns-remove-button {
-  top: -7px;
-  display: none;
-}
-ne-columns .columns-drag-button::before {
-  content: '';
-  width: 2px;
-  height: 2px;
-  border-radius: 100%;
-  background-color: var(--lakex-editor-color-black);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: var(--lakex-editor-color-black) -4px 0px, var(--lakex-editor-color-black) 4px 0px;
-}
-ne-columns .columns-remove-button {
-  color: var(--lakex-editor-text-color);
-}
-ne-columns .columns-remove-button:hover {
-  color: var(--lakex-editor-color-red6);
 }
 ne-columns .columns-move-inspector {
   display: none;
@@ -23078,4 +23149,7 @@ ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-popover-overlay .ant-
  * colors
  */
 /** 只提供变量 */
+ne-card[data-card-name='dateCard'] {
+  border-radius: 4px;
+}
 

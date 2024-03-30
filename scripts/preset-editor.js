@@ -20,9 +20,9 @@ function sleep(ms) {
   });
 }
 
-const LAKE_EDITOR_VERSION = '1.24.0';
+const LAKE_EDITOR_VERSION = '1.26.0';
 
-const lakeIconURL = 'https://mdn.alipayobjects.com/design_kitchencore/afts/file/ANSZQ7GHQPMAAAAAAAAAAAAADhulAQBr';
+const lakeIconURL = 'https://mdn.alipayobjects.com/design_kitchencore/afts/file/PK3gTIu43EoAAAAAAAAAAAAADhulAQBr';
 
 const remoteAssetsUrls = {
   lakeJS: {
