@@ -22,6 +22,7 @@
     "test-watch": "tsc -watch -p ./",
     "pretest": "npm run test-compile && npm run lint",
     "lint": "eslint src --ext ts",
+    "vsce": "vsce package --baseImagesUrl https://raw.githubusercontent.com/ilimei/vscode-plugin-lake-editor/main",
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
