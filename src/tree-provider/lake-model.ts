@@ -3,6 +3,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import Tar from 'tar';
 import Yaml from 'yaml';
+import { mkdirSync, writeFileSync } from 'fs';
 
 export interface ILakeNode {
   title: string;
@@ -252,6 +253,29 @@ export class LakeBookModel {
 
   public openLakeBook(fileUri: vscode.Uri) {
     this._lakeRoots.push(LakeRoot.getLakeRoot(fileUri));
+  }
+
+  public unzipLakeBook(fileUri: vscode.Uri) {
+    const root = LakeRoot.getLakeRoot(fileUri);
+    return this.unzipNode(root, path.dirname(fileUri.fsPath));
+  }
+
+  public async unzipNode(node: ILakeTocNode | LakeRoot, parentDir: string) {
+    if (node.nodes?.length > 0 || node.type === 'TITLE') {
+      parentDir = path.resolve(parentDir, node.title.replace('\.lakebook', ''));
+      mkdirSync(parentDir, { recursive: true });
+    }
+    if (node.type === 'DOC') {
+      const content = await this.getLakeRootContent(node.sourceUri.with({
+        scheme: 'lake',
+        path: path.join(node.sourceUri.path.replace(/^\/([^:+]:)/, '$1'), node.title),
+        query: node.url + '.json',
+      }));
+      writeFileSync(path.resolve(parentDir, node.title + '.lake'), content);
+    }
+    if (node.nodes?.length > 0) {
+      await Promise.all(node.nodes.map(childNode => this.unzipNode(childNode, parentDir)));
+    }
   }
 
   public getLakeRootContent(uri: vscode.Uri) {
