@@ -2,7 +2,7 @@
   "name": "lake-editor",
   "displayName": "lake-editor",
   "description": "use yuque editor edit local lake file and lakebook viewer",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "publisher": "hugehardzhang",
   "icon": "icon.png",
   "engines": {
@@ -72,6 +72,10 @@
         "title": "Explore Lakebook"
       },
       {
+        "command": "lakeEditor.unzipLakebook",
+        "title": "Unzip Lakebook"
+      },
+      {
         "command": "lakeEditor.openLakebookSource",
         "title": "Open Lakebook Source"
       }
@@ -100,6 +104,10 @@
       "explorer/context": [
         {
           "command": "lakeEditor.exploreLakebook",
+          "when": "resourceExtname == .lakebook"
+        },
+        {
+          "command": "lakeEditor.unzipLakebook",
           "when": "resourceExtname == .lakebook"
         }
       ]

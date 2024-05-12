@@ -27,6 +27,11 @@ export default class LakeBookTreeProvider implements vscode.TreeDataProvider<ILa
         this._onDidChangeTreeData.fire();
     }
 
+    unzipLakeBook(uri: vscode.Uri) {
+        this.model?.unzipLakeBook(uri);
+        vscode.window.showInformationMessage('Lakebook unzipped successfully!');
+    }
+
     openLakeBookSource(uri: vscode.Uri) {
         vscode.commands.executeCommand('vscode.openWith', uri, LakeViewType, { preview: true });
     }
@@ -38,7 +43,7 @@ export default class LakeBookTreeProvider implements vscode.TreeDataProvider<ILa
             title: 'Open Lakebook Source',
             arguments: [element.sourceUri.with({
                 scheme: 'lake',
-                path: path.join(element.sourceUri.path, element.title),
+                path: path.join(element.sourceUri.path.replace(/^\/([^:+]:)/, '$1'), element.title),
                 query: element.url + '.json',
             })],
         } : void 0;
@@ -85,6 +90,9 @@ export default class LakeBookTreeProvider implements vscode.TreeDataProvider<ILa
     private registerCommands() {
         vscode.commands.registerCommand('lakeEditor.exploreLakebook', (uri: vscode.Uri) => {
             this.openLakeBook(uri);
+        });
+        vscode.commands.registerCommand('lakeEditor.unzipLakebook', (uri: vscode.Uri) => {
+            this.unzipLakeBook(uri);
         });
         vscode.commands.registerCommand('lakeEditor.openLakebookSource', (uri: vscode.Uri) => {
             this.openLakeBookSource(uri);
