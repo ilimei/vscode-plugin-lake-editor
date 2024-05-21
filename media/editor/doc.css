@@ -215,7 +215,7 @@
 .ne-card-resizer-trigger {
   width: 56px;
   height: 8px;
-  background-color: var(--lakex-editor-color-grey5);
+  background-color: var(--lakex-editor-border-secondary);
   border-radius: 4px;
   position: absolute;
   top: -4px;
@@ -998,7 +998,7 @@ div.ne-lark-icon > svg {
  */
 /** 只提供变量 */
 .ne-card-toolbar {
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--lakex-editor-background-primary);
   border: 1px solid var(--lakex-editor-border-primary);
   backdrop-filter: blur(50px);
   box-shadow: 0 8px 16px 4px rgba(0, 0, 0, 0.04);
@@ -1188,7 +1188,7 @@ ne-drag-cursor {
   left: -999999px;
   width: 2px;
   height: 0;
-  background-color: var(--lakex-editor-color-green7);
+  background-color: var(--lakex-editor-cursor);
   pointer-events: none;
   z-index: 999;
 }
@@ -1225,10 +1225,10 @@ ne-columns.ne-brick-drag-highlight .columns-adder {
 ne-columns.ne-brick-drag-highlight .columns-start-add::after,
 ne-columns.ne-brick-drag-highlight .columns-end-add::after,
 ne-columns.ne-brick-drag-highlight .columns-adder::after {
-  background: var(--lakex-editor-color-blue3);
+  background: var(--lakex-editor-card-border-hover);
 }
 ne-columns.ne-brick-drag-highlight ne-column-border {
-  border: 1px solid var(--lakex-editor-color-blue3);
+  border: 1px solid var(--lakex-editor-card-border-hover);
   background-color: var(--lakex-editor-column-background-highlight);
   transition: background-color ease 0.3s;
 }
@@ -1341,7 +1341,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   margin: 4px !important;
 }
 .ne-brick-delegation ne-card[data-card-type='block'] {
-  border: 1px solid var(--lakex-editor-color-grey4);
+  border: 1px solid var(--lakex-editor-background-primary-hover-light);
 }
 .ne-brick-delegation .ne-eidtor-card-lake-diagram-editor .lake-diagram-board-toolbar {
   display: flex !important;
@@ -1353,7 +1353,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
 .ne-brick-delegation ne-table-wrap .ne-ui-table-row-bar,
 .ne-brick-delegation ne-table-wrap .ne-ui-table-control-point,
 .ne-brick-delegation ne-table-wrap .ne-ui-table-column-bar {
-  background-color: var(--lakex-editor-color-blue2);
+  background-color: var(--lakex-editor-background-focus);
 }
 .ne-brick-delegation ne-table-wrap .ne-ui-table {
   height: 100%;
@@ -1408,7 +1408,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   transform: scale(0.97);
 }
 .ne-brick-delegation ne-container-hole[data-card='columns'] ne-column-border {
-  border: 1px solid var(--lakex-editor-color-grey4);
+  border: 1px solid var(--lakex-editor-background-primary-hover-light);
 }
 .ne-dragging-element {
   cursor: grabbing;
@@ -1419,7 +1419,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   left: 0;
   pointer-events: none;
   z-index: 999;
-  background-color: var(--lakex-editor-color-blue5);
+  background-color: var(--lakex-editor-card-border-selected);
   width: 1.5px;
   border-radius: 100vw;
 }
@@ -1433,14 +1433,14 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   display: flex;
 }
 .ne-drag-line > div {
-  background-color: var(--lakex-editor-color-blue5);
+  background-color: var(--lakex-editor-card-border-selected);
   height: 1.5px;
   position: relative;
 }
 .ne-drag-line .ne-drag-seg-line {
   width: 30px;
   margin-right: 2px;
-  background-color: var(--lakex-editor-color-blue2);
+  background-color: var(--lakex-editor-background-focus);
 }
 .ne-drag-line .ne-drag-seg-line::before {
   content: '';
@@ -1449,7 +1449,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   position: absolute;
   left: 0;
   top: -1px;
-  background-color: var(--lakex-editor-color-blue2);
+  background-color: var(--lakex-editor-background-focus);
 }
 .ne-drag-line .ne-drag-tri-line {
   flex: 1;
@@ -1464,7 +1464,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   top: -4.5px;
   border-style: solid;
   border-width: 5px 5px;
-  border-color: transparent transparent transparent var(--lakex-editor-color-blue5);
+  border-color: transparent transparent transparent var(--lakex-editor-card-border-selected);
   border-radius: 4px;
 }
 .ne-drag-line .ne-drag-nor-line {
@@ -1689,7 +1689,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   margin-bottom: 2px;
 }
 .ne-viewer ne-card[data-card-type='block'][data-card-name='localdoc'] {
-  border: 1px solid var(--lakex-editor-color-grey5);
+  border: 1px solid var(--lakex-editor-border-secondary);
 }
 .ne-viewer ne-card[data-card-type='block'][data-card-name='bookmark'],
 .ne-viewer ne-card[data-card-type='block'][data-card-name='yuque'] {
@@ -2065,7 +2065,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
 }
 .ne-ui-t-button.ant-btn:hover,
 .ne-ui-t-button.ant-btn.ant-dropdown-open {
-  background: var(--lakex-editor-color-grey2);
+  background: var(--lakex-editor-overlay-background-tertiary);
   color: var(--lakex-editor-text-color);
 }
 .ne-ui-t-button.ant-btn.checked {
@@ -2118,7 +2118,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   background: transparent;
 }
 .ne-ui-toolbar-color-button button:hover {
-  background: var(--lakex-editor-color-grey2);
+  background: var(--lakex-editor-overlay-background-tertiary);
 }
 .ne-ui-toolbar-color-button button.ant-dropdown-open {
   background: none;
@@ -2301,11 +2301,11 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   width: 20px;
   height: 16px;
   background-color: var(--lakex-editor-background-primary);
-  border: 1px solid var(--lakex-editor-color-grey5);
+  border: 1px solid var(--lakex-editor-border-secondary);
   margin-left: -1px;
 }
 .ne-ui-search-menu-table-selector .ne-ui-table-selector-cell.ne-ui-selected {
-  background-color: var(--lakex-editor-color-blue1);
+  background-color: var(--lakex-editor-background-focus);
 }
 .show-hover .ne-menu-item-container:hover {
   cursor: pointer;
@@ -2520,7 +2520,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
 }
 .show-hover .ne-menu-item-group.label .ne-menu-item-group-content .ne-menu-item-container:hover {
   cursor: pointer;
-  background-color: var(--lakex-editor-color-grey5);
+  background-color: var(--lakex-editor-border-secondary);
 }
 .show-hover .ne-menu-item-group.icon .ne-menu-item-container:hover .ne-menu-item-container-icon {
   background: var(--lakex-editor-background-primary-hover);
@@ -2528,7 +2528,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
 }
 .show-selected .ne-menu-item-group.label .ne-menu-item-group-content .ne-menu-item-container.selected {
   cursor: pointer;
-  background-color: var(--lakex-editor-color-grey5);
+  background-color: var(--lakex-editor-border-secondary);
 }
 .show-selected .ne-menu-item-group.icon .ne-menu-item-container.selected .ne-menu-item-container-icon {
   background: var(--lakex-editor-background-primary-hover);
@@ -2563,11 +2563,11 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   width: 20px;
   height: 16px;
   background-color: var(--lakex-editor-background-primary);
-  border: 1px solid var(--lakex-editor-color-grey5);
+  border: 1px solid var(--lakex-editor-border-secondary);
   margin-left: -1px;
 }
 .ne-ui-table-selector-cell.ne-ui-selected {
-  background-color: var(--lakex-editor-color-blue1);
+  background-color: var(--lakex-editor-background-focus);
 }
 
 
@@ -2682,7 +2682,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   align-items: center;
   height: 36px;
   padding: 8px 20px;
-  border-top: 1px solid var(--lakex-editor-color-grey4);
+  border-top: 1px solid var(--lakex-editor-background-primary-hover-light);
   font-size: 12px;
   color: var(--lakex-editor-text-caption);
   cursor: default;
@@ -2705,7 +2705,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   border-radius: 2px;
 }
 .ne-ui-command-menu-info .ne-ui-command-menu-md-keys {
-  color: var(--lakex-editor-color-green6);
+  color: var(--lakex-editor-color-theme);
   margin-right: 0.5em;
 }
 .ne-ui-command-menu-info .ne-ui-command-menu-md-trigger {
@@ -2714,7 +2714,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
 .ne-ui-command-menu-scrollable {
   overflow-y: auto;
   scroll-behavior: smooth;
-  scrollbar-color: var(--lakex-editor-color-grey4) transparent;
+  scrollbar-color: var(--lakex-editor-background-primary-hover-light) transparent;
 }
 .ne-ui-command-menu-column-1 .ne-ui-command-menu-scrollable {
   max-height: 270px;
@@ -2726,7 +2726,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   background: transparent;
 }
 .ne-ui-command-menu-scrollable::-webkit-scrollbar-thumb {
-  background: var(--lakex-editor-color-grey4);
+  background: var(--lakex-editor-background-primary-hover-light);
   border-radius: 15px;
   border: 4.5px solid transparent;
   background-clip: content-box;
@@ -2801,9 +2801,9 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   display: block;
   width: 12px;
   height: 12px;
-  border: 3px solid var(--lakex-editor-color-blue2);
+  border: 3px solid var(--lakex-editor-background-focus);
   border-radius: 100%;
-  background: var(--lakex-editor-color-blue5);
+  background: var(--lakex-editor-card-border-selected);
   background-clip: content-box;
 }
 
@@ -2893,7 +2893,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   margin-left: 6px;
 }
 .ne-error-tips-operation-slash {
-  color: var(--lakex-editor-color-grey4);
+  color: var(--lakex-editor-background-primary-hover-light);
 }
 .ne-error-tips-operation-icon {
   display: flex;
@@ -3240,7 +3240,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
 }
 .ne-color-selector .color-box:hover {
   outline-offset: 2px;
-  outline: 1px solid var(--lakex-editor-color-blue3);
+  outline: 1px solid var(--lakex-editor-card-border-hover);
 }
 .ne-color-selector .color-box.color-tips {
   background-color: var(--lakex-alert-tips-bar-bg);
@@ -3508,7 +3508,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
   align-items: center;
 }
 .ne-ui-image-inner-menu .ant-menu-item:hover {
-  color: var(--lakex-editor-color-grey9);
+  color: var(--lakex-editor-text-color);
   background-color: var(--lakex-editor-background-primary-hover);
 }
 .ne-ui-image-inner-menu .ant-menu-item .ne-icon {
@@ -3561,7 +3561,7 @@ ne-card[data-card-name='image'] .ne-card-container .ne-ui-image-ocr-mask ::selec
   right: 0;
   bottom: 0;
   z-index: 3;
-  outline: 1px solid var(--lakex-editor-color-blue4);
+  outline: 1px solid var(--lakex-editor-text-link-hover);
 }
 .ne-ui-image-resizer-box.ne-ui-resizing:after {
   position: absolute;
@@ -3580,7 +3580,7 @@ ne-card[data-card-name='image'] .ne-card-container .ne-ui-image-ocr-mask ::selec
   width: 14px;
   height: 14px;
   border: 2px solid #fff;
-  background-color: var(--lakex-editor-color-blue5);
+  background-color: var(--lakex-editor-card-border-selected);
   border-radius: 10px;
   position: absolute;
   z-index: 2;
@@ -3766,7 +3766,7 @@ ne-card[data-card-name='image'] img {
   cursor: default;
   padding: 32px;
   background: var(--lakex-editor-background-secondary);
-  border: 1px solid var(--lakex-editor-color-grey5);
+  border: 1px solid var(--lakex-editor-border-secondary);
   border-radius: 4px;
   line-height: 0;
 }
@@ -3907,7 +3907,7 @@ ne-card[data-card-name='localdoc'] .ne-card-local-doc-expand-header {
   background: var(--lakex-editor-background-primary);
 }
 ne-card[data-card-name='localdoc'] .ne-card-local-doc-expand-header-border {
-  border-bottom: 1px solid var(--lakex-editor-color-grey5);
+  border-bottom: 1px solid var(--lakex-editor-border-secondary);
 }
 ne-card[data-card-name='localdoc'] .ne-card-local-doc-expand-header-icon {
   flex: 0 0 16px;
@@ -3933,7 +3933,7 @@ ne-card[data-card-name='localdoc'] .ne-card-local-doc-expand-header-title span {
   text-overflow: ellipsis;
 }
 ne-card[data-card-name='localdoc'] .ne-card-local-doc-expand-header-title a:hover {
-  color: var(--lakex-editor-color-blue5);
+  color: var(--lakex-editor-card-border-selected);
 }
 ne-card[data-card-name='localdoc'] .ne-card-local-doc-expand-header-title-loading {
   margin-left: 6px;
@@ -4025,7 +4025,7 @@ ne-card[data-card-name='localdoc'] .ne-card-local-doc-collapse-content-name span
   color: var(--lakex-editor-text-color);
 }
 ne-card[data-card-name='localdoc'] .ne-card-local-doc-collapse-content-name a:hover {
-  color: var(--lakex-editor-color-blue5);
+  color: var(--lakex-editor-card-border-selected);
 }
 ne-card[data-card-name='localdoc'] .ne-card-local-doc-collapse-content-name .disable-name {
   color: var(--lakex-editor-text-disable);
@@ -4055,7 +4055,7 @@ ne-card[data-card-name='localdoc'] .ne-card-local-doc-collapse-op-download .ne-i
 }
 ne-card[data-card-name='localdoc'] .ne-card-local-doc-collapse-op-preview:hover .ne-icon,
 ne-card[data-card-name='localdoc'] .ne-card-local-doc-collapse-op-download:hover .ne-icon {
-  color: var(--lakex-editor-color-green6);
+  color: var(--lakex-editor-color-theme);
 }
 ne-card[data-card-name='localdoc'] .ne-card-local-doc-collapse-op-download {
   cursor: pointer;
@@ -4223,7 +4223,7 @@ ne-card[data-card-name='file'] .ne-card-file-size {
   align-items: center;
 }
 .ne-ui-toolbar-card-select-button.ant-btn.ne-ui-menu-open {
-  background: var(--lakex-editor-color-grey2);
+  background: var(--lakex-editor-overlay-background-tertiary);
 }
 .ne-ui-toolbar-card-select-button.ant-btn[disabled] {
   opacity: 0.25;
@@ -4257,7 +4257,7 @@ ne-card[data-card-name='file'] .ne-card-file-size {
 .ne-ui-toolbar-card-select-menu .ne-ui-card-menu-content::-webkit-scrollbar-thumb {
   border-radius: 6px;
   border: 2px solid var(--lakex-editor-color-white);
-  background-color: var(--lakex-editor-color-grey5);
+  background-color: var(--lakex-editor-border-secondary);
 }
 .ne-ui-toolbar-card-select-menu .ne-ui-card-menu-content::-webkit-scrollbar-track {
   background-color: var(--lakex-editor-background-primary);
@@ -4295,7 +4295,7 @@ ne-card[data-card-name='file'] .ne-card-file-size {
   background: transparent;
 }
 .ne-ui-toolbar-arrow-button.ant-btn:hover {
-  background: var(--lakex-editor-color-grey2);
+  background: var(--lakex-editor-overlay-background-tertiary);
 }
 .ne-ui-toolbar-arrow-button.ant-btn > .ne-icon {
   width: 26px;
@@ -4472,7 +4472,7 @@ ne-card[data-card-name='file'] .ne-card-file-size {
   background: transparent;
 }
 .ne-ui-toolbar-status-dropdown-button button.ne-ui-t-button:hover {
-  background: var(--lakex-editor-color-grey2);
+  background: var(--lakex-editor-overlay-background-tertiary);
 }
 .ne-ui-toolbar-status-dropdown-button button.ne-ui-t-button.ant-dropdown-open {
   background: none;
@@ -4545,7 +4545,7 @@ ne-card[data-card-name='file'] .ne-card-file-size {
   background: transparent;
 }
 .ne-ui-toolbar-button.ant-btn:hover {
-  background: var(--lakex-editor-color-grey2);
+  background: var(--lakex-editor-overlay-background-tertiary);
 }
 
 /**
@@ -4569,7 +4569,7 @@ ne-card[data-card-name='file'] .ne-card-file-size {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: var(--lakex-editor-color-black);
+  color: var(--lakex-editor-icon-primary);
 }
 .ne-ui-select-menu {
   border-radius: 5px;
@@ -4636,7 +4636,7 @@ ne-card[data-card-name='file'] .ne-card-file-size {
   background: transparent;
 }
 .ne-ui-toolbar-dbl-toggle-button.ant-btn:hover {
-  background: var(--lakex-editor-color-grey2);
+  background: var(--lakex-editor-overlay-background-tertiary);
 }
 .ne-ui-toolbar-dbl-toggle-button.ant-btn.checked {
   background-color: var(--lakex-editor-background-primary-hover-light);
@@ -4677,7 +4677,7 @@ ne-card[data-card-name='file'] .ne-card-file-size {
 }
 .ne-ui-toolbar-file-button:hover,
 .ne-ui-toolbar-file-button.ant-btn:hover {
-  background: var(--lakex-editor-color-grey2);
+  background: var(--lakex-editor-overlay-background-tertiary);
 }
 .ne-ui-toolbar-file-button .ne-ui-toolbar-file-input,
 .ne-ui-toolbar-file-button.ant-btn .ne-ui-toolbar-file-input {
@@ -4718,7 +4718,7 @@ ne-card[data-card-name='file'] .ne-card-file-size {
   background: transparent;
 }
 .ne-ui-toolbar-toggle-button.ant-btn:hover {
-  background: var(--lakex-editor-color-grey2);
+  background: var(--lakex-editor-overlay-background-tertiary);
 }
 .ne-ui-toolbar-toggle-button.ant-btn.checked {
   background-color: var(--lakex-editor-background-primary-hover-light);
@@ -4737,16 +4737,16 @@ ne-card[data-card-name='file'] .ne-card-file-size {
   position: relative;
   display: flex;
   height: 50px;
-  color: var(--lakex-editor-color-grey8);
+  color: var(--lakex-editor-text-body);
 }
 .ne-ui-toolbar .ne-toolbar-widget,
 .ne-ui-toolbar .ant-btn {
-  color: var(--lakex-editor-color-grey8);
+  color: var(--lakex-editor-text-body);
   flex-shrink: 0;
 }
 .ne-ui-toolbar .ne-toolbar-widget:hover,
 .ne-ui-toolbar .ant-btn:hover {
-  color: var(--lakex-editor-color-grey8);
+  color: var(--lakex-editor-text-body);
 }
 .ne-ui-toolbar .ne-toolbar-widget:last-child,
 .ne-ui-toolbar .ant-btn:last-child {
@@ -4772,7 +4772,7 @@ ne-card[data-card-name='file'] .ne-card-file-size {
   margin-left: 8px;
 }
 .ne-ui-toolbar .ne-toolbar-widget *.ne-icon {
-  color: var(--lakex-editor-color-black);
+  color: var(--lakex-editor-icon-primary);
 }
 .ne-ui-toolbar [data-ne-button-arrow='true'] + [data-ne-button-arrow='true'] {
   margin-left: 4px;
@@ -4822,7 +4822,7 @@ button.ant-btn.ne-ui-toolbar-button.ne-ui-toolbar-clear-format.ne-toolbar-widget
   align-items: center;
 }
 .ne-ui-exit-fullscreen:hover {
-  background: var(--lakex-editor-color-grey2);
+  background: var(--lakex-editor-overlay-background-tertiary);
 }
 .ne-ui-enter-fullscreen {
   top: 0;
@@ -5034,7 +5034,7 @@ button.ant-btn.ne-ui-toolbar-button.ne-ui-toolbar-clear-format.ne-toolbar-widget
 .ne-engine ne-card[data-card-name='hr'] ne-card-root .ne-hr-line {
   width: 100%;
   height: 1px;
-  background: var(--lakex-editor-color-grey4);
+  background: var(--lakex-editor-border-primary);
   border-top: 1px solid transparent;
 }
 .ne-paragraph-spacing-relax.ne-typography-classic.ne-engine ne-card[data-card-name='hr'] .ne-card-container {
@@ -5130,11 +5130,11 @@ ne-card[data-card-name='label'] .ne-card-label-text {
   cursor: pointer;
 }
 .ne-label-overlay .ne-card-label-colors .ne-card-label-color-item:hover {
-  border-color: var(--lakex-editor-color-grey5);
+  border-color: var(--lakex-editor-border-secondary);
   box-shadow: 0 1px 2px var(--lakex-editor-color-black-f12);
 }
 .ne-label-overlay .ne-card-label-colors .ne-card-label-color-item:focus {
-  border-color: var(--lakex-editor-color-grey6) !important;
+  border-color: var(--lakex-editor-text-disable) !important;
   box-shadow: 0 1px 2px var(--lakex-editor-color-black-f12);
 }
 .ne-label-overlay .ne-card-label-colors .ne-card-label-color-inner-item {
@@ -5179,10 +5179,10 @@ ne-card[data-card-name='label'] .ne-card-label-text {
   padding: 0 0.2em;
 }
 .ne-card-label-memos-item:hover {
-  border-color: var(--lakex-editor-color-grey5);
+  border-color: var(--lakex-editor-border-secondary);
 }
 .ne-card-label-memos-item:focus {
-  border-color: var(--lakex-editor-color-grey6) !important;
+  border-color: var(--lakex-editor-text-disable) !important;
 }
 /* -- 浮层中选项色值 --- */
 .ne-card-label-color-item[data-color-index='0'] .ne-card-label-color-inner-item {
@@ -6094,7 +6094,7 @@ ne-card[data-card-name='label'] .ne-card-label-text {
 }
 .order-list-index-menu-panel .order-list-index-menu-item:hover,
 .order-list-index-menu-panel .order-list-index-menu-item.active {
-  background-color: var(--lakex-editor-color-grey3);
+  background-color: var(--lakex-editor-background-primary-hover);
 }
 .order-list-index-menu-panel .order-list-index-menu-item > div.ne-icon-kitchen,
 .order-list-index-menu-panel .order-list-index-menu-item > div.ne-lark-icon {
@@ -7794,7 +7794,7 @@ span.CodeMirror-selectedtext {
 .CodeMirror-scroll,
 .CodeMirror-vscrollbar,
 .CodeMirror-hscrollbar {
-  scrollbar-color: var(--lakex-editor-color-grey6) transparent;
+  scrollbar-color: var(--lakex-editor-text-disable) transparent;
 }
 .CodeMirror-scroll::-webkit-scrollbar,
 .CodeMirror-vscrollbar::-webkit-scrollbar,
@@ -7809,7 +7809,7 @@ span.CodeMirror-selectedtext {
 .CodeMirror-scroll::-webkit-scrollbar-thumb,
 .CodeMirror-vscrollbar::-webkit-scrollbar-thumb,
 .CodeMirror-hscrollbar::-webkit-scrollbar-thumb {
-  background-color: var(--lakex-editor-color-grey6);
+  background-color: var(--lakex-editor-text-disable);
   border-radius: 16px;
   border: 3.5px solid transparent;
   background-clip: content-box;
@@ -8730,7 +8730,7 @@ span.CodeMirror-selectedtext {
   margin-top: 4px;
   padding: 16px;
   height: 36px;
-  color: var(--lakex-editor-color-grey8);
+  color: var(--lakex-editor-text-body);
   font-size: 14px;
   line-height: 20px;
   display: flex;
@@ -8770,7 +8770,7 @@ span.CodeMirror-selectedtext {
 .ne-codeblock-more-button:hover,
 .ne-codeblock-collapsed-button.ne-codeblock-more-active,
 .ne-codeblock-more-button.ne-codeblock-more-active {
-  background-color: var(--lakex-editor-color-grey4);
+  background-color: var(--lakex-editor-background-primary-hover-light);
 }
 .CodeMirror pre.CodeMirror-line,
 .CodeMirror pre.CodeMirror-line-like {
@@ -8961,7 +8961,7 @@ span.CodeMirror-selectedtext {
 .divider {
   width: 1px;
   height: 10px;
-  background-color: var(--lakex-editor-color-grey6);
+  background-color: var(--lakex-editor-text-disable);
   margin: 8px 4px;
 }
 
@@ -9157,7 +9157,7 @@ ne-card[data-card-name='mention'].ne-card-editing {
   height: 12px;
   width: 1px;
   margin: 0 8px;
-  background-color: var(--lakex-editor-color-grey5);
+  background-color: var(--lakex-editor-border-secondary);
 }
 
 /**
@@ -9213,6 +9213,40 @@ ne-card[data-card-name='mention'].ne-card-editing {
 /**
  * colors
  */
+.mention-drawer {
+  color: var(--lakex-editor-text-color);
+}
+.mention-drawer .ant-drawer-body {
+  padding: 24px 12px 12px 12px;
+}
+.mention-drawer .ant-drawer-content {
+  background-color: var(--lakex-editor-background-primary);
+  border-radius: 10px 10px 0 0;
+}
+.mention-drawer-content {
+  overflow: hidden;
+  height: 100%;
+}
+.mention-drawer-search {
+  color: var(--lakex-editor-text-body);
+}
+.mention-drawer-menu {
+  height: calc(100% - 24px);
+  overflow: auto;
+}
+.mention-mobile-placeholder {
+  color: var(--lakex-editor-text-disable);
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
 .ne-card-video-content {
   position: relative;
   height: 450px;
@@ -9237,7 +9271,7 @@ ne-card[data-card-name='mention'].ne-card-editing {
   line-height: 0;
 }
 .ne-card-video-content-active {
-  outline: 1px solid var(--lakex-editor-color-grey5);
+  outline: 1px solid var(--lakex-editor-border-secondary);
 }
 .ne-card-video-center {
   position: absolute;
@@ -9285,7 +9319,7 @@ ne-card[data-card-name='mention'].ne-card-editing {
   width: 16px;
   height: 16px;
   display: inline-block;
-  background: var(--lakex-editor-color-red6);
+  background: var(--lakex-editor-text-danger);
   text-align: center;
   font-size: 12px;
   color: var(--lakex-editor-color-white);
@@ -10659,7 +10693,7 @@ div.ne-math-resize .ne-math-resizer-bottom:after {
  * colors
  */
 ne-card[data-card-name='thirdparty'].ne-focused .ne-thirdparty-wrap {
-  border-color: var(--lakex-editor-color-grey5);
+  border-color: var(--lakex-editor-border-secondary);
 }
 ne-card[data-card-name='thirdparty'].ne-max .ne-thirdparty-wrap {
   border-color: transparent;
@@ -10777,7 +10811,7 @@ ne-card[data-card-name='thirdparty'] .ne-thirdparty-unavailable .ne-thirdparty-u
   background: transparent;
 }
 .ne-thirdparty-creator-input input::placeholder {
-  color: var(--lakex-editor-color-grey6);
+  color: var(--lakex-editor-text-disable);
 }
 .ne-thirdparty-creator-button {
   position: absolute;
@@ -10904,10 +10938,10 @@ ne-card[data-card-name='thirdparty'] .ne-thirdparty-unavailable .ne-thirdparty-u
   position: absolute;
   right: 0;
   top: 20px / 2;
-  background: var(--lakex-editor-color-grey5);
+  background: var(--lakex-editor-border-secondary);
 }
 .ne-toc-small-view .ne-toc-item.ne-toc-selected:before {
-  background: var(--lakex-editor-color-green6);
+  background: var(--lakex-editor-color-theme);
 }
 .ne-toc-small-view .ne-toc-item:last-child {
   margin-bottom: 0;
@@ -10966,7 +11000,7 @@ ne-card[data-card-name='thirdparty'] .ne-thirdparty-unavailable .ne-thirdparty-u
 .ne-viewer-toc-sidebar-hover .ne-toc-view .ne-toc-content:after,
 .ne-toc-sidebar-hover .ne-toc-view .ne-toc-content:after {
   content: ' ';
-  background: var(--lakex-editor-color-grey5);
+  background: var(--lakex-editor-border-secondary);
   width: 2px;
   height: 100%;
   position: absolute;
@@ -11173,7 +11207,7 @@ ne-card[data-card-name='thirdparty'] .ne-thirdparty-unavailable .ne-thirdparty-u
   bottom: 0;
   right: 0;
   width: fit-content;
-  background: var(--lakex-editor-color-white-f80);
+  background: var(--lakex-editor-background-primary);
   backdrop-filter: blur(30px);
   will-change: bottom;
   display: none;
@@ -11227,7 +11261,7 @@ html[data-kumuhana='pouli'] .ne-toc-sidebar {
 .ne-custom-card-fallback {
   background-color: var(--lakex-editor-background-secondary);
   border-radius: 4px;
-  color: var(--lakex-editor-color-red4);
+  color: var(--lakex-editor-text-danger-light);
   padding: 0 4px;
 }
 
@@ -11253,7 +11287,7 @@ html[data-kumuhana='pouli'] .ne-toc-sidebar {
  * colors
  */
 .ne-ui-search-input-suffix {
-  color: var(--lakex-editor-color-blue5);
+  color: var(--lakex-editor-card-border-selected);
 }
 
 /**
@@ -11593,7 +11627,7 @@ ne-quote ne-card[data-card-name='bookmarkInline'] {
   text-align: center;
   align-items: center;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-self: center;
   background: var(--lakex-editor-background-tertiary);
   color: var(--lakex-editor-text-disable);
@@ -11666,16 +11700,16 @@ ne-quote ne-card[data-card-name='bookmarkInline'] {
   background-color: var(--lakex-editor-background-primary-hover);
 }
 .lakex-dark-theme-dark .ant-input-affix-wrapper {
-  color: var(--lakex-editor-color-grey9);
+  color: var(--lakex-editor-text-color);
   border-color: var(--lakex-editor-border-primary);
   background-color: hsla(0, 0%, 100%, 0.04);
 }
 .lakex-dark-theme-dark .ant-input-affix-wrapper input {
-  color: var(--lakex-editor-color-grey9);
+  color: var(--lakex-editor-text-color);
   background-color: transparent;
 }
 .lakex-dark-theme-dark .ant-input {
-  color: var(--lakex-editor-color-grey9);
+  color: var(--lakex-editor-text-color);
   border-color: var(--lakex-editor-border-primary);
   background-color: hsla(0, 0%, 100%, 0.04);
 }
@@ -11687,14 +11721,14 @@ ne-quote ne-card[data-card-name='bookmarkInline'] {
 .lakex-dark-theme-dark .ant-popover-placement-topRight > .ant-popover-content > .ant-popover-arrow {
   bottom: 6.2px;
   border-top-color: transparent;
-  border-right-color: var(--lakex-editor-color-grey2);
-  border-bottom-color: var(--lakex-editor-color-grey2);
+  border-right-color: var(--lakex-editor-overlay-background-tertiary);
+  border-bottom-color: var(--lakex-editor-overlay-background-tertiary);
   border-left-color: transparent;
   box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.07);
 }
 .lakex-dark-theme-dark .ant-btn,
 .lakex-dark-theme-dark .ant-btn-default {
-  color: var(--lakex-editor-color-grey9);
+  color: var(--lakex-editor-text-color);
   background: transparent;
   border-color: hsla(0, 0%, 100%, 0.12);
 }
@@ -11726,11 +11760,11 @@ ne-quote ne-card[data-card-name='bookmarkInline'] {
 .lakex-dark-theme-dark .ant-select,
 .lakex-dark-theme-dark .ant-popover,
 .lakex-dark-theme-dark .ant-picker-input > input {
-  color: var(--lakex-editor-color-grey9);
+  color: var(--lakex-editor-text-color);
 }
 .lakex-dark-theme-dark .ant-popover .ant-popover-inner,
 .lakex-dark-theme-dark .ant-select-dropdown {
-  background-color: var(--lakex-editor-color-grey2);
+  background-color: var(--lakex-editor-overlay-background-tertiary);
   box-shadow: 0 8px 16px 4px rgba(0, 0, 0, 0.04);
   border: 1px solid var(--lakex-editor-border-primary);
   border-radius: 8px;
@@ -11743,9 +11777,9 @@ ne-quote ne-card[data-card-name='bookmarkInline'] {
   color: var(--lakex-editor-text-caption);
 }
 .lakex-dark-theme-dark .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-  color: var(--lakex-editor-color-grey9);
+  color: var(--lakex-editor-text-color);
   font-weight: 600;
-  background-color: var(--lakex-editor-color-grey3);
+  background-color: editorBackgroundPrimaryHover;
 }
 .lakex-dark-theme-dark .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
   background-color: hsla(0, 0%, 100%, 0.08);
@@ -11753,7 +11787,7 @@ ne-quote ne-card[data-card-name='bookmarkInline'] {
 .lakex-dark-theme-dark .ant-picker-panel-container {
   overflow: hidden;
   vertical-align: top;
-  background: var(--lakex-editor-color-grey2);
+  background: var(--lakex-editor-overlay-background-tertiary);
   border-radius: 6px;
   box-shadow: 0 1px 4px -2px rgba(0, 0, 0, 0.13), 0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 8px 16px 4px rgba(0, 0, 0, 0.04);
   transition: margin 0.3s;
@@ -11785,23 +11819,41 @@ ne-quote ne-card[data-card-name='bookmarkInline'] {
   background: #303030;
 }
 .lakex-dark-theme-dark .ant-picker-cell:hover:not(.ant-picker-cell-in-view) .ant-picker-cell-inner,
-.lakex-dark-theme-dark .ant-picker-cell:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):not(.ant-picker-cell-range-hover-start):not(.ant-picker-cell-range-hover-end) .ant-picker-cell-inner {
+.lakex-dark-theme-dark .ant-picker-cell:hover:not(.ant-picker-cell-selected):not(
+      .ant-picker-cell-range-start
+    ):not(.ant-picker-cell-range-end):not(
+      .ant-picker-cell-range-hover-start
+    ):not(.ant-picker-cell-range-hover-end) .ant-picker-cell-inner {
   background: hsla(0, 0%, 100%, 0.08);
 }
 .lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-hover-end.ant-picker-cell-range-end-single:after,
 .lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-hover-end.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-start-near-hover:after,
-.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-hover-end:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):after,
+.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-hover-end:not(
+      .ant-picker-cell-in-range
+    ):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):after,
 .lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-hover-start.ant-picker-cell-range-start-single:after,
 .lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-hover-start.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-end-near-hover:after,
-.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-hover-start:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):after,
-.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-hover:not(.ant-picker-cell-in-range):after {
+.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-hover-start:not(
+      .ant-picker-cell-in-range
+    ):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):after,
+.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-hover:not(
+      .ant-picker-cell-in-range
+    ):after {
   border-top: 1px dashed #2b6bb1;
   border-bottom: 1px dashed #2b6bb1;
 }
-.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single):before,
-.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single):before,
-.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single):before,
-.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single):before,
+.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-end:not(
+      .ant-picker-cell-range-end-single
+    ):before,
+.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-start:not(
+      .ant-picker-cell-range-start-single
+    ):before,
+.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-end:not(
+      .ant-picker-cell-range-end-single
+    ):before,
+.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-start:not(
+      .ant-picker-cell-range-start-single
+    ):before,
 .lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-in-range:before {
   background: #193048;
 }
@@ -11815,9 +11867,13 @@ ne-quote ne-card[data-card-name='bookmarkInline'] {
 .lakex-dark-theme-dark .ant-picker-date-panel .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover-start .ant-picker-cell-inner:after,
 .lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover:before,
 .lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-end.ant-picker-cell-range-hover:before,
-.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single).ant-picker-cell-range-hover-end:before,
+.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-end:not(
+      .ant-picker-cell-range-end-single
+    ).ant-picker-cell-range-hover-end:before,
 .lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-start.ant-picker-cell-range-hover:before,
-.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single).ant-picker-cell-range-hover-start:before,
+.lakex-dark-theme-dark .ant-picker-cell-in-view.ant-picker-cell-range-start:not(
+      .ant-picker-cell-range-start-single
+    ).ant-picker-cell-range-hover-start:before,
 .lakex-dark-theme-dark .ant-picker-panel > :not(.ant-picker-date-panel) .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover-end:before,
 .lakex-dark-theme-dark .ant-picker-panel > :not(.ant-picker-date-panel) .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover-start:before {
   background: #2b6bb1;
@@ -11831,10 +11887,14 @@ ne-quote ne-card[data-card-name='bookmarkInline'] {
   border-width: 0 0 1px 0;
   border-radius: 0;
 }
-.ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single):not(.ant-picker-cell-range-end) .ant-picker-cell-inner {
+.ant-picker-cell-in-view.ant-picker-cell-range-start:not(
+    .ant-picker-cell-range-start-single
+  ):not(.ant-picker-cell-range-end) .ant-picker-cell-inner {
   border-radius: 6px 0 0 6px;
 }
-.ant-picker-cell-in-view.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single):not(.ant-picker-cell-range-start) .ant-picker-cell-inner {
+.ant-picker-cell-in-view.ant-picker-cell-range-end:not(
+    .ant-picker-cell-range-end-single
+  ):not(.ant-picker-cell-range-start) .ant-picker-cell-inner {
   border-radius: 0 6px 6px 0;
 }
 
@@ -12040,13 +12100,13 @@ ne-card[data-card-name='calendar'] .ne-card-calendar-content-week-names-item {
 }
 ne-card[data-card-name='calendar'] .ne-card-calendar-content-box {
   position: relative;
-  border: 1px solid var(--lakex-editor-color-grey5);
+  border: 1px solid var(--lakex-editor-border-secondary);
   border-radius: 4px;
 }
 ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row {
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid var(--lakex-editor-color-grey5);
+  border-bottom: 1px solid var(--lakex-editor-border-secondary);
 }
 ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row:first-of-type .ne-card-calendar-content-box-row-cell:first-of-type {
   border-top-left-radius: 4px;
@@ -12073,7 +12133,7 @@ ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell {
   min-height: 84px;
   padding: 4px 4px 10px 4px;
   background-color: var(--lakex-editor-background-secondary);
-  border-right: 1px solid var(--lakex-editor-color-grey5);
+  border-right: 1px solid var(--lakex-editor-border-secondary);
   min-width: 0;
   position: relative;
 }
@@ -12099,19 +12159,19 @@ ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-b
   left: -1px;
 }
 ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='full']::after {
-  border: 1px solid var(--lakex-editor-color-green5);
+  border: 1px solid var(--lakex-editor-color-theme-light);
 }
 ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='half']::after,
 ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='left']::after,
 ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='right']::after {
-  border-top: 1px solid var(--lakex-editor-color-green5);
-  border-bottom: 1px solid var(--lakex-editor-color-green5);
+  border-top: 1px solid var(--lakex-editor-color-theme-light);
+  border-bottom: 1px solid var(--lakex-editor-color-theme-light);
 }
 ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='left']::after {
-  border-left: 1px solid var(--lakex-editor-color-green5);
+  border-left: 1px solid var(--lakex-editor-color-theme-light);
 }
 ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border='right']::after {
-  border-right: 1px solid var(--lakex-editor-color-green5);
+  border-right: 1px solid var(--lakex-editor-color-theme-light);
 }
 ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell[data-border-style='top-left-corner']::after {
   border-top-left-radius: 4px;
@@ -12136,7 +12196,7 @@ ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell-date-p
   display: none;
   width: 12px;
   height: 12px;
-  border: 1px solid var(--lakex-editor-color-grey5);
+  border: 1px solid var(--lakex-editor-border-secondary);
   background: var(--lakex-editor-color-white) url('https://gw.alipayobjects.com/zos/bmw-prod/7ac8d36f-f041-4ee7-b1fe-d13404e9acea.svg') no-repeat center center;
   background-size: 10px 10px;
   border-radius: 2px;
@@ -12153,7 +12213,7 @@ ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell-date-t
 ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell-date[data-today='true'] .ne-card-calendar-content-box-row-cell-date-text {
   border-radius: 50%;
   color: var(--lakex-editor-color-white);
-  background-color: var(--lakex-editor-color-blue4);
+  background-color: var(--lakex-editor-text-link-hover);
 }
 ne-card[data-card-name='calendar'] .ne-card-calendar-content-box-row-cell-date[data-fade='true'] {
   color: var(--lakex-editor-text-disable);
@@ -12380,7 +12440,6 @@ ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap-date-picker input {
   z-index: 2;
 }
 ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap-date-picker.ant-picker {
-  color: var(--lakex-editor-color-white-f80);
   border-color: var(--lakex-editor-border-primary);
   background-color: var(--lakex-editor-color-white);
 }
@@ -12483,7 +12542,7 @@ ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap-date-picker.ant-picke
 .ne-text-diagram-stage {
   position: relative;
   height: 100%;
-  background: var(--lakex-editor-color-grey1);
+  background: var(--lakex-editor-background-secondary);
   border-radius: 4px;
   font-size: 14px;
   text-indent: 0;
@@ -12585,7 +12644,7 @@ ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap-date-picker.ant-picke
   height: 16px;
 }
 .ne-embed-nav {
-  background-color: var(--lakex-editor-color-grey2);
+  background-color: var(--lakex-editor-overlay-background-tertiary);
 }
 .ne-text-diagram-editor-wrap {
   position: relative;
@@ -12811,7 +12870,7 @@ ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap-date-picker.ant-picke
 }
 .ne-audio-progress .ne-audio-progress-inner {
   height: 5px;
-  background: var(--lakex-editor-color-green6);
+  background: var(--lakex-editor-color-theme);
   border-radius: 5px;
 }
 .ne-default-audio {
@@ -12842,6 +12901,7 @@ ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap-date-picker.ant-picke
   border: none;
 }
 .ne-ant-calendar {
+  width: min-content;
   min-width: 252px;
 }
 .ne-ant-calendar.ant-picker-calendar {
@@ -12857,7 +12917,7 @@ ne-card[data-card-name='vote'] .ne-card-vote-deadline-wrap-date-picker.ant-picke
 }
 .ne-ant-calendar .ant-picker-buttons button {
   padding: 0;
-  color: var(--lakex-editor-color-blue6);
+  color: var(--lakex-editor-text-link);
   line-height: 40px;
   background: transparent;
   border: 0;
@@ -12893,8 +12953,9 @@ ne-text:first-child:empty + ne-card[data-card-type='inline'][data-card-name='dat
 ne-card[data-card-type='inline'][data-card-name='dateCard'] .ne-card-date-card {
   padding: 0.1em 6px;
   border-radius: 4px;
-  background-color: var(--lakex-editor-color-grey2);
+  background-color: var(--lakex-editor-overlay-background-tertiary);
   margin: 0 0.2em;
+  cursor: pointer;
 }
 ne-card[data-card-type='inline'][data-card-name='dateCard'] .ne-card-date-card div.ne-icon {
   font-size: inherit;
@@ -12909,8 +12970,8 @@ ne-card[data-card-type='inline'][data-card-name='dateCard'] .ne-card-date-card d
 }
 .ne-editor ne-card[data-card-type='inline'][data-card-name='dateCard'].ne-focused .ne-card-date-card,
 .ne-editor ne-card[data-card-type='inline'][data-card-name='dateCard'].ne-card-hovered .ne-card-date-card {
-  background-color: var(--lakex-editor-color-grey3);
-  border-color: var(--lakex-editor-color-grey3);
+  background-color: var(--lakex-editor-background-primary-hover);
+  border-color: var(--lakex-editor-background-primary-hover);
 }
 .ant-popover.ne-ui-popover.ne-date-card-overlay .ant-picker-date-panel .ant-picker-header {
   border: none;
@@ -12934,6 +12995,9 @@ ne-card[data-card-type='inline'][data-card-name='dateCard'] .ne-card-date-card d
 .ant-popover.ne-ui-popover.ne-date-card-overlay .ant-picker-footer {
   border-top: 1px solid var(--lakex-editor-border-primary);
 }
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-type='inline'][data-card-name='dateCard'] {
+  font-size: 1.6rem;
+}
 
 /**
  * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
@@ -12954,8 +13018,258 @@ ne-card[data-card-type='inline'][data-card-name='dateCard'] .ne-card-date-card d
   margin-right: 4px;
 }
 .ne-card-date-card-mention .hint {
-  color: var(--lakex-editor-color-grey6);
+  color: var(--lakex-editor-text-disable);
   margin-left: 4px;
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+.lakex-custom-theme-light .ant-dropdown-menu {
+  background-color: var(--lakex-editor-background-foreground);
+  border-color: var(--lakex-editor-border-primary);
+}
+.lakex-custom-theme-light .ant-popover-inner {
+  background-color: var(--lakex-editor-background-foreground);
+}
+.lakex-custom-theme-light .ant-tabs,
+.lakex-custom-theme-light .ant-dropdown-menu-item,
+.lakex-custom-theme-light .ant-dropdown-menu-submenu-title {
+  color: var(--lakex-editor-text-color);
+}
+.lakex-custom-theme-light .ant-dropdown-menu-item:hover,
+.lakex-custom-theme-light .ant-dropdown-menu-submenu-title:hover {
+  background-color: var(--lakex-editor-background-primary-hover);
+}
+.lakex-custom-theme-light .ant-input-affix-wrapper {
+  color: var(--lakex-editor-text-color);
+  border-color: var(--lakex-editor-border-primary);
+  background-color: hsla(0, 0%, 100%, 0.04);
+}
+.lakex-custom-theme-light .ant-input-affix-wrapper input {
+  color: var(--lakex-editor-text-color);
+  background-color: transparent;
+}
+.lakex-custom-theme-light .ant-input {
+  color: var(--lakex-editor-text-color);
+  border-color: var(--lakex-editor-border-primary);
+  background-color: hsla(0, 0%, 100%, 0.04);
+}
+.lakex-custom-theme-light .ant-input::placeholder {
+  color: var(--lakex-editor-text-disable);
+}
+.lakex-custom-theme-light .ant-popover-placement-bottom > .ant-popover-content > .ant-popover-arrow,
+.lakex-custom-theme-light .ant-popover-placement-bottomLeft > .ant-popover-content > .ant-popover-arrow,
+.lakex-custom-theme-light .ant-popover-placement-bottomRight > .ant-popover-content > .ant-popover-arrow,
+.lakex-custom-theme-light .ant-popover-placement-top > .ant-popover-content > .ant-popover-arrow,
+.lakex-custom-theme-light .ant-popover-placement-topLeft > .ant-popover-content > .ant-popover-arrow,
+.lakex-custom-theme-light .ant-popover-placement-topRight > .ant-popover-content > .ant-popover-arrow {
+  bottom: 6.2px;
+  border-top-color: transparent;
+  border-right-color: var(--lakex-editor-overlay-background-tertiary);
+  border-bottom-color: var(--lakex-editor-overlay-background-tertiary);
+  border-left-color: transparent;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.07);
+}
+.lakex-custom-theme-light .ant-btn,
+.lakex-custom-theme-light .ant-btn-default {
+  color: var(--lakex-editor-text-color);
+  background: transparent;
+  border-color: hsla(0, 0%, 100%, 0.12);
+}
+.lakex-custom-theme-light .ant-btn-default[disabled],
+.lakex-custom-theme-light .ant-btn-default[disabled]:active,
+.lakex-custom-theme-light .ant-btn-default[disabled]:focus,
+.lakex-custom-theme-light .ant-btn-default[disabled]:hover,
+.lakex-custom-theme-light .ant-btn[disabled],
+.lakex-custom-theme-light .ant-btn[disabled]:active,
+.lakex-custom-theme-light .ant-btn[disabled]:focus,
+.lakex-custom-theme-light .ant-btn[disabled]:hover {
+  color: var(--lakex-editor-text-disable);
+  background: transparent;
+  border-color: hsla(0, 0%, 100%, 0.12);
+  text-shadow: none;
+  box-shadow: none;
+}
+.lakex-custom-theme-light .ne-card-toolbar {
+  background-color: var(--lakex-editor-background-foreground);
+}
+.lakex-custom-theme-light .ne-toc-sidebar,
+.lakex-custom-theme-light .ne-toc-sidebar .ne-toc-view {
+  background-color: transparent;
+}
+.lakex-custom-theme-light .ant-picker-content th,
+.lakex-custom-theme-light .ant-picker-cell.ant-picker-cell-in-view,
+.lakex-custom-theme-light .ant-picker-dropdown,
+.lakex-custom-theme-light .ant-popover-inner-content,
+.lakex-custom-theme-light .ant-select,
+.lakex-custom-theme-light .ant-popover,
+.lakex-custom-theme-light .ant-picker-input > input {
+  color: var(--lakex-editor-text-color);
+}
+.lakex-custom-theme-light .ant-popover .ant-popover-inner,
+.lakex-custom-theme-light .ant-select-dropdown {
+  background-color: var(--lakex-editor-overlay-background-tertiary);
+  box-shadow: 0 8px 16px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--lakex-editor-border-primary);
+  border-radius: 8px;
+}
+.lakex-custom-theme-light .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: hsla(0, 0%, 100%, 0.04);
+  border: 1px solid hsla(0, 0%, 100%, 0.12);
+}
+.lakex-custom-theme-light .ne-card-calendar-schedule-panel-item-content .ant-select-arrow {
+  color: var(--lakex-editor-text-caption);
+}
+.lakex-custom-theme-light .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  color: var(--lakex-editor-text-color);
+  font-weight: 600;
+  background-color: editorBackgroundPrimaryHover;
+}
+.lakex-custom-theme-light .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+  background-color: hsla(0, 0%, 100%, 0.08);
+}
+.lakex-custom-theme-light .ant-picker-panel-container {
+  overflow: hidden;
+  vertical-align: top;
+  background: var(--lakex-editor-overlay-background-tertiary);
+  border-radius: 6px;
+  box-shadow: 0 1px 4px -2px rgba(0, 0, 0, 0.13), 0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 8px 16px 4px rgba(0, 0, 0, 0.04);
+  transition: margin 0.3s;
+  border: 1px solid var(--lakex-editor-border-primary);
+}
+.lakex-custom-theme-light .ant-picker-panel {
+  border: 1px solid hsla(0, 0%, 100%, 0.08);
+}
+.lakex-custom-theme-light .ant-picker-header {
+  display: flex;
+  padding: 0 8px;
+  color: hsla(0, 0%, 100%, 0.85);
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.08);
+}
+.lakex-custom-theme-light .ant-picker-cell {
+  color: var(--lakex-editor-text-disable);
+}
+.lakex-custom-theme-light .ant-picker-cell-disabled .ant-picker-cell-inner {
+  color: var(--lakex-editor-text-disable);
+  background: transparent;
+}
+.lakex-custom-theme-light .ant-picker-header button {
+  color: var(--lakex-editor-text-disable);
+}
+.lakex-custom-theme-light .ant-picker-header-view button {
+  color: inherit;
+}
+.lakex-custom-theme-light .ant-picker-cell-disabled:before {
+  background: #303030;
+}
+.lakex-custom-theme-light .ant-picker-cell:hover:not(.ant-picker-cell-in-view) .ant-picker-cell-inner,
+.lakex-custom-theme-light .ant-picker-cell:hover:not(.ant-picker-cell-selected):not(
+      .ant-picker-cell-range-start
+    ):not(.ant-picker-cell-range-end):not(
+      .ant-picker-cell-range-hover-start
+    ):not(.ant-picker-cell-range-hover-end) .ant-picker-cell-inner {
+  background: hsla(0, 0%, 100%, 0.08);
+}
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-hover-end.ant-picker-cell-range-end-single:after,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-hover-end.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-start-near-hover:after,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-hover-end:not(
+      .ant-picker-cell-in-range
+    ):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):after,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-hover-start.ant-picker-cell-range-start-single:after,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-hover-start.ant-picker-cell-range-start.ant-picker-cell-range-end.ant-picker-cell-range-end-near-hover:after,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-hover-start:not(
+      .ant-picker-cell-in-range
+    ):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):after,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-hover:not(
+      .ant-picker-cell-in-range
+    ):after {
+  border-top: 1px dashed #2b6bb1;
+  border-bottom: 1px dashed #2b6bb1;
+}
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-end:not(
+      .ant-picker-cell-range-end-single
+    ):before,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-start:not(
+      .ant-picker-cell-range-start-single
+    ):before,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-end:not(
+      .ant-picker-cell-range-end-single
+    ):before,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-start:not(
+      .ant-picker-cell-range-start-single
+    ):before,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-in-range:before {
+  background: #193048;
+}
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+  color: #fff;
+  background: #2b6bb1;
+}
+.lakex-custom-theme-light .ant-picker-date-panel .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover-end .ant-picker-cell-inner:after,
+.lakex-custom-theme-light .ant-picker-date-panel .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover-start .ant-picker-cell-inner:after,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover:before,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-end.ant-picker-cell-range-hover:before,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-end:not(
+      .ant-picker-cell-range-end-single
+    ).ant-picker-cell-range-hover-end:before,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-start.ant-picker-cell-range-hover:before,
+.lakex-custom-theme-light .ant-picker-cell-in-view.ant-picker-cell-range-start:not(
+      .ant-picker-cell-range-start-single
+    ).ant-picker-cell-range-hover-start:before,
+.lakex-custom-theme-light .ant-picker-panel > :not(.ant-picker-date-panel) .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover-end:before,
+.lakex-custom-theme-light .ant-picker-panel > :not(.ant-picker-date-panel) .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover-start:before {
+  background: #2b6bb1;
+}
+.lakex-custom-theme-light .ant-picker-range-arrow:after {
+  display: none;
+}
+.lakex-custom-theme-light .ant-picker-panel-container .ant-picker-panel {
+  vertical-align: top;
+  background: transparent;
+  border-width: 0 0 1px 0;
+  border-radius: 0;
+}
+.ant-picker-cell-in-view.ant-picker-cell-range-start:not(
+    .ant-picker-cell-range-start-single
+  ):not(.ant-picker-cell-range-end) .ant-picker-cell-inner {
+  border-radius: 6px 0 0 6px;
+}
+.ant-picker-cell-in-view.ant-picker-cell-range-end:not(
+    .ant-picker-cell-range-end-single
+  ):not(.ant-picker-cell-range-start) .ant-picker-cell-inner {
+  border-radius: 0 6px 6px 0;
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+.ne-editor .ne-ui-random-tip {
+  position: absolute;
+  right: 10px;
+  bottom: 6px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  color: var(--lakex-editor-border-secondary);
+  user-select: none;
+}
+.ne-editor .ne-ui-random-tip-keys {
+  margin-right: 0.5em;
 }
 
 /** 只提供变量 */
@@ -13221,7 +13535,7 @@ ne-code-content [ne-emoji] {
   margin-top: 0;
 }
 .ne-editor ne-card[data-card-type='block'][data-card-name='localdoc'] {
-  border: 1px solid var(--lakex-editor-color-grey5);
+  border: 1px solid var(--lakex-editor-border-secondary);
 }
 .ne-editor ne-card[data-card-type='block'][data-card-name='bookmark'],
 .ne-editor ne-card[data-card-type='block'][data-card-name='yuque'] {
@@ -13244,16 +13558,16 @@ ne-code-content [ne-emoji] {
   border: 1px solid var(--lakex-editor-card-border-selected);
 }
 .ne-editor ne-card[data-card-type='block'].ne-focused[data-card-name='board'] {
-  border: 1px solid var(--lakex-editor-color-grey6);
+  border: 1px solid var(--lakex-editor-text-disable);
 }
 .ne-editor ne-card[data-card-type='block'].ne-focused[data-card-name='hr'] {
   border: 1px solid transparent;
 }
 .ne-editor ne-card[data-card-type='block'].ne-focused[data-card-name='hr'] .ne-card-container {
-  background: var(--lakex-editor-color-blue1);
+  background: var(--lakex-editor-background-focus);
 }
 .ne-editor ne-card[data-card-type='block'].ne-card-editing {
-  border: 1px solid var(--lakex-editor-color-grey6);
+  border: 1px solid var(--lakex-editor-text-disable);
 }
 .ne-editor ne-card[data-card-type='block'].ne-max {
   border: 0;
@@ -13291,7 +13605,7 @@ ne-code-content [ne-emoji] {
 }
 .ne-editor ne-card[data-card-type='inline'][data-card-name='image'].ne-card-hovered .ne-image-wrap,
 .ne-editor ne-card[data-card-type='inline'][data-card-name='image'].ne-focused .ne-image-wrap {
-  border: 1px solid var(--lakex-editor-color-blue2);
+  border: 1px solid var(--lakex-editor-background-focus);
 }
 .ne-editor ne-card[data-card-type='inline'].ne-card-hovered[data-card-name='yuqueInline'] .ne-yuque-doc-title-view {
   background: var(--lakex-editor-card-background-hover);
@@ -14774,7 +15088,7 @@ ne-h4.hovered ne-heading-anchor {
   position: absolute;
   top: -4px;
   left: -6px;
-  background: var(--lakex-editor-color-blue1);
+  background: var(--lakex-editor-background-focus);
   opacity: 40%;
   z-index: -1;
   border-radius: 6px;
@@ -15380,7 +15694,7 @@ ne-quote[ne-indent='17'].ne-brick-highlight::after {
   margin-bottom: 16px;
 }
 .ne-link-editor .ne-link-error-tip {
-  color: var(--lakex-editor-color-red6);
+  color: var(--lakex-editor-text-danger);
   margin-top: 16px;
 }
 
@@ -15588,7 +15902,7 @@ ne-oli-i.select-active .ne-list-symbol {
 }
 ne-oli-i.clickable:hover .ne-list-symbol::before,
 ne-oli-i.select-active .ne-list-symbol::before {
-  background-color: var(--lakex-editor-color-grey3);
+  background-color: var(--lakex-editor-background-primary-hover);
   z-index: -1;
   content: '';
   position: absolute;
@@ -15629,7 +15943,7 @@ ne-tli ne-tli-i.ne-checkbox {
   margin-left: -2em;
   padding-right: 5px;
   box-sizing: border-box;
-  color: var(--lakex-editor-color-grey9);
+  color: var(--lakex-editor-text-color);
   font-size: 14px;
   font-feature-settings: 'tnum';
   position: relative;
@@ -15772,7 +16086,7 @@ ne-quote::before {
   bottom: 0;
   width: 2px;
   border-radius: 2px;
-  background-color: var(--lakex-editor-color-grey5);
+  background-color: var(--lakex-editor-border-secondary);
 }
 ne-quote ne-text,
 ne-quote ne-oli-i,
@@ -16148,13 +16462,13 @@ ne-columns[ne-fake-selection]:after {
   height: 14px;
   border-width: 1px 0 1px 1px;
   border-style: solid;
-  border-color: var(--lakex-editor-color-grey4);
-  background-color: var(--lakex-editor-color-grey2);
+  border-color: var(--lakex-editor-border-primary);
+  background-color: var(--lakex-editor-overlay-background-tertiary);
   cursor: pointer;
   position: relative;
 }
 .ne-ui-table-column-bar:hover {
-  background-color: var(--lakex-editor-color-grey4);
+  background-color: var(--lakex-editor-background-primary-hover-light);
 }
 .ne-ui-table-column-bar.ne-ui-active {
   background-color: var(--lakex-editor-table-bar-active);
@@ -16177,7 +16491,7 @@ ne-columns[ne-fake-selection]:after {
   bottom: 0;
   z-index: 1;
   margin-left: -4px;
-  background-color: var(--lakex-editor-color-blue5);
+  background-color: var(--lakex-editor-card-border-selected);
   cursor: col-resize;
 }
 .ne-ui-table-column-bar-resizer:hover {
@@ -16221,7 +16535,7 @@ ne-table-wrap.ne-ui-table-column-resizing .ne-ui-table-column-add-button {
   left: 0;
   bottom: 0;
   height: 14px;
-  border-right: 1px solid var(--lakex-editor-color-grey4);
+  border-right: 1px solid var(--lakex-editor-border-primary);
   border-top-right-radius: 9px;
 }
 .ne-ui-table-column-controller-text-mask {
@@ -16240,7 +16554,7 @@ ne-table-wrap.ne-ui-table-column-resizing .ne-ui-table-column-add-button {
   margin-left: 1px;
   width: 2px;
   height: 999999px;
-  background: var(--lakex-editor-color-blue5);
+  background: var(--lakex-editor-card-border-selected);
   display: none;
   pointer-events: none;
 }
@@ -16292,7 +16606,7 @@ ne-table-wrap.ne-ui-table-column-resizing .ne-ui-table-column-add-button {
   display: none;
   width: 2px;
   height: 10000000px;
-  background: var(--lakex-editor-color-blue5);
+  background: var(--lakex-editor-card-border-selected);
   position: absolute;
   top: 24px;
   left: 12px;
@@ -16433,13 +16747,13 @@ ne-table-wrap.ne-ui-table-column-resizing .ne-ui-table-column-add-button {
   right: 0;
   width: 14px;
   height: 14px;
-  border: 1px solid var(--lakex-editor-color-grey4);
-  background-color: var(--lakex-editor-color-grey2);
+  border: 1px solid var(--lakex-editor-border-primary);
+  background-color: var(--lakex-editor-overlay-background-tertiary);
   border-top-left-radius: 50%;
   cursor: pointer;
 }
 .ne-ui-table-control-point:hover {
-  background-color: var(--lakex-editor-color-grey4);
+  background-color: var(--lakex-editor-background-primary-hover-light);
 }
 .ne-ui-table-control-point.ne-ui-active {
   background-color: var(--lakex-editor-table-bar-active);
@@ -16502,7 +16816,7 @@ ne-table-wrap.ne-ui-table-column-resizing .ne-ui-table-column-add-button {
 .ne-ui-table-resize-mask .ne-ui-table-vertical-resizing-line {
   position: absolute;
   z-index: 2;
-  background-color: var(--lakex-editor-color-blue5);
+  background-color: var(--lakex-editor-card-border-selected);
 }
 
 /**
@@ -16520,12 +16834,12 @@ ne-table-wrap.ne-ui-table-column-resizing .ne-ui-table-column-add-button {
   width: 14px;
   border-width: 1px 1px 0 1px;
   border-style: solid;
-  border-color: var(--lakex-editor-color-grey4);
-  background-color: var(--lakex-editor-color-grey2);
+  border-color: var(--lakex-editor-border-primary);
+  background-color: var(--lakex-editor-overlay-background-tertiary);
   cursor: pointer;
 }
 .ne-ui-table-row-bar:hover {
-  background-color: var(--lakex-editor-color-grey4);
+  background-color: var(--lakex-editor-background-primary-hover-light);
 }
 .ne-ui-table-row-bar.ne-ui-active {
   background-color: var(--lakex-editor-table-bar-active);
@@ -16548,7 +16862,7 @@ ne-table-wrap.ne-ui-table-column-resizing .ne-ui-table-column-add-button {
   right: 0;
   z-index: 1;
   margin-top: -4px;
-  background-color: var(--lakex-editor-color-blue5);
+  background-color: var(--lakex-editor-card-border-selected);
   cursor: row-resize;
 }
 .ne-ui-table-row-bar-resizer:hover {
@@ -16568,7 +16882,7 @@ ne-table-wrap.ne-ui-table-column-resizing .ne-ui-table-column-add-button {
   left: 0;
   right: 0;
   z-index: 2;
-  background-color: var(--lakex-editor-color-blue5);
+  background-color: var(--lakex-editor-card-border-selected);
 }
 
 /**
@@ -16598,7 +16912,7 @@ ne-table-wrap.ne-ui-table-row-resizing .ne-ui-table-row-delete-button {
   position: relative;
   left: 8px;
   width: 14px;
-  border-bottom: 1px solid var(--lakex-editor-color-grey4);
+  border-bottom: 1px solid var(--lakex-editor-border-primary);
   display: none;
   border-bottom-left-radius: 9px;
 }
@@ -16608,7 +16922,7 @@ ne-table-wrap.ne-ui-table-row-resizing .ne-ui-table-row-delete-button {
   z-index: 2;
   height: 2px;
   width: 0;
-  background: var(--lakex-editor-color-blue5);
+  background: var(--lakex-editor-card-border-selected);
   display: none;
   pointer-events: none;
 }
@@ -16693,7 +17007,7 @@ ne-table-wrap.ne-ui-table-row-resizing .ne-ui-table-row-delete-button {
   line-height: 30px;
   text-align: center;
   color: var(--lakex-editor-color-white);
-  background-color: var(--lakex-editor-color-blue5);
+  background-color: var(--lakex-editor-card-border-selected);
 }
 
 /**
@@ -16707,7 +17021,7 @@ ne-table-wrap.ne-ui-table-row-resizing .ne-ui-table-row-delete-button {
  */
 /** 只提供变量 */
 .ne-table-highlight {
-  background: var(--lakex-editor-color-red5);
+  background: var(--lakex-editor-text-danger-light);
   opacity: 0.08;
   position: absolute;
   z-index: 2;
@@ -17134,7 +17448,7 @@ ne-table-inner-wrap *[contenteditable='false'] {
  */
 /** 只提供变量 */
 .ne-engine ne-table-wrap.ne-max {
-  background-color: var(--lakex-editor-color-grey1);
+  background-color: var(--lakex-editor-background-secondary);
   overflow: auto;
   margin: 0 !important;
 }
@@ -17151,10 +17465,10 @@ ne-table-inner-wrap *[contenteditable='false'] {
   margin-left: 39px;
 }
 .ne-engine ne-table-wrap.ne-max .ne-ui-table-row-controller {
-  background-color: var(--lakex-editor-color-grey1);
+  background-color: var(--lakex-editor-background-secondary);
 }
 .ne-engine ne-table-wrap.ne-max .ne-ui-table-control-point-wrapper {
-  background-color: var(--lakex-editor-color-grey1);
+  background-color: var(--lakex-editor-background-secondary);
 }
 /* 内部卡片全屏样式处理 */
 .ne-ui-max-view .ne-engine ne-table-wrap:not(.ne-max) {
@@ -19759,7 +20073,7 @@ ne-container-hole[data-card='columns'] > .ne-i-filler:last-child {
   width: 40px;
   height: 12px;
   border-radius: 6px;
-  background-color: var(--lakex-editor-color-grey2);
+  background-color: var(--lakex-editor-overlay-background-tertiary);
   cursor: grab;
   pointer-events: all;
   z-index: 2;
@@ -19789,7 +20103,7 @@ ne-container-hole[data-card='columns'] > .ne-i-filler:last-child {
   box-shadow: var(--lakex-editor-color-white) -4px 0px, var(--lakex-editor-color-white) 4px 0px;
 }
 .columns-drag-button.inRemoveBtn {
-  background-color: var(--lakex-editor-color-red6);
+  background-color: var(--lakex-editor-text-danger);
 }
 .columns-drag-button .columns-remove-button {
   top: -7px;
@@ -19811,7 +20125,7 @@ ne-container-hole[data-card='columns'] > .ne-i-filler:last-child {
   color: var(--lakex-editor-text-color);
 }
 .columns-remove-button:hover {
-  color: var(--lakex-editor-color-red6);
+  color: var(--lakex-editor-text-danger);
 }
 ne-columns {
   width: 100%;
@@ -19833,12 +20147,12 @@ ne-columns .columns-remove {
   pointer-events: none;
 }
 ne-columns .columns-add {
-  background-color: var(--lakex-editor-color-blue5);
+  background-color: var(--lakex-editor-card-border-selected);
 }
 ne-columns .columns-move-inspector {
   display: none;
   position: absolute;
-  background-color: var(--lakex-editor-color-blue6);
+  background-color: var(--lakex-editor-text-link);
   width: 2px;
   top: -6px;
   left: 0;
@@ -19877,7 +20191,7 @@ ne-columns .columns-adder::after {
   content: '';
   width: 4px;
   height: 4px;
-  background-color: var(--lakex-editor-color-grey5);
+  background-color: var(--lakex-editor-border-secondary);
   border-radius: 100%;
   position: absolute;
   top: 50%;
@@ -19919,10 +20233,10 @@ ne-columns.ne-brick-highlight .columns-adder {
 ne-columns.ne-brick-highlight .columns-start-add::after,
 ne-columns.ne-brick-highlight .columns-end-add::after,
 ne-columns.ne-brick-highlight .columns-adder::after {
-  background: var(--lakex-editor-color-blue3);
+  background: var(--lakex-editor-card-border-hover);
 }
 ne-columns.ne-brick-highlight ne-column-border {
-  border: 1px solid var(--lakex-editor-color-blue3);
+  border: 1px solid var(--lakex-editor-card-border-hover);
   background-color: var(--lakex-editor-column-background-highlight);
   transition: background-color ease 0.3s;
 }
@@ -19968,7 +20282,7 @@ ne-columns ne-column.ne-column-dragging {
   opacity: 0.5;
 }
 ne-columns ne-column.ne-column-removing-border ne-column-border {
-  border-color: var(--lakex-editor-color-red4);
+  border-color: var(--lakex-editor-text-danger-light);
 }
 ne-columns ne-column.ne-column-drag-border ne-column-border {
   border-color: var(--lakex-editor-card-border-hover);
@@ -19977,7 +20291,7 @@ ne-columns ne-column.ne-column-drag-border.selected ne-column-border {
   border-color: var(--lakex-editor-card-border-selected);
 }
 ne-columns ne-column.ne-column-drag-border.ne-column-removing-border ne-column-border {
-  border-color: var(--lakex-editor-color-red4);
+  border-color: var(--lakex-editor-text-danger-light);
 }
 ne-columns ne-column ne-column-border {
   display: block;
@@ -20028,7 +20342,7 @@ ne-columns ne-column .ne-number-show {
 }
 ne-columns ne-column .ne-number-show.is-adjust {
   color: var(--lakex-editor-text-link);
-  background-color: var(--lakex-editor-color-blue1);
+  background-color: var(--lakex-editor-background-focus);
 }
 ne-columns ne-column.ne-columns-resizing ne-column-controller,
 ne-columns ne-column.ne-columns-resizing ne-column-controller::after {
@@ -20068,7 +20382,7 @@ ne-columns ne-column ne-column-controller::after {
   top: 50%;
   border-radius: 4px;
   transform: translate(-50%, -50%);
-  background-color: var(--lakex-editor-color-blue5);
+  background-color: var(--lakex-editor-card-border-selected);
 }
 ne-columns ne-column ne-column-controller:hover::after {
   display: block;
@@ -20105,7 +20419,7 @@ ne-columns ne-column:last-child ne-column-controller {
   right: 10px;
   height: 8px;
   border-radius: 6px;
-  background: linear-gradient(0.25turn, var(--lakex-editor-color-grey3), var(--lakex-editor-color-grey4));
+  background: linear-gradient(0.25turn, var(--lakex-editor-background-primary-hover), var(--lakex-editor-background-primary-hover-light));
 }
 .ne-ui-columns-drag-moving-tip:after {
   content: '';
@@ -20115,7 +20429,7 @@ ne-columns ne-column:last-child ne-column-controller {
   right: 10px;
   height: 31px;
   border-radius: 6px;
-  background: linear-gradient(0.25turn, var(--lakex-editor-color-grey3), var(--lakex-editor-color-grey4));
+  background: linear-gradient(0.25turn, var(--lakex-editor-background-primary-hover), var(--lakex-editor-background-primary-hover-light));
 }
 .ne-ui-columns-drag-moving-tip .ne-ui-columns-drag-text:before {
   content: '';
@@ -20125,7 +20439,7 @@ ne-columns ne-column:last-child ne-column-controller {
   right: 56px;
   height: 15px;
   border-radius: 6px;
-  background: linear-gradient(0.25turn, var(--lakex-editor-color-grey3), var(--lakex-editor-color-grey4));
+  background: linear-gradient(0.25turn, var(--lakex-editor-background-primary-hover), var(--lakex-editor-background-primary-hover-light));
 }
 .ne-ui-columns-drag-moving-tip .ne-ui-columns-drag-text:after {
   content: attr(data-content);
@@ -20254,7 +20568,7 @@ ne-columns ne-column ne-card[data-card-name='lockedtext'] > ne-card-root {
 .ne-engine [data-placeholder]::before {
   position: absolute;
   content: attr(data-placeholder);
-  color: var(--lakex-editor-color-grey5);
+  color: var(--lakex-editor-border-secondary);
   user-select: none;
   pointer-events: none;
   white-space: nowrap;
@@ -20289,8 +20603,8 @@ ne-collapse.ne-brick-highlight {
   border-color: var(--lakex-editor-card-border-hover);
 }
 ne-collapse.app-ne-brick-highlight {
-  border-color: var(--lakex-editor-color-blue6) !important;
-  box-shadow: 0px 0px 0px 0.5px var(--lakex-editor-color-blue6);
+  border-color: var(--lakex-editor-text-link) !important;
+  box-shadow: 0px 0px 0px 0.5px var(--lakex-editor-text-link);
 }
 .ne-viewer[data-viewer-mode='present'] ne-collapse .ne-collapse-folding-inner {
   width: 50px;
@@ -20912,7 +21226,7 @@ ne-card[data-card-name='label'] .ne-card-label-text {
   cursor: default;
 }
 .ne-viewer ne-tli ne-tli-i:hover .ne-checkbox-inner {
-  border-color: var(--lakex-editor-color-grey5);
+  border-color: var(--lakex-editor-border-secondary);
 }
 .ne-viewer ne-tli ne-tli-i.ne-checkbox-checked:hover .ne-checkbox-inner {
   border-color: var(--lakex-editor-card-border-selected);
@@ -21579,7 +21893,7 @@ span.CodeMirror-selectedtext {
 .CodeMirror-scroll,
 .CodeMirror-vscrollbar,
 .CodeMirror-hscrollbar {
-  scrollbar-color: var(--lakex-editor-color-grey6) transparent;
+  scrollbar-color: var(--lakex-editor-text-disable) transparent;
 }
 .CodeMirror-scroll::-webkit-scrollbar,
 .CodeMirror-vscrollbar::-webkit-scrollbar,
@@ -21594,7 +21908,7 @@ span.CodeMirror-selectedtext {
 .CodeMirror-scroll::-webkit-scrollbar-thumb,
 .CodeMirror-vscrollbar::-webkit-scrollbar-thumb,
 .CodeMirror-hscrollbar::-webkit-scrollbar-thumb {
-  background-color: var(--lakex-editor-color-grey6);
+  background-color: var(--lakex-editor-text-disable);
   border-radius: 16px;
   border: 3.5px solid transparent;
   background-clip: content-box;
@@ -22515,7 +22829,7 @@ span.CodeMirror-selectedtext {
   margin-top: 4px;
   padding: 16px;
   height: 36px;
-  color: var(--lakex-editor-color-grey8);
+  color: var(--lakex-editor-text-body);
   font-size: 14px;
   line-height: 20px;
   display: flex;
@@ -22555,7 +22869,7 @@ span.CodeMirror-selectedtext {
 .ne-codeblock-more-button:hover,
 .ne-codeblock-collapsed-button.ne-codeblock-more-active,
 .ne-codeblock-more-button.ne-codeblock-more-active {
-  background-color: var(--lakex-editor-color-grey4);
+  background-color: var(--lakex-editor-background-primary-hover-light);
 }
 .CodeMirror pre.CodeMirror-line,
 .CodeMirror pre.CodeMirror-line-like {
@@ -22730,7 +23044,7 @@ span.CodeMirror-selectedtext {
   margin-right: 0;
 }
 .ne-code-viewer .ne-codeblock-copy:hover {
-  background: var(--lakex-editor-color-grey4);
+  background: var(--lakex-editor-background-primary-hover-light);
   border-radius: 4px;
 }
 
@@ -22992,7 +23306,7 @@ ne-card[data-card-name='vote'] .ne-card-vote-viewer-content-header-type {
   align-items: center;
   padding: 0 10px;
   height: 24px;
-  background-color: var(--lakex-editor-color-blue1);
+  background-color: var(--lakex-editor-background-focus);
   color: var(--lakex-editor-text-color);
   border-radius: 4px;
   margin-right: 12px;
@@ -23086,7 +23400,7 @@ ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item[data-voted='true
   color: var(--lakex-editor-text-link);
 }
 ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item[data-voted='true'] .ne-card-vote-viewer-result-item-line-length {
-  background-color: var(--lakex-editor-color-blue6);
+  background-color: var(--lakex-editor-text-link);
 }
 ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item-info {
   display: flex;
@@ -23116,13 +23430,13 @@ ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item-line {
 ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-item-line-length {
   height: 8px;
   border-radius: 4px;
-  background-color: var(--lakex-editor-color-blue2);
+  background-color: var(--lakex-editor-background-focus);
 }
 ne-card[data-card-name='vote'] .ne-card-vote-viewer-result-popover-overlay .ant-popover-content {
   min-width: auto;
 }
 [data-kumuhana='pouli'] ne-card[data-card-name='vote'] .ne-card-vote-viewer-vote-item {
-  background-color: var(--lakex-editor-color-grey3);
+  background-color: var(--lakex-editor-background-primary-hover);
 }
 
 .ne-viewer ne-card[data-card-name='textDiagram'] .ne-card-container {

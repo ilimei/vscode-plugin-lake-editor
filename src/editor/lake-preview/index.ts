@@ -58,6 +58,9 @@ window.onload = async function () {
       codemirrorURL: baseURI + '/CodeMirror.js',
       supportCustomStyle: true,
     },
+    thirdparty: {
+      recognizeYuque: true,
+    },
     math: {
       KaTexURL: baseURI + '/katex.js',
     },
