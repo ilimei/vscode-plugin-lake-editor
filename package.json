@@ -116,6 +116,11 @@
       "type": "object",
       "title": "Lake Editor",
       "properties": {
+        "lakeEditor.showTitle": {
+          "type": "boolean",
+          "default": false,
+          "description": "显示标题"
+        },
         "lakeEditor.showToolbar": {
           "type": "boolean",
           "default": true,
