@@ -9,6 +9,27 @@ async function toBase64URL(file: File) {
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
+function Title(props: {
+  onChange?: (value: string) => void;
+  onChangeEnd?: () => void;
+}) {
+  // @ts-expect-error not error
+  return React.createElement('input', {
+    className: 'lake-title',
+    placeholder: '请输入标题',
+    onChange: (e: any) => {
+      props.onChange?.(e.target.value);
+    },
+    onKeyDown: (e: any) => {
+      if(e.key === 'Enter') {
+        e.preventDefault();
+        props.onChangeEnd?.();
+      }
+    },
+  });
+}
+
 window.onload = async function () {
   const [baseURI, config] = await Promise.all([
     window.message.callServer('getExtensionResource', '/media/editor'),
@@ -20,10 +41,16 @@ window.onload = async function () {
 
   // @ts-expect-error not error
   const isReadOnly = window.currentResourceURI.scheme === 'lake';
+  // @ts-expect-error not error
+  const fileName = window.currentResourceURI.path.split('/').pop();
 
   if (isReadOnly) {
     document.body.style.cssText = 'padding: 24px;';
   }
+
+  const ctx = {
+    title: fileName.replace('.lake', ''),
+  };
 
   const disabledPlugins = ['save'];
   if (!config.showToolbar) {
@@ -33,6 +60,18 @@ window.onload = async function () {
   const editor = (isReadOnly ? createOpenViewer : createOpenEditor)(document.getElementById('root'), {
     disabledPlugins,
     defaultFontsize: config.defaultFontSize,
+    // @ts-expect-error not error
+    header: !isReadOnly && config.showTitle ? React.createElement(Title, {
+      onChange(title: string) {
+        ctx.title = title;
+        let lake = editor.getDocument('text/lake', { includeMeta: true });
+        lake = lake.replace(/<!doctype lake>/, '<!doctype lake><title>' + title + '</title>');
+        window.message.callServer('contentchange', lake);
+      },
+      onChangeEnd() {
+        editor.execCommand('focus', 'start');
+      },
+    }): null,
     typography: {
       typography: 'classic',
       paragraphSpacing: config.paragraphSpacing ? 'relax' : 'default',
@@ -58,6 +97,9 @@ window.onload = async function () {
       codemirrorURL: baseURI + '/CodeMirror.js',
       supportCustomStyle: true,
     },
+    thirdparty: {
+      recognizeYuque: true,
+    },
     math: {
       KaTexURL: baseURI + '/katex.js',
     },
@@ -75,6 +117,9 @@ window.onload = async function () {
       },
     },
   });
+
+  // @ts-expect-error not error
+  window.editor = editor;
 
   editor.on('visitLink', (href, external) => {
     window.message.callServer('visitLink', href, external);
@@ -96,18 +141,33 @@ window.onload = async function () {
         break;
       case 'updateContent':
         cancelChangeListener();
-        editor.setDocument('text/lake', new TextDecoder().decode(e.data.data));
+        let lake = new TextDecoder().decode(e.data.data);
+        if(!isReadOnly && config.showTitle) {
+          const m = lake.match(/<title>([\s\S]+?)<\/title>/);
+          if(m) {
+            ctx.title = m[1];
+          }
+          document.querySelector('.lake-title').setAttribute('value', ctx.title);
+        }
+        lake = lake.replace(/<title>[\s\S]+?<\/title>/g, '');
+        editor.setDocument('text/lake', lake);
         // 监听内容变动
         cancelChangeListener = editor.on('contentchange', () => {
-          window.message.callServer('contentchange', editor.getDocument('text/lake'));
+          let lake = editor.getDocument('text/lake', { includeMeta: true });
+          lake = lake.replace(/<!doctype lake>/, '<!doctype lake><title>' + ctx.title + '</title>');
+          window.message.callServer('contentchange', lake);
         });
         // 获取焦点
         editor.execCommand('focus');
         window.message.replayServer(e.data.requestId);
         break;
-      case 'getContent':
-        window.message.replayServer(e.data.requestId, new TextEncoder().encode(editor.getDocument('text/lake')));
+      case 'getContent': {
+        let lake = editor.getDocument('text/lake', { includeMeta: true });
+        // 以文件名作为标题
+        lake = lake.replace('<!doctype lake>', '<!doctype lake><title>' + ctx.title + '</title>');
+        window.message.replayServer(e.data.requestId, new TextEncoder().encode(lake));
         break;
+      }
     }
   });
 

@@ -7,6 +7,10 @@ export class LakeEditorConfig {
     this.config = vscode.workspace.getConfiguration(name);
   }
 
+  get showTitle(): boolean {
+    return this.config.get('showTitle');
+  }
+
   get showToolbar(): boolean {
     return this.config.get('showToolbar');
   }

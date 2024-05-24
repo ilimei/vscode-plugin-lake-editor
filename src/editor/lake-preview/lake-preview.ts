@@ -114,6 +114,7 @@ export default class LakePreview extends BasePreview {
 
   async getConfig() {
     return {
+      showTitle: this.config.showTitle,
       showToolbar: this.config.showToolbar,
       defaultFontSize: this.config.defaultFontSize,
       paragraphSpacing: this.config.paragraphSpacing,
