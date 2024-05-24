@@ -49,7 +49,7 @@ window.onload = async function () {
   }
 
   const ctx = {
-    title: '',
+    title: fileName.replace('.lake', ''),
   };
 
   const disabledPlugins = ['save'];
@@ -142,23 +142,19 @@ window.onload = async function () {
       case 'updateContent':
         cancelChangeListener();
         let lake = new TextDecoder().decode(e.data.data);
-        let title = fileName.replace('.lake', '');
         if(!isReadOnly && config.showTitle) {
           const m = lake.match(/<title>([\s\S]+?)<\/title>/);
           if(m) {
-            title = m[1];
+            ctx.title = m[1];
           }
-          ctx.title = title;
-          document.querySelector('.lake-title').setAttribute('value', title);
+          document.querySelector('.lake-title').setAttribute('value', ctx.title);
         }
         lake = lake.replace(/<title>[\s\S]+?<\/title>/g, '');
         editor.setDocument('text/lake', lake);
         // 监听内容变动
         cancelChangeListener = editor.on('contentchange', () => {
           let lake = editor.getDocument('text/lake', { includeMeta: true });
-          if(config.showTitle) {
-            lake = lake.replace(/<!doctype lake>/, '<!doctype lake><title>' + ctx.title + '</title>');
-          }
+          lake = lake.replace(/<!doctype lake>/, '<!doctype lake><title>' + ctx.title + '</title>');
           window.message.callServer('contentchange', lake);
         });
         // 获取焦点
@@ -167,9 +163,8 @@ window.onload = async function () {
         break;
       case 'getContent': {
         let lake = editor.getDocument('text/lake', { includeMeta: true });
-        if(config.showTitle) {
-          lake = lake.replace(/<!doctype lake>/, '<!doctype lake><title>' + ctx.title + '</title>');
-        }
+        // 以文件名作为标题
+        lake = lake.replace('<!doctype lake>', '<!doctype lake><title>' + ctx.title + '</title>');
         window.message.replayServer(e.data.requestId, new TextEncoder().encode(lake));
         break;
       }
