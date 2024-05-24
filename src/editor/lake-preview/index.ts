@@ -22,7 +22,7 @@ function Title(props: {
       props.onChange?.(e.target.value);
     },
     onKeyDown: (e: any) => {
-      if(e.key === 'Enter') {
+      if (e.key === 'Enter') {
         e.preventDefault();
         props.onChangeEnd?.();
       }
@@ -71,7 +71,7 @@ window.onload = async function () {
       onChangeEnd() {
         editor.execCommand('focus', 'start');
       },
-    }): null,
+    }) : null,
     typography: {
       typography: 'classic',
       paragraphSpacing: config.paragraphSpacing ? 'relax' : 'default',
@@ -142,9 +142,9 @@ window.onload = async function () {
       case 'updateContent':
         cancelChangeListener();
         let lake = new TextDecoder().decode(e.data.data);
-        if(!isReadOnly && config.showTitle) {
+        if (!isReadOnly && config.showTitle) {
           const m = lake.match(/<title>([\s\S]+?)<\/title>/);
-          if(m) {
+          if (m) {
             ctx.title = m[1];
           }
           document.querySelector('.lake-title').setAttribute('value', ctx.title);
@@ -154,7 +154,9 @@ window.onload = async function () {
         // 监听内容变动
         cancelChangeListener = editor.on('contentchange', () => {
           let lake = editor.getDocument('text/lake', { includeMeta: true });
-          lake = lake.replace(/<!doctype lake>/, '<!doctype lake><title>' + ctx.title + '</title>');
+          if (config.showTitle) {
+            lake = lake.replace(/<!doctype lake>/, '<!doctype lake><title>' + ctx.title + '</title>');
+          }
           window.message.callServer('contentchange', lake);
         });
         // 获取焦点
@@ -163,8 +165,10 @@ window.onload = async function () {
         break;
       case 'getContent': {
         let lake = editor.getDocument('text/lake', { includeMeta: true });
-        // 以文件名作为标题
-        lake = lake.replace('<!doctype lake>', '<!doctype lake><title>' + ctx.title + '</title>');
+        if (config.showTitle) {
+          // 以文件名作为标题
+          lake = lake.replace('<!doctype lake>', '<!doctype lake><title>' + ctx.title + '</title>');
+        }
         window.message.replayServer(e.data.requestId, new TextEncoder().encode(lake));
         break;
       }
