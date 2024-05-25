@@ -11,6 +11,10 @@ export class LakeEditorConfig {
     return this.config.get('showTitle');
   }
 
+  get showToc(): boolean {
+    return this.config.get('showToc');
+  }
+
   get showToolbar(): boolean {
     return this.config.get('showToolbar');
   }

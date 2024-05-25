@@ -2,7 +2,7 @@
   "name": "lake-editor",
   "displayName": "lake-editor",
   "description": "use yuque editor edit local lake file and lakebook viewer",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "publisher": "hugehardzhang",
   "icon": "icon.png",
   "engines": {
@@ -119,7 +119,12 @@
         "lakeEditor.showTitle": {
           "type": "boolean",
           "default": false,
-          "description": "显示标题"
+          "description": "显示标题，可以在 lake 文件内编辑标题"
+        },
+        "lakeEditor.showToc": {
+          "type": "boolean",
+          "default": false,
+          "description": "显示大纲"
         },
         "lakeEditor.showToolbar": {
           "type": "boolean",
@@ -129,12 +134,12 @@
         "lakeEditor.paragraphSpacing": {
           "type": "boolean",
           "default": false,
-          "description": "段间距开启"
+          "description": "段间距"
         },
         "lakeEditor.defaultFontSize": {
           "type": "number",
           "default": 15,
-          "description": "默认字体大小",
+          "description": "默认字号",
           "enum": [
             12,
             13,
