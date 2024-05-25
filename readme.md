@@ -5,6 +5,14 @@
 2. 支持直接复制到语雀中
 3. 支持代码块，公式等常用的卡片
 
+## 安装
+
+在 vscode 插件市场中搜索 lake-editor。
+
+![商店搜索](assets/shop.png)
+
+## 使用示例
+
 ![示例图](assets/image.png)
 
 ![lakebook](assets/lakebook.png)
