@@ -76,6 +76,9 @@ window.onload = async function () {
       typography: 'classic',
       paragraphSpacing: config.paragraphSpacing ? 'relax' : 'default',
     },
+    toc: {
+      enable: config.showToc,
+    },
     // @ts-expect-error not error
     darkMode: window.isDarkMode,
     placeholder: {
