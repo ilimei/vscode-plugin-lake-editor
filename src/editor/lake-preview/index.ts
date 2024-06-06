@@ -72,6 +72,15 @@ window.onload = async function () {
         editor.execCommand('focus', 'start');
       },
     }) : null,
+    bookmark: {
+      recognizeYuque: true,
+      fetchDetailHandler: async (url: string) => {
+        return Promise.resolve({
+          url,
+          title: '无标题',
+        });
+      },
+    },
     typography: {
       typography: 'classic',
       paragraphSpacing: config.paragraphSpacing ? 'relax' : 'default',
