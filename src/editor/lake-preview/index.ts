@@ -143,6 +143,20 @@ window.onload = async function () {
       case 'setActive':
         editor.execCommand('focus');
         break;
+      case 'switchTheme':
+        // @ts-expect-error not error
+        window.isDarkMode = e.data.data.isDark;
+        editor.theme.setActiveTheme(
+          e.data.data.isDark
+            ? 'dark-mode'
+            : 'default',
+        );
+        break;
+      case 'windowStateChange':
+        if (e.data.data.active) {
+          editor?.execCommand('focus');
+        }
+        break;
       case 'undo':
         editor.execCommand('undo');
         window.message.replayServer(e.data.requestId);
@@ -174,6 +188,7 @@ window.onload = async function () {
         // 获取焦点
         editor.execCommand('focus');
         window.message.replayServer(e.data.requestId);
+        console.info('updateContent');
         break;
       case 'getContent': {
         let lake = editor.getDocument('text/lake', { includeMeta: true });

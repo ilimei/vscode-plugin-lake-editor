@@ -20940,6 +20940,168 @@ ne-collapse.content-empty .ne-collapse-folding-inner .ne-icon {
 .ne-viewer[data-viewer-mode='present'] ne-text[ne-fontsize='48'] {
   font-size: 48px;
 }
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz12,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz12 {
+  font-size: 18px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz12 ne-code ne-text,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz12 ne-code ne-text {
+  font-size: 18px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz12 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz12 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz12 ne-text[ne-sup],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz12 ne-text[ne-sup] {
+  font-size: 13.5px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz12 ne-card[data-card-type='inline'],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz12 ne-card[data-card-type='inline'] {
+  font-size: 18px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz13,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz13 {
+  font-size: 19.5px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz13 ne-code ne-text,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz13 ne-code ne-text {
+  font-size: 19.5px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz13 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz13 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz13 ne-text[ne-sup],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz13 ne-text[ne-sup] {
+  font-size: 14.625px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz13 ne-card[data-card-type='inline'],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz13 ne-card[data-card-type='inline'] {
+  font-size: 19.5px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz14,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz14 {
+  font-size: 21px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz14 ne-code ne-text,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz14 ne-code ne-text {
+  font-size: 21px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz14 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz14 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz14 ne-text[ne-sup],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz14 ne-text[ne-sup] {
+  font-size: 15.75px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz14 ne-card[data-card-type='inline'],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz14 ne-card[data-card-type='inline'] {
+  font-size: 21px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz15,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz15 {
+  font-size: 22.5px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz15 ne-code ne-text,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz15 ne-code ne-text {
+  font-size: 22.5px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz15 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz15 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz15 ne-text[ne-sup],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz15 ne-text[ne-sup] {
+  font-size: 16.875px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz15 ne-card[data-card-type='inline'],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz15 ne-card[data-card-type='inline'] {
+  font-size: 22.5px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz16,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz16 {
+  font-size: 24px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz16 ne-code ne-text,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz16 ne-code ne-text {
+  font-size: 24px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz16 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz16 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz16 ne-text[ne-sup],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz16 ne-text[ne-sup] {
+  font-size: 18px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz16 ne-card[data-card-type='inline'],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz16 ne-card[data-card-type='inline'] {
+  font-size: 24px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz19,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz19 {
+  font-size: 28.5px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz19 ne-code ne-text,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz19 ne-code ne-text {
+  font-size: 28.5px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz19 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz19 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz19 ne-text[ne-sup],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz19 ne-text[ne-sup] {
+  font-size: 21.375px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz19 ne-card[data-card-type='inline'],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz19 ne-card[data-card-type='inline'] {
+  font-size: 28.5px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz22,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz22 {
+  font-size: 33px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz22 ne-code ne-text,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz22 ne-code ne-text {
+  font-size: 33px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz22 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz22 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz22 ne-text[ne-sup],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz22 ne-text[ne-sup] {
+  font-size: 24.75px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz22 ne-card[data-card-type='inline'],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz22 ne-card[data-card-type='inline'] {
+  font-size: 33px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz24,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz24 {
+  font-size: 36px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz24 ne-code ne-text,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz24 ne-code ne-text {
+  font-size: 36px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz24 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz24 ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz24 ne-text[ne-sup],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz24 ne-text[ne-sup] {
+  font-size: 27px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic.fz24 ne-card[data-card-type='inline'],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional.fz24 ne-card[data-card-type='inline'] {
+  font-size: 36px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional {
+  font-size: 22.5px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic ne-code ne-text,
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional ne-code ne-text {
+  font-size: 22.5px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional ne-text[ne-sub],
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic ne-text[ne-sup],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional ne-text[ne-sup] {
+  font-size: 16.875px;
+}
+.ne-viewer[data-viewer-mode='present'].ne-typography-classic ne-card[data-card-type='inline'],
+.ne-viewer[data-viewer-mode='present'].ne-typography-traditional ne-card[data-card-type='inline'] {
+  font-size: 22.5px;
+}
 
 .ne-viewer[data-viewer-mode='present'] ne-h1,
 .ne-viewer[data-viewer-mode='present'] ne-h2,

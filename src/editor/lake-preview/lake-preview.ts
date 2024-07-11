@@ -7,66 +7,66 @@ import { getConfig } from '../../config';
 
 export default class LakePreview extends BasePreview {
   private readonly _onDidChange = this._register(new vscode.EventEmitter<void>());
-	public readonly onDidChange = this._onDidChange.event;
+  public readonly onDidChange = this._onDidChange.event;
 
   private readonly _onReady = this._register(new vscode.EventEmitter<void>());
-	public readonly onReady = this._onReady.event;
+  public readonly onReady = this._onReady.event;
 
   private readonly _onSave = this._register(new vscode.EventEmitter<void>());
-	public readonly onSave = this._onSave.event;
+  public readonly onSave = this._onSave.event;
 
   config = getConfig();
 
   getCSSSource(): string[] {
-      return [
-          '/media/editor/antd.4.24.13.css',
-          '/media/editor/doc.css',
-      ];
+    return [
+      '/media/editor/antd.4.24.13.css',
+      '/media/editor/doc.css',
+    ];
   }
 
   getJSSource(): string[] {
-      return [
-        '/media/editor/react.production.min.js',
-        '/media/editor/react-dom.production.min.js',
-        '/media/editor/doc.umd.js',
-        '/media/message.js',
-        '/media/lake-preview.js'
-      ];
+    return [
+      '/media/editor/react.production.min.js',
+      '/media/editor/react-dom.production.min.js',
+      '/media/editor/doc.umd.js',
+      '/media/message.js',
+      '/media/lake-preview.js'
+    ];
   }
 
   getHTMLTemplate() {
-      return htmlTemplate;
+    return htmlTemplate;
   }
 
   onMessage(message: any): void {
-      switch (message.type) {
-          case 'contentchange':
-              this._onDidChange.fire();
-              break;
-          case 'ready':
-              this._onReady.fire();
-              break;
-          case 'save':
-              this._onSave.fire();
-              break;
-          default:
-              super.onMessage(message);
-              break;
-      }
+    switch (message.type) {
+      case 'contentchange':
+        this._onDidChange.fire();
+        break;
+      case 'ready':
+        this._onReady.fire();
+        break;
+      case 'save':
+        this._onSave.fire();
+        break;
+      default:
+        super.onMessage(message);
+        break;
+    }
   }
 
   async getWorkspaceFileUri(path: string) {
-    if(!vscode.workspace.workspaceFolders) {
+    if (!vscode.workspace.workspaceFolders) {
       return null;
     }
-    for(const folder of vscode.workspace.workspaceFolders) {
-      const uri = folder.uri.with({ path: folder.uri.path + '/' + path});
+    for (const folder of vscode.workspace.workspaceFolders) {
+      const uri = folder.uri.with({ path: folder.uri.path + '/' + path });
       try {
         const stat = await vscode.workspace.fs.stat(uri);
-        if(stat.type === vscode.FileType.File) {
+        if (stat.type === vscode.FileType.File) {
           return uri;
         }
-      } catch(e) {
+      } catch (e) {
         continue;
       }
     }
@@ -76,19 +76,19 @@ export default class LakePreview extends BasePreview {
   async openFileAtPosition(filePath: string, line: number, column: number) {
     try {
       const finalURI = path.isAbsolute(filePath) ? vscode.Uri.parse(filePath) : await this.getWorkspaceFileUri(filePath);
-      if(!finalURI) {
+      if (!finalURI) {
         return;
       }
       const stat = await vscode.workspace.fs.stat(finalURI);
-      if(stat.type === vscode.FileType.File) {
+      if (stat.type === vscode.FileType.File) {
         await vscode.commands.executeCommand('vscode.open', finalURI);
-        if(vscode.window.activeTextEditor && line > 0) {
+        if (vscode.window.activeTextEditor && line > 0) {
           const position = new vscode.Position(line - 1, column - 1);
           vscode.window.activeTextEditor.selection = new vscode.Selection(position, position);
           vscode.window.activeTextEditor.revealRange(new vscode.Range(position, position), vscode.TextEditorRevealType.InCenter);
         }
       }
-    } catch(e) {
+    } catch (e) {
       console.error(e);
     }
   }
@@ -98,7 +98,7 @@ export default class LakePreview extends BasePreview {
    * @param href 文件路径 例如 xxx.md:2:3 或者 http链接
    */
   async visitLink(href: string) {
-    if(href.startsWith('http')) {
+    if (href.startsWith('http')) {
       await vscode.env.openExternal(vscode.Uri.parse(href));
       return;
     }
@@ -106,7 +106,7 @@ export default class LakePreview extends BasePreview {
     if (result) {
       const [, filePath, line, column] = result;
       if (filePath) {
-        this.openFileAtPosition(filePath, line ? Number(line.slice(1)): 0, column ? Number(column.slice(1)): 1 );
+        this.openFileAtPosition(filePath, line ? Number(line.slice(1)) : 0, column ? Number(column.slice(1)) : 1);
         return;
       }
     }
@@ -126,12 +126,20 @@ export default class LakePreview extends BasePreview {
     return this.message.callClient('setActive');
   }
 
+  async windowStateChange(focused: boolean) {
+    return this.message.callClient('windowStateChange', { active: this.webviewEditor.active && focused });
+  }
+
   async undo() {
     return this.message.callClient('undo');
   }
 
   async redo() {
     return this.message.callClient('redo');
+  }
+
+  async switchTheme() {
+    return this.message.callClient('switchTheme', { isDark: vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Dark });
   }
 
   async getContent(): Promise<Uint8Array> {
