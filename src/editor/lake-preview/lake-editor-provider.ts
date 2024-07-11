@@ -51,7 +51,7 @@ export default class LakeEditorProvider extends Disposable implements vscode.Cus
 
     document.setDelegate({
       getFileData: async () => {
-        if(lakePreview.isDisposed) {
+        if (lakePreview.isDisposed) {
           return new Uint8Array();
         }
         const content = await lakePreview.getContent();
@@ -85,6 +85,15 @@ export default class LakeEditorProvider extends Disposable implements vscode.Cus
           lakePreview.redo();
         },
       });
+    }));
+
+    // 监听主题变动
+    this._register(vscode.window.onDidChangeActiveColorTheme(theme => {
+      lakePreview.switchTheme();
+    }));
+    // 监听窗口焦点变化
+    this._register(vscode.window.onDidChangeWindowState(windowState => {
+      lakePreview.windowStateChange(windowState.focused);
     }));
   }
 }
