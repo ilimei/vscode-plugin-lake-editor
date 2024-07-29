@@ -78,6 +78,10 @@
       {
         "command": "lakeEditor.openLakebookSource",
         "title": "Open Lakebook Source"
+      },
+      {
+        "command": "lakeEditor.saveToMd",
+        "title": "Lake: Save to Markdown"
       }
     ],
     "customEditors": [

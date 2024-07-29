@@ -33,7 +33,7 @@ export default class BasePreview extends Disposable {
     protected readonly id: string = `${Date.now()}-${Math.random().toString()}`;
 
     private readonly _onDispose = this._register(new vscode.EventEmitter<void>());
-	public readonly onDispose = this._onDispose.event;
+    public readonly onDispose = this._onDispose.event;
 
     protected _previewState = ViewState.visible;
     protected _imageBinarySize: number = 0;
@@ -99,7 +99,7 @@ export default class BasePreview extends Disposable {
     }
 
     protected getTitle(): string {
-      return '';
+        return '';
     }
 
     protected getCSSSource(): string[] {
@@ -122,6 +122,9 @@ export default class BasePreview extends Disposable {
 
     }
 
+    protected onUnActive() {
+    }
+
     protected onVisible() {
 
     }
@@ -135,6 +138,10 @@ export default class BasePreview extends Disposable {
             return;
         }
 
+        if (!isActive && this._previewState === ViewState.active) {
+            this.onUnActive();
+        }
+
         if (this.webviewEditor.active && isActive && this._previewState !== ViewState.active) {
             this._previewState = ViewState.active;
             this.onActive();
@@ -144,6 +151,7 @@ export default class BasePreview extends Disposable {
             }
             this._previewState = ViewState.visible;
         }
+
     }
 
     private async getWebviewContents() {
@@ -190,10 +198,10 @@ export default class BasePreview extends Disposable {
     }
 
     private extensionResource(path: string) {
-      if(path.startsWith('http')) {
-        return path;
-      }
-      return this.webviewEditor.webview.asWebviewUri(this.extensionRoot.with({
+        if (path.startsWith('http')) {
+            return path;
+        }
+        return this.webviewEditor.webview.asWebviewUri(this.extensionRoot.with({
             path: this.extensionRoot.path + path
         }));
     }

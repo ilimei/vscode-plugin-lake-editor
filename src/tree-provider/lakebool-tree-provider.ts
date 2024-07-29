@@ -1,7 +1,9 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import * as fs from 'fs';
 import { LakeViewType } from '../common/constants';
 import { ILakeNode, LakeBookModel, ILakeTocNode, LakeRoot } from './lake-model';
+import LakePreview from '../editor/lake-preview/lake-preview';
 
 export default class LakeBookTreeProvider implements vscode.TreeDataProvider<ILakeNode> {
     private _onDidChangeTreeData = new vscode.EventEmitter<void | ILakeNode | ILakeNode[]>();
@@ -34,6 +36,33 @@ export default class LakeBookTreeProvider implements vscode.TreeDataProvider<ILa
 
     openLakeBookSource(uri: vscode.Uri) {
         vscode.commands.executeCommand('vscode.openWith', uri, LakeViewType, { preview: true });
+    }
+
+    saveAsMd() {
+        if (LakePreview.activeEditor) {
+            const options: vscode.SaveDialogOptions = {
+                saveLabel: 'Save As Markdown',
+                filters: {
+                    'Markdown Files': ['md'],
+                    'All Files': ['*']
+                }
+            };
+
+            vscode.window.showSaveDialog(options).then(async fileUri => {
+                if (fileUri && LakePreview.activeEditor) {
+                    // 假设你有一个方法可以获取要保存的内容
+                    const content = await LakePreview.activeEditor.getContent('text/markdown');
+
+                    fs.writeFile(fileUri.fsPath, content, (err) => {
+                        if (err) {
+                            vscode.window.showErrorMessage('Failed to save file!');
+                        } else {
+                            vscode.window.showInformationMessage('File saved successfully!');
+                        }
+                    });
+                }
+            });
+        }
     }
 
     getTreeItem(element: ILakeNode): vscode.TreeItem | Thenable<vscode.TreeItem> {
@@ -96,6 +125,9 @@ export default class LakeBookTreeProvider implements vscode.TreeDataProvider<ILa
         });
         vscode.commands.registerCommand('lakeEditor.openLakebookSource', (uri: vscode.Uri) => {
             this.openLakeBookSource(uri);
+        });
+        vscode.commands.registerCommand('lakeEditor.saveToMd', (uri: vscode.Uri) => {
+            this.saveAsMd();
         });
     }
 }

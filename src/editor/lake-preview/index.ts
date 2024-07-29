@@ -197,8 +197,8 @@ window.onload = async function () {
         console.info('updateContent');
         break;
       case 'getContent': {
-        let lake = editor.getDocument(docScheme, { includeMeta: true });
-        if (!isMarkdown && config.showTitle) {
+        let lake = editor.getDocument(e.data.data || docScheme, { includeMeta: true });
+        if (!isMarkdown && config.showTitle && e.data.data !== 'text/markdown') {
           // 以文件名作为标题
           lake = lake.replace('<!doctype lake>', '<!doctype lake><title>' + ctx.title + '</title>');
         }
