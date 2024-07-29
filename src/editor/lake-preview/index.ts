@@ -42,7 +42,11 @@ window.onload = async function () {
   // @ts-expect-error not error
   const isReadOnly = window.currentResourceURI.scheme === 'lake';
   // @ts-expect-error not error
-  const fileName = window.currentResourceURI.path.split('/').pop();
+  const fileName = window.currentResourceURI.path.split('/').pop() as string;
+
+  const isMarkdown = fileName.toLowerCase().endsWith('.md');
+
+  console.info('isMarkdown', isMarkdown);
 
   if (isReadOnly) {
     document.body.style.cssText = 'padding: 24px;';
@@ -61,10 +65,10 @@ window.onload = async function () {
     disabledPlugins,
     defaultFontsize: config.defaultFontSize,
     // @ts-expect-error not error
-    header: !isReadOnly && config.showTitle ? React.createElement(Title, {
+    header: !isReadOnly && !isMarkdown && config.showTitle ? React.createElement(Title, {
       onChange(title: string) {
         ctx.title = title;
-        let lake = editor.getDocument('text/lake', { includeMeta: true });
+        let lake = editor.getDocument(docScheme, { includeMeta: true });
         lake = lake.replace(/<!doctype lake>/, '<!doctype lake><title>' + title + '</title>');
         window.message.callServer('contentchange', lake);
       },
@@ -137,6 +141,8 @@ window.onload = async function () {
     window.message.callServer('visitLink', href, external);
   });
 
+  const docScheme = isMarkdown ? 'text/markdown' : 'text/lake';
+
   let cancelChangeListener = () => { };
   window.addEventListener('message', async e => {
     switch (e.data.type) {
@@ -168,7 +174,7 @@ window.onload = async function () {
       case 'updateContent':
         cancelChangeListener();
         let lake = new TextDecoder().decode(e.data.data);
-        if (!isReadOnly && config.showTitle) {
+        if (!isReadOnly && !isMarkdown && config.showTitle) {
           const m = lake.match(/<title>([\s\S]+?)<\/title>/);
           if (m) {
             ctx.title = m[1];
@@ -176,11 +182,11 @@ window.onload = async function () {
           document.querySelector('.lake-title').setAttribute('value', ctx.title);
         }
         lake = lake.replace(/<title>[\s\S]+?<\/title>/g, '');
-        editor.setDocument('text/lake', lake);
+        editor.setDocument(docScheme, lake);
         // 监听内容变动
         cancelChangeListener = editor.on('contentchange', () => {
-          let lake = editor.getDocument('text/lake', { includeMeta: true });
-          if (config.showTitle) {
+          let lake = editor.getDocument(docScheme, { includeMeta: true });
+          if (!isMarkdown && config.showTitle) {
             lake = lake.replace(/<!doctype lake>/, '<!doctype lake><title>' + ctx.title + '</title>');
           }
           window.message.callServer('contentchange', lake);
@@ -191,8 +197,8 @@ window.onload = async function () {
         console.info('updateContent');
         break;
       case 'getContent': {
-        let lake = editor.getDocument('text/lake', { includeMeta: true });
-        if (config.showTitle) {
+        let lake = editor.getDocument(e.data.data || docScheme, { includeMeta: true });
+        if (!isMarkdown && config.showTitle && e.data.data !== 'text/markdown') {
           // 以文件名作为标题
           lake = lake.replace('<!doctype lake>', '<!doctype lake><title>' + ctx.title + '</title>');
         }

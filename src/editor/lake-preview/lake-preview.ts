@@ -15,6 +15,11 @@ export default class LakePreview extends BasePreview {
   private readonly _onSave = this._register(new vscode.EventEmitter<void>());
   public readonly onSave = this._onSave.event;
 
+  private static _activeEditor: LakePreview | undefined;
+  public static get activeEditor(): LakePreview | null {
+    return this._activeEditor || null;
+  }
+
   config = getConfig();
 
   getCSSSource(): string[] {
@@ -123,7 +128,14 @@ export default class LakePreview extends BasePreview {
   }
 
   async onActive() {
+    LakePreview._activeEditor = this;
     return this.message.callClient('setActive');
+  }
+
+  protected onUnActive() {
+    if (LakePreview._activeEditor === this) {
+      LakePreview._activeEditor = undefined;
+    }
   }
 
   async windowStateChange(focused: boolean) {
@@ -142,8 +154,8 @@ export default class LakePreview extends BasePreview {
     return this.message.callClient('switchTheme', { isDark: vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Dark });
   }
 
-  async getContent(): Promise<Uint8Array> {
-    return this.message.callClient('getContent');
+  async getContent(type = ''): Promise<Uint8Array> {
+    return this.message.callClient('getContent', type);
   }
 
   async updateContent(content?: Uint8Array) {

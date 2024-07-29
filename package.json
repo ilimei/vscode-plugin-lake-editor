@@ -2,7 +2,7 @@
   "name": "lake-editor",
   "displayName": "lake-editor",
   "description": "use yuque editor edit local lake file and lakebook viewer",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "publisher": "hugehardzhang",
   "icon": "icon.png",
   "engines": {
@@ -78,9 +78,23 @@
       {
         "command": "lakeEditor.openLakebookSource",
         "title": "Open Lakebook Source"
+      },
+      {
+        "command": "lakeEditor.saveToMd",
+        "title": "Lake: Save to Markdown"
       }
     ],
     "customEditors": [
+      {
+        "viewType": "lakeEditor.markdownEditor",
+        "displayName": "lake-editor",
+        "priority": "option",
+        "selector": [
+          {
+            "filenamePattern": "*.md"
+          }
+        ]
+      },
       {
         "viewType": "lakeEditor.lakeEditor",
         "displayName": "lake-editor",

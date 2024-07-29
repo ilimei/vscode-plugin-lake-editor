@@ -12,4 +12,12 @@ export function registerCustomEditorProvider(context: vscode.ExtensionContext) {
       }
     })
   );
+  context.subscriptions.push(
+    vscode.window.registerCustomEditorProvider('lakeEditor.markdownEditor', lakeEditorProvider, {
+      supportsMultipleEditorsPerDocument: false,
+      webviewOptions: {
+        retainContextWhenHidden: true,
+      }
+    })
+  );
 }
