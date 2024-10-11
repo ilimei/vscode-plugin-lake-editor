@@ -12,6 +12,7 @@
     "Other"
   ],
   "main": "./dist/extension.js",
+  "license": "MIT",
   "scripts": {
     "vscode:prepublish": "npm run package",
     "preset": "node ./scripts/preset-editor.js",
