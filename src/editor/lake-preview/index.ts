@@ -124,6 +124,13 @@ window.onload = async function () {
         return false;
       },
       async createUploadPromise(request) {
+        if (request.type === 'base64') {
+          return {
+            url: request.data,
+            size: request.data.length * 0.75,
+            name: 'image.png',
+          }
+        }
         const url = await toBase64URL(request.data);
         return {
           url,
