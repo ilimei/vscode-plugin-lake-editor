@@ -2,7 +2,7 @@
   "name": "lake-editor",
   "displayName": "lake-editor",
   "description": "use yuque editor edit local lake file and lakebook viewer",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "publisher": "hugehardzhang",
   "icon": "icon.png",
   "engines": {
@@ -12,6 +12,7 @@
     "Other"
   ],
   "main": "./dist/extension.js",
+  "license": "MIT",
   "scripts": {
     "vscode:prepublish": "npm run package",
     "preset": "node ./scripts/preset-editor.js",
