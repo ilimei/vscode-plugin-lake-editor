@@ -19,6 +19,10 @@ export class LakeEditorConfig {
     return this.config.get('showToolbar');
   }
 
+  get formatLake(): boolean {
+    return this.config.get('formatLake');
+  }
+
   get defaultFontSize(): number {
     return this.config.get('defaultFontSize');
   }

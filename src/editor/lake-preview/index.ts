@@ -30,6 +30,40 @@ function Title(props: {
   });
 }
 
+function formatLake(xml: string, config: any) {
+  if (!config.formatLake) {
+    return xml;
+  }
+  const PADDING = ' '.repeat(2); // 缩进空格数
+  const reg = /(>)(<)(\/*)/g;
+  let formatted = '';
+  let pad = 0;
+
+  // 将XML字符串中的所有">"和"<"之间添加换行符
+  xml = xml.replace(reg, '$1\r\n$2$3');
+
+  // 按行分割XML字符串
+  xml.split('\r\n').forEach((node) => {
+    let indent = 0;
+    if (node.match(/.+<\/\w[^>]*>$/)) {
+      indent = 0;
+    } else if (node.match(/^<\/\w/)) {
+      if (pad !== 0) {
+        pad -= 1;
+      }
+    } else if (node.match(/^<\w([^>]*[^\/])?>.*$/)) {
+      indent = 1;
+    } else {
+      indent = 0;
+    }
+
+    formatted += PADDING.repeat(pad) + node + '\r\n';
+    pad += indent;
+  });
+
+  return formatted.trim();
+}
+
 window.onload = async function () {
   const [baseURI, config] = await Promise.all([
     window.message.callServer('getExtensionResource', '/media/editor'),
@@ -45,8 +79,6 @@ window.onload = async function () {
   const fileName = window.currentResourceURI.path.split('/').pop() as string;
 
   const isMarkdown = fileName.toLowerCase().endsWith('.md');
-
-  console.info('isMarkdown', isMarkdown);
 
   if (isReadOnly) {
     document.body.style.cssText = 'padding: 24px;';
@@ -124,6 +156,13 @@ window.onload = async function () {
         return false;
       },
       async createUploadPromise(request) {
+        if (request.type === 'base64') {
+          return {
+            url: request.data,
+            size: request.data.length * 0.75,
+            name: 'image.png',
+          }
+        }
         const url = await toBase64URL(request.data);
         return {
           url,
@@ -189,7 +228,7 @@ window.onload = async function () {
           if (!isMarkdown && config.showTitle) {
             lake = lake.replace(/<!doctype lake>/, '<!doctype lake><title>' + ctx.title + '</title>');
           }
-          window.message.callServer('contentchange', lake);
+          window.message.callServer('contentchange', formatLake(lake, config));
         });
         // 获取焦点
         editor.execCommand('focus');
@@ -202,7 +241,7 @@ window.onload = async function () {
           // 以文件名作为标题
           lake = lake.replace('<!doctype lake>', '<!doctype lake><title>' + ctx.title + '</title>');
         }
-        window.message.replayServer(e.data.requestId, new TextEncoder().encode(lake));
+        window.message.replayServer(e.data.requestId, new TextEncoder().encode(formatLake(lake, config)));
         break;
       }
     }

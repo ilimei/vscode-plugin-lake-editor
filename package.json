@@ -2,7 +2,7 @@
   "name": "lake-editor",
   "displayName": "lake-editor",
   "description": "use yuque editor edit local lake file and lakebook viewer",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "publisher": "hugehardzhang",
   "icon": "icon.png",
   "engines": {
@@ -168,6 +168,11 @@
             32,
             48
           ]
+        },
+        "lakeEditor.formatLake": {
+          "type": "boolean",
+          "default": false,
+          "description": "lake的xml格式化保存"
         }
       }
     }
