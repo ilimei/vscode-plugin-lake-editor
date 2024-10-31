@@ -2654,168 +2654,6 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
 /**
  * colors
  */
-/** 只提供变量 */
-.ne-ui-command-menu {
-  display: flex;
-  background: var(--lakex-editor-background-primary);
-  box-shadow: 0 1px 4px -2px var(--lakex-editor-color-black-f12), 0 2px 8px 0px var(--lakex-editor-color-black-f08), 0 8px 16px 4px var(--lakex-editor-color-black-f05);
-  border-radius: 2px;
-  padding: 0;
-  overflow: hidden;
-  flex-direction: column;
-}
-.ne-ui-command-menu.ne-ui-command-menu-column-1 {
-  width: 212px;
-}
-.ne-ui-command-menu.ne-ui-command-menu-column-4 {
-  width: 750px;
-}
-.ne-ui-command-menu input {
-  width: 10px;
-  height: 10px;
-  opacity: 0;
-  position: absolute;
-  z-index: -1;
-}
-.ne-ui-command-menu-info {
-  display: flex;
-  align-items: center;
-  height: 36px;
-  padding: 8px 20px;
-  border-top: 1px solid var(--lakex-editor-background-primary-hover-light);
-  font-size: 12px;
-  color: var(--lakex-editor-text-caption);
-  cursor: default;
-}
-.ne-ui-command-menu-info .ne-ui-command-menu-hotkey {
-  width: 168px;
-}
-.ne-ui-command-menu-info .ne-ui-command-menu-hotkey + .ne-ui-command-menu-md {
-  padding-left: 216px;
-}
-.ne-ui-command-menu-info .ne-ui-command-menu-hotkey-keys {
-  display: inline-block;
-  text-align: center;
-  height: 20px;
-  line-height: 20px;
-  min-width: 20px;
-  padding: 0px 4px;
-  margin-right: 4px;
-  background-color: var(--lakex-editor-background-tertiary);
-  border-radius: 2px;
-}
-.ne-ui-command-menu-info .ne-ui-command-menu-md-keys {
-  color: var(--lakex-editor-color-theme);
-  margin-right: 0.5em;
-}
-.ne-ui-command-menu-info .ne-ui-command-menu-md-trigger {
-  color: var(--lakex-editor-text-color);
-}
-.ne-ui-command-menu-scrollable {
-  overflow-y: auto;
-  scroll-behavior: smooth;
-  scrollbar-color: var(--lakex-editor-background-primary-hover-light) transparent;
-}
-.ne-ui-command-menu-column-1 .ne-ui-command-menu-scrollable {
-  max-height: 270px;
-}
-.ne-ui-command-menu-column-4 .ne-ui-command-menu-scrollable {
-  max-height: 202px;
-}
-.ne-ui-command-menu-scrollable::-webkit-scrollbar {
-  background: transparent;
-}
-.ne-ui-command-menu-scrollable::-webkit-scrollbar-thumb {
-  background: var(--lakex-editor-background-primary-hover-light);
-  border-radius: 15px;
-  border: 4.5px solid transparent;
-  background-clip: content-box;
-  width: 4px;
-}
-.ne-ui-command-menu-content {
-  display: flex;
-  padding: 15px 12px;
-  flex: 1;
-  min-height: 1px;
-  flex-direction: row;
-}
-.ne-ui-command-menu-column-4 .ne-ui-command-menu-content {
-  padding-right: 4px;
-}
-.ne-ui-command-menu-column {
-  display: flex;
-  flex: 1;
-  min-height: 1px;
-  flex-direction: column;
-  width: auto;
-  margin-left: 4px;
-}
-.ne-ui-command-menu-column:first-child {
-  margin-left: 0;
-}
-.ne-ui-command-menu-item {
-  display: flex;
-  align-items: center;
-  color: var(--lakex-editor-text-body);
-  padding: 0 8px;
-  cursor: pointer;
-  white-space: nowrap;
-  height: 32px;
-  border-radius: 6px;
-  margin-top: 2px;
-  line-height: 1.5;
-}
-.ne-ui-command-menu-item:first-child {
-  margin-top: 0;
-}
-.ne-ui-command-menu-item.ne-ui-selected {
-  background-color: var(--lakex-editor-background-tertiary);
-}
-.ne-ui-command-menu-item.ne-ui-disabled {
-  color: var(--lakex-editor-text-caption);
-}
-.ne-ui-command-menu-item.ne-ui-disabled .ne-ui-command-menu-item-icon {
-  opacity: 0.3;
-}
-.ne-ui-command-menu-item .ne-ui-command-menu-item-icon {
-  display: flex;
-  width: 18px;
-  height: 18px;
-  margin-right: 6px;
-}
-.ne-ui-command-menu-item .ne-ui-command-menu-item-icon .ne-icon {
-  width: 18px;
-  height: 18px;
-  background-size: 18px 18px;
-}
-.ne-ui-command-menu-item .ne-ui-command-menu-item-content {
-  font-size: 14px;
-  height: 22px;
-  line-height: 22px;
-  display: flex;
-  align-items: center;
-}
-.ne-ui-command-menu-item .ne-ui-command-menu-item-content.ne-ui-remind::after {
-  margin-left: 5px;
-  content: ' ';
-  display: block;
-  width: 12px;
-  height: 12px;
-  border: 3px solid var(--lakex-editor-background-focus);
-  border-radius: 100%;
-  background: var(--lakex-editor-card-border-selected);
-  background-clip: content-box;
-}
-
-/**
- * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
- */
-/**
- * 需要跟color-registry.ts同步
- */
-/**
- * colors
- */
 .ne-embed-nav {
   position: absolute;
   top: 0;
@@ -10761,6 +10599,9 @@ ne-card[data-card-name='thirdparty'] .ne-card-container[data-alias='music163'] {
 ne-card[data-card-name='thirdparty'] .ne-card-container[data-alias='ximalaya'] {
   height: 38px;
 }
+ne-card[data-card-name='thirdparty'] .ne-card-container[data-alias='dima'] {
+  height: 66px;
+}
 ne-card[data-card-name='thirdparty'] .ne-thirdparty-unavailable {
   background: var(--lakex-editor-background-tertiary);
   border-radius: 4px;
@@ -13270,6 +13111,201 @@ ne-card[data-card-type='inline'][data-card-name='dateCard'] .ne-card-date-card d
 }
 .ne-editor .ne-ui-random-tip-keys {
   margin-right: 0.5em;
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+.ne-ui-unicode-emoji-panel {
+  width: 418px;
+  max-width: calc(100vw - 40px);
+  border-radius: 8px;
+}
+.ne-ui-unicode-emoji-panel-header {
+  padding: 16px 16px 0 16px;
+}
+.ne-ui-unicode-emoji-panel-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 266px;
+  padding: 0 16px;
+}
+.ne-ui-unicode-emoji-panel-empty img {
+  display: block;
+  width: 50%;
+}
+.ne-ui-unicode-emoji-panel-empty p {
+  margin: 10px;
+  color: var(--lakex-editor-text-caption);
+  text-align: center;
+}
+.ne-ui-unicode-emoji-panel-content {
+  height: 266px;
+  padding: 0 16px;
+  overflow-y: scroll;
+}
+.ne-ui-unicode-emoji-panel-footer {
+  padding: 0 8px;
+}
+.ne-ui-unicode-emoji-panel .ne-ui-unicode-emoji-search {
+  margin-bottom: 8px;
+}
+.ne-ui-unicode-emoji-panel .ne-ui-unicode-emoji-group .ne-ui-unicode-emoji-label {
+  font-size: 12px;
+  margin: 6px 0;
+  color: var(--lakex-editor-text-caption);
+}
+.ne-ui-unicode-emoji-panel .ne-ui-unicode-emoji-group .ne-ui-unicode-emoji-content {
+  display: grid;
+}
+.ne-ui-unicode-emoji-panel .ne-ui-unicode-emoji-group .ne-ui-unicode-emoji-content .ne-ui-unicode-emoji-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ne-ui-unicode-emoji-panel .ne-ui-unicode-emoji-group .ne-ui-unicode-emoji-content .ne-ui-unicode-emoji-item.selected span {
+  background-color: var(--lakex-editor-background-primary-hover);
+}
+.ne-ui-unicode-emoji-panel .ne-ui-unicode-emoji-group .ne-ui-unicode-emoji-content .ne-ui-unicode-emoji-item span {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', NotoColorEmoji, 'Noto Color Emoji', 'Segoe UI Symbol', 'Android Emoji', EmojiSymbols;
+  transform: translateZ(0);
+  cursor: pointer;
+  border-radius: 4px;
+}
+.ne-ui-unicode-emoji-panel .ne-ui-unicode-emoji-group .ne-ui-unicode-emoji-content .ne-ui-unicode-emoji-item span:hover {
+  background-color: var(--lakex-editor-background-primary-hover);
+}
+.ne-ui-unicode-emoji-panel .ne-ui-unicode-emoji-tabs {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  width: 100%;
+  margin: 5px 0;
+  overflow-y: scroll;
+}
+.ne-ui-unicode-emoji-panel .ne-ui-unicode-emoji-tabs::-webkit-scrollbar {
+  display: none;
+}
+.ne-ui-unicode-emoji-panel .ne-ui-unicode-emoji-tabs .ne-ui-unicode-emoji-tab-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 26px;
+  padding: 0 8px;
+  color: var(--lakex-editor-text-caption);
+  font-size: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.ne-ui-unicode-emoji-panel .ne-ui-unicode-emoji-tabs .ne-ui-unicode-emoji-tab-item.selected {
+  color: var(--lakex-editor-text-color);
+  font-weight: bold;
+}
+.ne-ui-unicode-emoji-panel .ne-ui-unicode-emoji-tabs .ne-ui-unicode-emoji-tab-item:hover {
+  background-color: var(--lakex-editor-background-primary-hover);
+}
+.ne-ui-unicode-emoji-panel {
+  background-color: var(--lakex-editor-background-foreground);
+  border: none;
+  box-shadow: 0 1px 4px -2px rgba(0, 0, 0, 0.13), 0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 8px 16px 4px rgba(0, 0, 0, 0.04);
+  color: var(--lakex-editor-text-color);
+}
+[data-kumuhana="pouli"] .ne-ui-unicode-emoji-panel {
+  border: 1px solid var(--lakex-editor-border-primary);
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+ne-card[data-card-name='unicodeEmoji'].ne-focused .ne-card-unicode-emoji {
+  border-color: var(--lakex-editor-card-border-selected);
+}
+ne-card[data-card-name='unicodeEmoji'] .ne-card-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+ne-card[data-card-name='unicodeEmoji'] .ne-card-unicode-emoji {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 0.2em;
+  overflow: hidden;
+  background-color: var(--lakex-editor-overlay-background-tertiary);
+  border: 1px solid transparent;
+}
+ne-card[data-card-name='unicodeEmoji'] .ne-card-unicode-emoji:hover {
+  background-color: var(--lakex-editor-background-primary-hover);
+}
+ne-card[data-card-name='unicodeEmoji'] .ne-card-unicode-emoji-icon {
+  font-size: 0.8em;
+  margin: 0.2em;
+}
+
+/**
+ * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
+ */
+/**
+ * 需要跟color-registry.ts同步
+ */
+/**
+ * colors
+ */
+.correction-overlay {
+  background: var(--lakex-editor-color-white);
+  border: 1px solid var(--lakex-editor-border-primary);
+  box-shadow: 0 1px 4px -2px var(--lakex-editor-color-black-f12), 0 2px 12px 0 var(--lakex-editor-color-black-f05), 0 8px 80px 4px var(--lakex-editor-color-black-f05);
+  border-radius: 7px;
+  position: fixed;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.correction-overlay button {
+  padding: 0;
+  width: 40px;
+}
+.correction-overlay .tip {
+  color: var(--lakex-editor-text-caption);
+  font-size: 12px;
+}
+.correction-overlay .replace {
+  font-weight: bold;
+}
+.correction-overlay .footer {
+  min-width: 96px;
+  height: 40px;
+  display: flex;
+  border-top: 1px solid var(--lakex-editor-border-primary);
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.correction-overlay .footer button {
+  height: 24px;
+  font-size: 12px;
+  font-weight: normal;
 }
 
 /** 只提供变量 */
@@ -20165,6 +20201,9 @@ ne-columns .columns-move-inspector.show {
 ne-columns.ne-columns-removable .columns-remove {
   display: block;
 }
+ne-columns.ne-columns-removable ne-column-border {
+  border: 1px solid var(--lakex-editor-border-primary);
+}
 ne-columns .columns-start-add,
 ne-columns .columns-end-add {
   bottom: 6px;
@@ -20831,6 +20870,40 @@ ne-collapse.content-empty .ne-collapse-folding-inner .ne-icon {
   height: 41.76px;
 }
 
+.ne-viewer ne-card[data-card-type='inline'][data-card-name='image'] {
+  display: inline-block;
+}
+
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='image'] .ne-ui-image-maximize {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='image'] .ne-ui-image-maximize .ne-icon {
+  font-size: 1.8rem;
+}
+
+.ne-viewer ne-card[data-card-name='image'] {
+  height: auto;
+}
+.ne-paragraph-spacing-relax.ne-typography-classic.ne-viewer ne-card[data-card-name='image'] {
+  vertical-align: text-bottom;
+  margin-bottom: 0;
+}
+
+.ne-viewer-hidden-copy-node {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.ne-viewer[data-viewer-mode='simple'] ne-card[data-card-name='localdoc'] .ne-card-container[data-alias='embed'] {
+  height: auto !important;
+}
+
 /**
  * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
  */
@@ -20868,40 +20941,6 @@ ne-collapse.content-empty .ne-collapse-folding-inner .ne-icon {
 }
 .ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='file'] .ne-card-file .ne-icon {
   font-size: 1em;
-}
-
-.ne-viewer[data-viewer-mode='simple'] ne-card[data-card-name='localdoc'] .ne-card-container[data-alias='embed'] {
-  height: auto !important;
-}
-
-.ne-viewer ne-card[data-card-type='inline'][data-card-name='image'] {
-  display: inline-block;
-}
-
-.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='image'] .ne-ui-image-maximize {
-  width: 3.2rem;
-  height: 3.2rem;
-}
-.ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='image'] .ne-ui-image-maximize .ne-icon {
-  font-size: 1.8rem;
-}
-
-.ne-viewer ne-card[data-card-name='image'] {
-  height: auto;
-}
-.ne-paragraph-spacing-relax.ne-typography-classic.ne-viewer ne-card[data-card-name='image'] {
-  vertical-align: text-bottom;
-  margin-bottom: 0;
-}
-
-.ne-viewer-hidden-copy-node {
-  opacity: 0;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
 }
 
 .ne-viewer[data-viewer-mode='present'] .ne-list-symbol[ne-fontsize='12'],
