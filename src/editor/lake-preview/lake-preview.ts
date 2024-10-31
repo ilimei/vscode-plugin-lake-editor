@@ -122,6 +122,7 @@ export default class LakePreview extends BasePreview {
       showToc: this.config.showToc,
       showTitle: this.config.showTitle,
       showToolbar: this.config.showToolbar,
+      formatLake: this.config.formatLake,
       defaultFontSize: this.config.defaultFontSize,
       paragraphSpacing: this.config.paragraphSpacing,
     };

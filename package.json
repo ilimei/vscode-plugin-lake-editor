@@ -168,6 +168,11 @@
             32,
             48
           ]
+        },
+        "lakeEditor.formatLake": {
+          "type": "boolean",
+          "default": false,
+          "description": "lake的xml格式化保存"
         }
       }
     }
