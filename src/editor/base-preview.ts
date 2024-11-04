@@ -98,6 +98,10 @@ export default class BasePreview extends Disposable {
         this.message.callClient('setActive');
     }
 
+    get resourceUri() {
+        return this.resource;
+    }
+
     protected getTitle(): string {
         return '';
     }

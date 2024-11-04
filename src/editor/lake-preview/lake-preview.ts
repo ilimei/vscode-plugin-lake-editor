@@ -20,6 +20,10 @@ export default class LakePreview extends BasePreview {
     return this._activeEditor || null;
   }
 
+  public static pasteAsPlainText() {
+    this._activeEditor?.pasteAsPlainText();
+  }
+
   config = getConfig();
 
   getCSSSource(): string[] {
@@ -130,11 +134,13 @@ export default class LakePreview extends BasePreview {
 
   async onActive() {
     LakePreview._activeEditor = this;
+    vscode.commands.executeCommand('setContext', 'lakeEditorFocus', true);
     return this.message.callClient('setActive');
   }
 
   protected onUnActive() {
     if (LakePreview._activeEditor === this) {
+      vscode.commands.executeCommand('setContext', 'lakeEditorFocus', false);
       LakePreview._activeEditor = undefined;
     }
   }
@@ -149,6 +155,11 @@ export default class LakePreview extends BasePreview {
 
   async redo() {
     return this.message.callClient('redo');
+  }
+
+  async pasteAsPlainText() {
+    const clipboardText = await vscode.env.clipboard.readText();
+    return this.message.callClient('pasteAsPlainText', { clipboardText });
   }
 
   async switchTheme() {

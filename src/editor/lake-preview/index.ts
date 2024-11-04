@@ -244,6 +244,12 @@ window.onload = async function () {
         window.message.replayServer(e.data.requestId, new TextEncoder().encode(formatLake(lake, config)));
         break;
       }
+
+      case 'pasteAsPlainText': {
+        editor.execCommand('insertAtSelection', 'text/plain', e.data.data.clipboardText);
+        window.message.replayServer(e.data.requestId);
+        break;
+      }
     }
   });
 
