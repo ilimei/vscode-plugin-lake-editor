@@ -93,9 +93,14 @@ export default class BasePreview extends Disposable {
             this.update(true);
         }));
 
+        this.init();
         this.render();
         this.update(true);
         this.message.callClient('setActive');
+    }
+
+    protected init() {
+
     }
 
     get resourceUri() {

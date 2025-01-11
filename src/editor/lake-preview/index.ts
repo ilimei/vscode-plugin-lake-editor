@@ -67,7 +67,7 @@ function formatLake(xml: string, config: any) {
 window.onload = async function () {
   const [baseURI, config] = await Promise.all([
     window.message.callServer('getExtensionResource', '/media/editor'),
-    window.message.callServer('getConfig')
+    window.message.callServer('getConfig'),
   ]);
 
   // @ts-ignore
@@ -157,18 +157,28 @@ window.onload = async function () {
       },
       async createUploadPromise(request) {
         if (request.type === 'base64') {
-          return {
+          const ret = {
             url: request.data,
             size: request.data.length * 0.75,
             name: 'image.png',
           }
+          if (config.uploadImageToGithub) {
+            const githubURL = await window.message.callServer('uploadToGithub', request.data.replace(/data:.*base64,/, ''));
+            ret.url = githubURL.url || ret.url;
+          }
+          return ret;
         }
         const url = await toBase64URL(request.data);
-        return {
+        const ret = {
           url,
           size: request.data.size,
           name: request.data.name,
         };
+        if (config.uploadImageToGithub) {
+          const githubURL = await window.message.callServer('uploadToGithub', url.replace(/data:.*base64,/, ''));
+          ret.url = githubURL.url || ret.url;
+        }
+        return ret;
       },
     },
   });
@@ -247,6 +257,12 @@ window.onload = async function () {
 
       case 'pasteAsPlainText': {
         editor.execCommand('insertAtSelection', 'text/plain', e.data.data.clipboardText);
+        window.message.replayServer(e.data.requestId);
+        break;
+      }
+
+      case 'updateConfig': {
+        config.uploadImageToGithub = e.data.data.uploadImageToGithub;
         window.message.replayServer(e.data.requestId);
         break;
       }

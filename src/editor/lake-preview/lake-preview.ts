@@ -4,6 +4,7 @@ import * as path from 'path';
 import BasePreview from "../base-preview";
 import htmlTemplate from './index.html';
 import { getConfig } from '../../config';
+import { getGithubCore } from '../../common/github-core';
 
 export default class LakePreview extends BasePreview {
   private readonly _onDidChange = this._register(new vscode.EventEmitter<void>());
@@ -25,6 +26,15 @@ export default class LakePreview extends BasePreview {
   }
 
   config = getConfig();
+  githubCore = getGithubCore();
+
+  protected override init(): void {
+    this._register(vscode.workspace.onDidChangeConfiguration(event => {
+      if (event.affectsConfiguration('lakeEditor.uploadImageToGithub')) {
+        this.message.callClient('updateConfig', { uploadImageToGithub: this.config.uploadImageToGithub });
+      }
+    }));
+  }
 
   getCSSSource(): string[] {
     return [
@@ -129,6 +139,7 @@ export default class LakePreview extends BasePreview {
       formatLake: this.config.formatLake,
       defaultFontSize: this.config.defaultFontSize,
       paragraphSpacing: this.config.paragraphSpacing,
+      uploadImageToGithub: this.config.uploadImageToGithub,
     };
   }
 
@@ -182,6 +193,13 @@ export default class LakePreview extends BasePreview {
       size: data.length,
       url: this.webviewEditor.webview.asWebviewUri(targetResource).toString().replace(/"/g, '&quot;'),
       filename: 'image.png',
+    };
+  }
+
+  async uploadToGithub(base64: string) {
+    const url = await this.githubCore.uploadImage(base64);
+    return {
+      url,
     };
   }
 }

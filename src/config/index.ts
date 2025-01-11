@@ -1,10 +1,11 @@
 import * as vscode from 'vscode';
 
 export class LakeEditorConfig {
-  config: vscode.WorkspaceConfiguration;
+  constructor(private name: string) {
+  }
 
-  constructor(name: string) {
-    this.config = vscode.workspace.getConfiguration(name);
+  get config() {
+    return vscode.workspace.getConfiguration(this.name);
   }
 
   get showTitle(): boolean {
@@ -21,6 +22,10 @@ export class LakeEditorConfig {
 
   get formatLake(): boolean {
     return this.config.get('formatLake');
+  }
+
+  get uploadImageToGithub(): boolean {
+    return this.config.get('uploadImageToGithub');
   }
 
   get defaultFontSize(): number {

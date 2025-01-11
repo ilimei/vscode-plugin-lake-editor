@@ -20,7 +20,7 @@ function sleep(ms) {
   });
 }
 
-const LAKE_EDITOR_VERSION = '1.54.0';
+const LAKE_EDITOR_VERSION = '1.64.0';
 
 const lakeIconURL = 'https://mdn.alipayobjects.com/design_kitchencore/afts/file/i1RMQIK_4V4AAAAAAAAAAAAADhulAQBr';
 
