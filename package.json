@@ -54,6 +54,7 @@
     "webpack-cli": "^4.7.0"
   },
   "dependencies": {
+    "@octokit/rest": "^21.1.0",
     "tar": "^6.2.0",
     "vscode-nls": "^5.2.0",
     "yaml": "^2.3.4"
@@ -183,6 +184,11 @@
           "type": "boolean",
           "default": false,
           "description": "lake的xml格式化保存"
+        },
+        "lakeEditor.uploadImageToGithub": {
+          "type": "boolean",
+          "default": false,
+          "description": "图片会上传到github的仓库，会自动创建仓库vscode-lake-images"
         }
       }
     }
