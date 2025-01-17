@@ -2721,7 +2721,7 @@ ne-columns.ne-brick-drag-highlight ne-column-border {
 }
 .ne-error-tips-content {
   flex: 1;
-  display: flex;
+  display: block;
   align-items: center;
 }
 .ne-error-tips-operation {
@@ -8874,6 +8874,10 @@ span.CodeMirror-selectedtext {
 ne-card[data-card-name='mention'].ne-card-editing {
   background: transparent !important;
 }
+ne-card[data-card-name='mention'] .ne-ui-mention-link,
+ne-card[data-card-name='mention'] .ne-ui-card-select-view {
+  white-space: nowrap;
+}
 .ne-ui-card-select-view {
   display: inline;
   position: relative;
@@ -13308,6 +13312,15 @@ ne-card[data-card-name='unicodeEmoji'] .ne-card-unicode-emoji-icon {
   font-weight: normal;
 }
 
+.selection-helper .selection-helper-toolbar {
+  position: absolute;
+  transform: translateY(-100%);
+}
+.selection-helper .selection-helper-toolbar .ne-card-toolbar {
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
 /** 只提供变量 */
 /**
  * 通过.getCSSValue("editor.background")[] 会获得 var(--lakex-editor-background)的返回
@@ -15894,40 +15907,120 @@ ne-oli-i.heading {
   text-indent: initial;
   font-weight: bold;
 }
-ne-h1[index-type],
-ne-h2[index-type],
-ne-h3[index-type],
-ne-h4[index-type],
-ne-h5[index-type],
-ne-h6[index-type] {
+.ne-viewer ne-h1[index-type],
+.ne-editor ne-h1[index-type],
+.ne-viewer ne-h2[index-type],
+.ne-editor ne-h2[index-type],
+.ne-viewer ne-h3[index-type],
+.ne-editor ne-h3[index-type],
+.ne-viewer ne-h4[index-type],
+.ne-editor ne-h4[index-type],
+.ne-viewer ne-h5[index-type],
+.ne-editor ne-h5[index-type],
+.ne-viewer ne-h6[index-type],
+.ne-editor ne-h6[index-type] {
   display: flex;
   justify-content: flex-start;
   align-items: baseline;
 }
-ne-h1[index-type][ne-text-indent] ne-oli-i.heading,
-ne-h2[index-type][ne-text-indent] ne-oli-i.heading,
-ne-h3[index-type][ne-text-indent] ne-oli-i.heading,
-ne-h4[index-type][ne-text-indent] ne-oli-i.heading,
-ne-h5[index-type][ne-text-indent] ne-oli-i.heading,
-ne-h6[index-type][ne-text-indent] ne-oli-i.heading {
+.ne-viewer ne-h1[index-type][ne-text-indent] ne-oli-i.heading,
+.ne-editor ne-h1[index-type][ne-text-indent] ne-oli-i.heading,
+.ne-viewer ne-h2[index-type][ne-text-indent] ne-oli-i.heading,
+.ne-editor ne-h2[index-type][ne-text-indent] ne-oli-i.heading,
+.ne-viewer ne-h3[index-type][ne-text-indent] ne-oli-i.heading,
+.ne-editor ne-h3[index-type][ne-text-indent] ne-oli-i.heading,
+.ne-viewer ne-h4[index-type][ne-text-indent] ne-oli-i.heading,
+.ne-editor ne-h4[index-type][ne-text-indent] ne-oli-i.heading,
+.ne-viewer ne-h5[index-type][ne-text-indent] ne-oli-i.heading,
+.ne-editor ne-h5[index-type][ne-text-indent] ne-oli-i.heading,
+.ne-viewer ne-h6[index-type][ne-text-indent] ne-oli-i.heading,
+.ne-editor ne-h6[index-type][ne-text-indent] ne-oli-i.heading {
   margin-left: 2em;
 }
-ne-h1[index-type] ne-heading-content,
-ne-h2[index-type] ne-heading-content,
-ne-h3[index-type] ne-heading-content,
-ne-h4[index-type] ne-heading-content,
-ne-h5[index-type] ne-heading-content,
-ne-h6[index-type] ne-heading-content {
+.ne-viewer ne-h1[index-type] ne-heading-content,
+.ne-editor ne-h1[index-type] ne-heading-content,
+.ne-viewer ne-h2[index-type] ne-heading-content,
+.ne-editor ne-h2[index-type] ne-heading-content,
+.ne-viewer ne-h3[index-type] ne-heading-content,
+.ne-editor ne-h3[index-type] ne-heading-content,
+.ne-viewer ne-h4[index-type] ne-heading-content,
+.ne-editor ne-h4[index-type] ne-heading-content,
+.ne-viewer ne-h5[index-type] ne-heading-content,
+.ne-editor ne-h5[index-type] ne-heading-content,
+.ne-viewer ne-h6[index-type] ne-heading-content,
+.ne-editor ne-h6[index-type] ne-heading-content {
   text-indent: 0;
   flex: 1;
 }
-ne-h1[index-type] span.ne-b-filler,
-ne-h2[index-type] span.ne-b-filler,
-ne-h3[index-type] span.ne-b-filler,
-ne-h4[index-type] span.ne-b-filler,
-ne-h5[index-type] span.ne-b-filler,
-ne-h6[index-type] span.ne-b-filler {
+.ne-viewer ne-h1[index-type] span.ne-b-filler,
+.ne-editor ne-h1[index-type] span.ne-b-filler,
+.ne-viewer ne-h2[index-type] span.ne-b-filler,
+.ne-editor ne-h2[index-type] span.ne-b-filler,
+.ne-viewer ne-h3[index-type] span.ne-b-filler,
+.ne-editor ne-h3[index-type] span.ne-b-filler,
+.ne-viewer ne-h4[index-type] span.ne-b-filler,
+.ne-editor ne-h4[index-type] span.ne-b-filler,
+.ne-viewer ne-h5[index-type] span.ne-b-filler,
+.ne-editor ne-h5[index-type] span.ne-b-filler,
+.ne-viewer ne-h6[index-type] span.ne-b-filler,
+.ne-editor ne-h6[index-type] span.ne-b-filler {
   display: inline;
+}
+.ne-viewer ne-h1[ne-alignment='center'],
+.ne-editor ne-h1[ne-alignment='center'],
+.ne-viewer ne-h2[ne-alignment='center'],
+.ne-editor ne-h2[ne-alignment='center'],
+.ne-viewer ne-h3[ne-alignment='center'],
+.ne-editor ne-h3[ne-alignment='center'],
+.ne-viewer ne-h4[ne-alignment='center'],
+.ne-editor ne-h4[ne-alignment='center'],
+.ne-viewer ne-h5[ne-alignment='center'],
+.ne-editor ne-h5[ne-alignment='center'],
+.ne-viewer ne-h6[ne-alignment='center'],
+.ne-editor ne-h6[ne-alignment='center'] {
+  justify-content: center;
+}
+.ne-viewer ne-h1[ne-alignment='center'] ne-heading-content,
+.ne-editor ne-h1[ne-alignment='center'] ne-heading-content,
+.ne-viewer ne-h2[ne-alignment='center'] ne-heading-content,
+.ne-editor ne-h2[ne-alignment='center'] ne-heading-content,
+.ne-viewer ne-h3[ne-alignment='center'] ne-heading-content,
+.ne-editor ne-h3[ne-alignment='center'] ne-heading-content,
+.ne-viewer ne-h4[ne-alignment='center'] ne-heading-content,
+.ne-editor ne-h4[ne-alignment='center'] ne-heading-content,
+.ne-viewer ne-h5[ne-alignment='center'] ne-heading-content,
+.ne-editor ne-h5[ne-alignment='center'] ne-heading-content,
+.ne-viewer ne-h6[ne-alignment='center'] ne-heading-content,
+.ne-editor ne-h6[ne-alignment='center'] ne-heading-content {
+  flex: unset;
+}
+.ne-viewer ne-h1[ne-alignment='right'],
+.ne-editor ne-h1[ne-alignment='right'],
+.ne-viewer ne-h2[ne-alignment='right'],
+.ne-editor ne-h2[ne-alignment='right'],
+.ne-viewer ne-h3[ne-alignment='right'],
+.ne-editor ne-h3[ne-alignment='right'],
+.ne-viewer ne-h4[ne-alignment='right'],
+.ne-editor ne-h4[ne-alignment='right'],
+.ne-viewer ne-h5[ne-alignment='right'],
+.ne-editor ne-h5[ne-alignment='right'],
+.ne-viewer ne-h6[ne-alignment='right'],
+.ne-editor ne-h6[ne-alignment='right'] {
+  justify-content: right;
+}
+.ne-viewer ne-h1[ne-alignment='right'] ne-heading-content,
+.ne-editor ne-h1[ne-alignment='right'] ne-heading-content,
+.ne-viewer ne-h2[ne-alignment='right'] ne-heading-content,
+.ne-editor ne-h2[ne-alignment='right'] ne-heading-content,
+.ne-viewer ne-h3[ne-alignment='right'] ne-heading-content,
+.ne-editor ne-h3[ne-alignment='right'] ne-heading-content,
+.ne-viewer ne-h4[ne-alignment='right'] ne-heading-content,
+.ne-editor ne-h4[ne-alignment='right'] ne-heading-content,
+.ne-viewer ne-h5[ne-alignment='right'] ne-heading-content,
+.ne-editor ne-h5[ne-alignment='right'] ne-heading-content,
+.ne-viewer ne-h6[ne-alignment='right'] ne-heading-content,
+.ne-editor ne-h6[ne-alignment='right'] ne-heading-content {
+  flex: unset;
 }
 ne-oli-i.clickable span.ne-list-symbol {
   cursor: pointer;
@@ -23147,6 +23240,7 @@ span.CodeMirror-selectedtext {
 }
 .ne-viewer[data-viewer-mode='present'] ne-card[data-card-name='mention'] .ne-ui-mention-link {
   font-size: inherit;
+  white-space: nowrap;
 }
 
 .ne-viewer ne-columns {
