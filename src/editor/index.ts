@@ -4,6 +4,7 @@ import LakePreview from './lake-preview/lake-preview';
 
 export function registerCustomEditorProvider(context: vscode.ExtensionContext) {
   const lakeEditorProvider = new LakeEditorProvider(context.extensionUri);
+  const markdownEditorProvider = new LakeEditorProvider(context.extensionUri);
 
   vscode.commands.executeCommand('setContext', 'lakeEditorFocus', false);
 
@@ -20,8 +21,9 @@ export function registerCustomEditorProvider(context: vscode.ExtensionContext) {
     LakePreview.pasteAsPlainText();
   }));
 
+  // 同一个 provider 不可以注册多个 viewType
   context.subscriptions.push(
-    vscode.window.registerCustomEditorProvider('lakeEditor.markdownEditor', lakeEditorProvider, {
+    vscode.window.registerCustomEditorProvider('lakeEditor.markdownEditor', markdownEditorProvider, {
       supportsMultipleEditorsPerDocument: false,
       webviewOptions: {
         retainContextWhenHidden: true,
