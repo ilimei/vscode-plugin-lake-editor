@@ -7,6 +7,7 @@
 			"es6",
 			"DOM"
 		],
+		"jsx": "react",
 		"allowSyntheticDefaultImports": true,
 		"noImplicitAny": false,
 		"strictPropertyInitialization": false,

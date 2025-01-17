@@ -39,6 +39,8 @@
     "@typescript-eslint/parser": "^4.26.0",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.7.3",
+    "esbuild": "^0.24.2",
+    "esbuild-loader": "^4.2.2",
     "eslint": "^7.27.0",
     "file-loader": "^6.2.0",
     "glob": "^7.1.7",
